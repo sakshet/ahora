@@ -13,8 +13,8 @@ export const App = () => {
   const classes = useStyleSheet(appStyleSheet, null);
   return (
     <div className={classes.container}>
-      <Text typography="body03">Hello Text</Text>
-      <Heading typography="heading03">Hello Text</Heading>
+      <Text typography="body03">Sample Text</Text>
+      <Heading typography="heading03">Sample Heading</Heading>
     </div>
   );
 }
