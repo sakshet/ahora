@@ -1,5 +1,5 @@
+import { createStyleSheet, useStyleSheet } from '@Core/styles';
 import React from 'react';
-import { createStyleSheet, useStyleSheet } from '../core/styles/styles';
 
 const appStyleSheet = createStyleSheet('appStyles', ({ isRed }: { isRed: boolean; }) => ({
   container: {
