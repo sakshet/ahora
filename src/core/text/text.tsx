@@ -1,5 +1,4 @@
-// Text.tsx
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 type TextTypography = 
   'body01' | 'body02' | 'body03' | 'body04' | 'body05' |
@@ -11,10 +10,10 @@ type HeadingTypography =
 
 type TextProps = {
   typography: TextTypography;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
-export const Text: React.FC<TextProps> = ({ typography, children }) => {
+export const Text = ({ children, typography }: TextProps) => {
   let fontSize = '16px'; // Default font size
 
   switch (typography) {
@@ -53,23 +52,16 @@ export const Text: React.FC<TextProps> = ({ typography, children }) => {
   }
 
   return (
-    <p style={{ fontSize: fontSize }}>{children}</p>
-    //   css={css`
-    //     font-size: ${fontSize};
-    //     /* Add additional styles as needed */
-    //   `}
-    // >
-    //   {children}
-    // </p>
+    <p style={{ fontSize, margin: 0 }}>{children}</p>
   );
 };
 
 type HeadingProps = {
   typography: HeadingTypography;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
-export const Heading: React.FC<HeadingProps> = ({ typography, children }) => {
+export const Heading = ({ children, typography }: HeadingProps) => {
   let fontSize = '32px'; // Default font size
 
   switch (typography) {
@@ -108,16 +100,6 @@ export const Heading: React.FC<HeadingProps> = ({ typography, children }) => {
   }
 
   return (
-    <h1 style={{ fontSize: fontSize }}>{children}</h1>
-    // <h1
-    //   css={css`
-    //     font-size: ${fontSize};
-    //     /* Add additional styles as needed */
-    //   `}
-    // >
-    //   {children}
-    // </h1>
+    <h1 style={{ fontSize, margin: 0 }}>{children}</h1>
   );
 };
-
-export default Heading;
