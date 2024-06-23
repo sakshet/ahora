@@ -9,7 +9,7 @@ const homepageStyleSheet = createStyleSheet('homepageStyles', {
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.black,
+    backgroundColor: colors.blueGray080,
     color: colors.white,
     gap: '5px',
   },
