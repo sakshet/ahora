@@ -65,7 +65,7 @@ export const ServerStateProvider = ({ children }: { children: ReactNode; }) => {
   }, []);
 
   return (
-    <div>
+    <div style={{height: '100%', width: '100%'}}>
       <ServerStateContext.Provider value={data}>{children}</ServerStateContext.Provider>
     </div>
   );
