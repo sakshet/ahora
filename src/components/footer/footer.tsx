@@ -3,7 +3,7 @@ import { colors, createStyleSheet, useStyleSheet } from "@Core/styles";
 import { Heading, Text } from "@Core/text";
 import React from "react";
 
-const headerStyleSheet = createStyleSheet("headerStyles", {
+const footerStyleSheet = createStyleSheet("footerStyles", {
   container: {
     display: "flex",
     flexDirection: "row",
@@ -13,9 +13,9 @@ const headerStyleSheet = createStyleSheet("headerStyles", {
     borderBottom: `1px solid ${colors.white}`,
     "@media only screen and (max-width: 300px)": {
       flexDirection: "column",
-      height: "70px",
       alignItems: "flex-start",
     },
+    visibility: "hidden",
   },
   navigation: {
     display: "flex",
@@ -28,8 +28,8 @@ const headerStyleSheet = createStyleSheet("headerStyles", {
     },
   },
 });
-export const Header = () => {
-  const classes = useStyleSheet(headerStyleSheet, null);
+export const Footer = () => {
+  const classes = useStyleSheet(footerStyleSheet, null);
   return (
     <div className={classes.container}>
       <Heading typography="heading07">

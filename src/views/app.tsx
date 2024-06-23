@@ -1,3 +1,4 @@
+import { Footer } from "@Components/footer";
 import { Header } from "@Components/header";
 import { AppStateProvider, ServerStateProvider } from "@Context/context";
 import { colors, createStyleSheet, useStyleSheet } from "@Core/styles";
@@ -36,6 +37,7 @@ const AppContainer = () => {
         <Route path="/" element={<Homepage />} />
         <Route path="*" element={<Homepage />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };

@@ -16,8 +16,8 @@ export const Homepage = () => {
   const classes = useStyleSheet(homepageStyleSheet, null);
   return (
     <div className={classes.container}>
-      <Heading typography="heading01">We'll be back soon</Heading>
-      <Text typography="body01">All good things take time</Text>
+      <Heading typography="heading04">We'll be back soon</Heading>
+      <Text typography="body04">All good things take time</Text>
     </div>
   );
 };
