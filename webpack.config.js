@@ -83,8 +83,7 @@ module.exports = {
       },
     ]
   },
-  // devtool: prod ? undefined : 'source-map',
-  devtool: 'source-map',
+  devtool: prod ? undefined : 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
