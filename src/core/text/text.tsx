@@ -50,7 +50,7 @@ export const Text = ({ children, typography }: TextProps) => {
   }
 
   return (
-    <p style={{ fontSize, margin: 0 }}>{children}</p>
+    <p style={{ fontSize, margin: 0, textAlign: 'center' }}>{children}</p>
   );
 };
 
@@ -96,6 +96,6 @@ export const Heading = ({ children, typography }: HeadingProps) => {
   }
 
   return (
-    <h1 style={{ fontSize, margin: 0 }}>{children}</h1>
+    <h1 style={{ fontSize, margin: 0, textAlign: 'center' }}>{children}</h1>
   );
 };
