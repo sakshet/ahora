@@ -19,11 +19,11 @@ module.exports = {
     contentBase: path.resolve(__dirname, 'dist'), // Serve from the 'dist' directory
     open: true, // Open the browser automatically
   },
-  performance: {
-    hints: false,
-    maxEntrypointSize: 512000,
-    maxAssetSize: 512000
-  },
+  // performance: {
+  //   hints: false,
+  //   maxEntrypointSize: 512000,
+  //   maxAssetSize: 512000
+  // },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
@@ -32,31 +32,31 @@ module.exports = {
       '@Views': path.resolve(__dirname, 'src/views/')
     }
   },
-  optimization: {
-    usedExports: true,
-    minimize: true,
-    minimizer: [
-      new CssMinimizerPlugin(),
-      new TerserPlugin()
-    ],
-    sideEffects: true,
-    splitChunks: {
-      chunks: 'all',
-      minSize: 0,
-      cacheGroups: {
-        defaultVendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-          reuseExistingChunk: true,
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
-    },
-  },
+  // optimization: {
+  //   usedExports: true,
+  //   minimize: true,
+  //   minimizer: [
+  //     new CssMinimizerPlugin(),
+  //     new TerserPlugin()
+  //   ],
+  //   sideEffects: true,
+  //   splitChunks: {
+  //     chunks: 'all',
+  //     minSize: 0,
+  //     cacheGroups: {
+  //       defaultVendors: {
+  //         test: /[\\/]node_modules[\\/]/,
+  //         priority: -10,
+  //         reuseExistingChunk: true,
+  //       },
+  //       default: {
+  //         minChunks: 2,
+  //         priority: -20,
+  //         reuseExistingChunk: true,
+  //       },
+  //     },
+  //   },
+  // },
   module: {
     rules: [
       {
