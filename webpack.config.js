@@ -16,6 +16,8 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
+    contentBase: path.resolve(__dirname, 'dist'), // Serve from the 'dist' directory
+    open: true, // Open the browser automatically
   },
   performance: {
     hints: false,
@@ -88,7 +90,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'index.html',
     }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'main.css'
+    }),
     // new BundleAnalyzerPlugin(),
   ],
 };
