@@ -9,3 +9,9 @@
   font-family: 'rubikSemiBold';
   src: url('../fonts/rubikSemiBold.ttf') format('truetype');
 }
+
+/* Define @font-face for rubikItalic */
+@font-face {
+  font-family: 'rubikItalic';
+  src: url('../fonts/rubikItalic.ttf') format('truetype');
+}

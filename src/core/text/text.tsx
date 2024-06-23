@@ -47,8 +47,6 @@ export const Text = ({ children, typography }: TextProps) => {
     case 'body10':
       fontSize = '6px';
       break;
-    default:
-      break;
   }
 
   return (
@@ -94,8 +92,6 @@ export const Heading = ({ children, typography }: HeadingProps) => {
       break;
     case 'heading10':
       fontSize = '14px';
-      break;
-    default:
       break;
   }
 

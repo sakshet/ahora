@@ -1,25 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
+import { CreateStyleSheetType, StyledStyleSheet } from './types';
 
-// Type definition for the stylesheet
-type StyleSheet = {
-  [key: string]: React.CSSProperties;
-};
-
-// Type definition for the styled stylesheet which includes __prefix__
-type StyledStyleSheet = StyleSheet & {
-  __prefix__?: string;
-};
-
-type CreateStyleSheetType = [prefix: string, stylesOrFunc: StyleSheet | ((props: any) => StyleSheet)];
-
-export const createStyleSheet = (
-  prefix: string,
-  stylesOrFunc: StyleSheet | ((props: any) => StyleSheet),
-): CreateStyleSheetType => {
-  return [prefix, stylesOrFunc];
-};
-
-// Function to inject styles and return class names
 export const useStyleSheet = (
   userStyles: CreateStyleSheetType,
   props: { [key: string]: any } | null
@@ -73,41 +54,3 @@ export const useStyleSheet = (
 
   return classNames;
 };
-
-// Examples:
-// // Define your styles
-// const appStyleSheetWithProps = createStyleSheet('appStyles', ({ isRed }: { isRed: boolean }) => ({
-//   container: {
-//     display: 'flex',
-//     flexDirection: 'column',
-//     color: isRed ? 'red' : 'black',
-//     fontSize: '100px',
-//   },
-// }));
-
-// const appStyleSheetWithoutProps = createStyleSheet('appStyles', {
-//   container: {
-//     display: 'flex',
-//     flexDirection: 'column',
-//     color: 'black',
-//     fontSize: '100px',
-//   },
-// });
-
-// interface MyComponentProps {
-//   isRed?: boolean;
-// }
-
-// const MyComponent: React.FC<MyComponentProps> = ({ isRed }) => {
-//   // Choose the appropriate style sheet based on props presence
-//   const styleSheet = isRed !== undefined ? appStyleSheetWithProps : appStyleSheetWithoutProps;
-//   const classes = useStyleSheet(styleSheet, { isRed });
-
-//   return (
-//     <div className={classes.container}>
-//       Hello World!
-//     </div>
-//   );
-// };
-
-// export default MyComponent;

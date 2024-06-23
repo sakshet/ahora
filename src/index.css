@@ -4,5 +4,6 @@ body {
   height: 100vh;
   width: 100%;
   margin: 0;
-  font-family: 'rubikSemiBold', Arial, sans-serif;
+  font-family: 'rubikItalic';
+  /* , Arial, sans-serif; */
 }

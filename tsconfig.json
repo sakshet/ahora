@@ -16,8 +16,14 @@
     "strict": true,
     "sourceMap": true,
     "target": "esnext",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["jest", "node"]
   },
+  "include": ["src"],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
   ]
 }

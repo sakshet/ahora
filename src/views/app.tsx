@@ -8,6 +8,7 @@ const appStyleSheet = createStyleSheet('appStyles', {
     display: 'flex',
     flexDirection: 'column',
     gap: '5px',
+    fontFamily: 'rubikItalic',
   },
 });
 export const App = () => {
