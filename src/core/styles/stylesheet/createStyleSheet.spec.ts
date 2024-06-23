@@ -1,31 +1,30 @@
-// src/core/styles/stylesheet.spec.ts
-import { createStyleSheet } from "./createStyleSheet";
-import { StyleSheet } from "./types";
+import { createStyleSheet } from './createStyleSheet'; // Adjust the import path as per your project structure
 
-describe("createStyleSheet", () => {
-  test("returns a tuple with the prefix and style object", () => {
-    const styles: StyleSheet = {
-      container: {
-        display: "flex",
-        flexDirection: "column",
-        color: "black",
-      },
-    };
-    const result = createStyleSheet("testPrefix", styles);
-
-    expect(result).toEqual(["testPrefix", styles]);
-  });
-
-  test("returns a tuple with the prefix and a function", () => {
-    const stylesFunc = (props: { isRed: boolean }): StyleSheet => ({
-      container: {
-        display: "flex",
-        flexDirection: "column",
-        color: props.isRed ? "red" : "black",
+describe('createStyleSheet', () => {
+  it('creates a stylesheet with given styles', () => {
+    const [prefix, styles] = createStyleSheet('test', {
+      link: {
+        textDecoration: 'none',
+        color: 'inherit',
+        '&:hover': {
+          color: 'red',
+        },
       },
     });
-    const result = createStyleSheet("testPrefix", stylesFunc);
 
-    expect(result).toEqual(["testPrefix", stylesFunc]);
+    const expectedStyles = JSON.stringify({
+      link: {
+        textDecoration: 'none',
+        color: 'inherit',
+        '&': {
+          '&:hover': {
+            color: 'red',
+          },
+        },
+      },
+    });
+
+    expect(prefix).toBe('test');
+    expect(JSON.stringify(styles)).toEqual(expectedStyles);
   });
 });

@@ -5,7 +5,7 @@ import {
   LinkProps as RouterLinkProps,
 } from "react-router-dom";
 
-interface LinkProps extends RouterLinkProps {
+export interface LinkProps extends RouterLinkProps {
   to: string;
   children: ReactNode;
 }

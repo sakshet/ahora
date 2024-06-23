@@ -1,4 +1,4 @@
-import { CreateStyleSheetType, StyleSheet, CSSProperties } from "./types";
+import { StyleSheet, CreateStyleSheetType, CSSProperties } from './types';
 
 export const createStyleSheet = (
   prefix: string,
@@ -6,7 +6,7 @@ export const createStyleSheet = (
 ): CreateStyleSheetType => {
   // Check if stylesOrFunc is a function or a plain object
   const styleSheet =
-    typeof stylesOrFunc === "function" ? stylesOrFunc({}) : stylesOrFunc;
+    typeof stylesOrFunc === 'function' ? stylesOrFunc({}) : stylesOrFunc;
 
   // Process pseudo-class styles if they exist
   const processedStyleSheet: StyleSheet = {};
@@ -14,23 +14,23 @@ export const createStyleSheet = (
     if (Object.prototype.hasOwnProperty.call(styleSheet, key)) {
       const style = styleSheet[key];
       if (
-        typeof style === "object" &&
-        Object.keys(style).some((prop) => prop.startsWith("&:"))
+        typeof style === 'object' &&
+        Object.keys(style).some((prop) => prop.startsWith('&:'))
       ) {
         const baseStyle: CSSProperties = { ...style } as CSSProperties;
         const pseudoClassStyles: { [key: string]: CSSProperties } = {};
         for (const pseudoKey in baseStyle) {
           if (Object.prototype.hasOwnProperty.call(baseStyle, pseudoKey)) {
-            if (pseudoKey.startsWith("&:")) {
+            if (pseudoKey.startsWith('&:')) {
               const pseudoStyle = baseStyle[pseudoKey];
-              pseudoClassStyles[pseudoKey] = pseudoStyle as CSSProperties; // Assert pseudoStyle as CSSProperties
+              pseudoClassStyles[pseudoKey] = pseudoStyle as CSSProperties;
               delete baseStyle[pseudoKey];
             }
           }
         }
         processedStyleSheet[key] = baseStyle;
         if (Object.keys(pseudoClassStyles).length > 0) {
-          processedStyleSheet[key]["&"] = pseudoClassStyles;
+          processedStyleSheet[key]['&'] = pseudoClassStyles; // Ensure pseudo-class styles are nested under '&'
         }
       } else {
         processedStyleSheet[key] = style as CSSProperties;
