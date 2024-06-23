@@ -6,13 +6,13 @@ import { Homepage } from "@Views/homepage";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-const appStyles = createStyleSheet('appStyles', {
+const appStyles = createStyleSheet("appStyles", {
   app: {
-    height: '100%',
-    width: '100%',
+    height: "100%",
+    width: "100%",
     backgroundColor: colors.black,
     color: colors.white,
-  }
+  },
 });
 export const App = () => {
   const classes = useStyleSheet(appStyles, null);
