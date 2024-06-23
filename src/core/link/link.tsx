@@ -14,10 +14,10 @@ const linkStyleSheet = createStyleSheet("linkStyles", {
   link: {
     textDecoration: "none",
     color: "inherit",
-    "&:hover": {
-      transform: "scale(1.2)",
-      fontWeight: "bold",
-    },
+    // "&:hover": {
+    //   transform: "scale(1.2)",
+    //   fontWeight: "bold",
+    // },
   },
 });
 export const Link = ({ to, children, ...props }: LinkProps) => {
