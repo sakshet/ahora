@@ -89,7 +89,7 @@ type APISuccessAction = {
 } & AlertBannerBase;
 
 // union of actions available to dispatch
-type AppAction =
+export type AppAction =
   | AlertClearAction
   | APIErrorAction
   | APISuccessAction;

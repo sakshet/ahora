@@ -6,6 +6,8 @@
   "scripts": {
     "build": "NODE_ENV=production node node_modules/.bin/webpack && cp src/index.html dist/index.html",
     "test:run": "jest --coverage && nyc report --reporter=html && open coverage/index.html",
+    "test:pattern": "jest",
+    "_test": "npm run test:pattern --",
     "start": "webpack serve --port 3000",
     "start:prod": "NODE_ENV=production webpack serve --port 3000",
     "analyse": "webpack --config webpack.config.js"
