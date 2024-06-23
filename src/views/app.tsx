@@ -5,44 +5,38 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 
 export const App = () => {
   return (
-    <div>Hey there!</div>
+    <>
+      <AppStateProvider>
+        <ServerStateProvider>
+          <AppContainer />
+        </ServerStateProvider>
+      </AppStateProvider>
+    </>
   );
-}
+};
 
-// export const App = () => {
-//   return (
-//     <>
-//       <AppStateProvider>
-//         <ServerStateProvider>
-//           <AppContainer />
-//         </ServerStateProvider>
-//       </AppStateProvider>
-//     </>
-//   );
-// };
+const AppContainer = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
+  );
+};
 
-// const AppContainer = () => {
-//   return (
-//     <Router>
-//       <Routes>
-//         <Route path="/" element={<Home />} />
-//         <Route path="/about" element={<About />} />
-//       </Routes>
-//     </Router>
-//   );
-// };
+const Home = () => {
+  const navigate = useNavigate();
+  const handleClick = () => navigate('/about');
 
-// const Home = () => {
-//   const navigate = useNavigate();
-//   const handleClick = () => navigate('/about');
+  return (
+    <div>
+      <button onClick={handleClick}>Go to About Page</button>
+    </div>
+  );
+};
 
-//   return (
-//     <div>
-//       <button onClick={handleClick}>Go to About Page</button>
-//     </div>
-//   );
-// };
-
-// const About = () => {
-//   return <div>About Page</div>;
-// };
+const About = () => {
+  return <div>About Page</div>;
+};
