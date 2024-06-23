@@ -12,6 +12,7 @@ const appStyles = createStyleSheet("appStyles", {
     width: "100%",
     backgroundColor: colors.black,
     color: colors.white,
+    userSelect: 'none',
   },
 });
 export const App = () => {
