@@ -21,7 +21,7 @@ const AppContainer = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/about" element={<About />} />
+        {/* <Route path="/about" element={<About />} /> */}
       </Routes>
     </Router>
   );
@@ -41,6 +41,6 @@ const AppContainer = () => {
 //   );
 // };
 
-const About = () => {
-  return <div>About Page</div>;
-};
+// const About = () => {
+//   return <div>About Page</div>;
+// };

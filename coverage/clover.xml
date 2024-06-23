@@ -1,47 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1719156642768" clover="3.2.0">
-  <project timestamp="1719156642768" name="All files">
-    <metrics statements="134" coveredstatements="105" conditionals="39" coveredconditionals="33" methods="19" coveredmethods="13" elements="192" coveredelements="151" complexity="0" loc="134" ncloc="134" packages="7" files="8" classes="8"/>
-    <package name="src">
-      <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="index.tsx" path="/Users/sakshet/Desktop/Code/ahora/src/index.tsx">
-        <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="src.context">
-      <metrics statements="27" coveredstatements="17" conditionals="8" coveredconditionals="4" methods="6" coveredmethods="3"/>
+<coverage generated="1719157036386" clover="3.2.0">
+  <project timestamp="1719157036386" name="All files">
+    <metrics statements="124" coveredstatements="117" conditionals="39" coveredconditionals="33" methods="18" coveredmethods="17" elements="181" coveredelements="167" complexity="0" loc="124" ncloc="124" packages="6" files="7" classes="7"/>
+    <package name="context">
+      <metrics statements="27" coveredstatements="21" conditionals="8" coveredconditionals="4" methods="6" coveredmethods="5"/>
       <file name="context.tsx" path="/Users/sakshet/Desktop/Code/ahora/src/context/context.tsx">
-        <metrics statements="27" coveredstatements="17" conditionals="8" coveredconditionals="4" methods="6" coveredmethods="3"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="cond" truecount="1" falsecount="1"/>
+        <metrics statements="27" coveredstatements="21" conditionals="8" coveredconditionals="4" methods="6" coveredmethods="5"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="12" count="0" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
-        <line num="27" count="1" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
-        <line num="49" count="1" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="49" count="2" type="stmt"/>
         <line num="50" count="0" type="stmt"/>
         <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="52" count="0" type="stmt"/>
         <line num="54" count="0" type="stmt"/>
-        <line num="59" count="1" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="63" count="0" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
-        <line num="98" count="1" type="stmt"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="98" count="2" type="stmt"/>
         <line num="99" count="4" type="cond" truecount="3" falsecount="1"/>
         <line num="101" count="1" type="stmt"/>
         <line num="106" count="1" type="stmt"/>
@@ -49,14 +35,14 @@
         <line num="113" count="0" type="stmt"/>
       </file>
     </package>
-    <package name="src.core.styles">
+    <package name="core.styles">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="colors.ts" path="/Users/sakshet/Desktop/Code/ahora/src/core/styles/colors.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="src.core.styles.stylesheet">
+    <package name="core.styles.stylesheet">
       <metrics statements="32" coveredstatements="31" conditionals="11" coveredconditionals="9" methods="7" coveredmethods="7"/>
       <file name="createStyleSheet.ts" path="/Users/sakshet/Desktop/Code/ahora/src/core/styles/stylesheet/createStyleSheet.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -97,7 +83,7 @@
         <line num="55" count="5" type="stmt"/>
       </file>
     </package>
-    <package name="src.core.text">
+    <package name="core.text">
       <metrics statements="49" coveredstatements="49" conditionals="20" coveredconditionals="20" methods="2" coveredmethods="2"/>
       <file name="text.tsx" path="/Users/sakshet/Desktop/Code/ahora/src/core/text/text.tsx">
         <metrics statements="49" coveredstatements="49" conditionals="20" coveredconditionals="20" methods="2" coveredmethods="2"/>
@@ -152,23 +138,21 @@
         <line num="98" count="11" type="stmt"/>
       </file>
     </package>
-    <package name="src.views">
-      <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+    <package name="views">
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="app.tsx" path="/Users/sakshet/Desktop/Code/ahora/src/views/app.tsx">
-        <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="1" count="0" type="stmt"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="src.views.homepage">
+    <package name="views.homepage">
       <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="homepage.tsx" path="/Users/sakshet/Desktop/Code/ahora/src/views/homepage/homepage.tsx">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>

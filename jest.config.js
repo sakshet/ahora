@@ -17,7 +17,8 @@ module.exports = {
     'src/**/*.tsx',
     '!src/**/*.spec.ts',
     '!src/**/*.spec.tsx',
-    '!**/index.ts'
+    '!**/index.ts',
+    '!**/index.tsx',
   ],
   coverageReporters: ['json', 'lcov', 'text', 'clover'],
   coverageDirectory: '<rootDir>/coverage',
