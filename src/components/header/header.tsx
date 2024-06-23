@@ -14,12 +14,21 @@ const headerStyleSheet = createStyleSheet("headerStyles", {
     backgroundColor: colors.blueGray080,
     color: colors.gray030,
     borderBottom: `3px solid ${colors.gray030}`,
+    "@media only screen and (max-width: 500px)": {
+      flexDirection: 'column',
+      height: '70px',
+      alignItems: 'flex-start'
+    }
   },
   navigation: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     gap: "40px",
+    "@media only screen and (max-width: 500px)": {
+      justifyContent: 'flex-end',
+      width: '100%'
+    }
   },
 });
 export const Header = () => {

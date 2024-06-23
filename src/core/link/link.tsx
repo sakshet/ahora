@@ -1,4 +1,4 @@
-import { createStyleSheet, useStyleSheet } from "@Core/styles";
+import { colors, createStyleSheet, useStyleSheet } from "@Core/styles";
 import React, { ReactNode } from "react";
 import {
   Link as RouterLink,
@@ -14,10 +14,9 @@ const linkStyleSheet = createStyleSheet("linkStyles", {
   link: {
     textDecoration: "none",
     color: "inherit",
-    // "&:hover": {
-    //   transform: "scale(1.2)",
-    //   fontWeight: "bold",
-    // },
+    "&:hover": {
+      filter: `brightness(75%)`,
+    },
   },
 });
 export const Link = ({ to, children, ...props }: LinkProps) => {
