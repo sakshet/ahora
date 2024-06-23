@@ -7,12 +7,12 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const prod = process.env.NODE_ENV === 'production';
 
-
 module.exports = {
   mode: prod ? 'production' : 'development',
   entry: './src/index.tsx',
   output: {
-    path: __dirname + '/dist/',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   devServer: {
     historyApiFallback: true,
