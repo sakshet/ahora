@@ -1,22 +1,42 @@
-import { createStyleSheet, useStyleSheet } from '@Core/styles';
-import { Heading, Text } from '@Core/text';
+import { AppStateProvider, ServerStateProvider } from '@Context/context';
 
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 
-const appStyleSheet = createStyleSheet('appStyles', {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '5px',
-    fontFamily: 'rubikItalic',
-  },
-});
 export const App = () => {
-  const classes = useStyleSheet(appStyleSheet, null);
   return (
-    <div className={classes.container}>
-      <Text typography="body03">Sample Text</Text>
-      <Heading typography="heading03">Sample Heading</Heading>
+    <>
+      <AppStateProvider>
+        <ServerStateProvider>
+          <AppContainer />
+        </ServerStateProvider>
+      </AppStateProvider>
+    </>
+  );
+};
+
+const AppContainer = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
+  );
+};
+
+const Home = () => {
+  const navigate = useNavigate();
+  const handleClick = () => navigate('/about');
+
+  return (
+    <div>
+      <button onClick={handleClick}>Go to About Page</button>
     </div>
   );
-}
+};
+
+const About = () => {
+  return <div>About Page</div>;
+};

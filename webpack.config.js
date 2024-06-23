@@ -14,6 +14,9 @@ module.exports = {
   output: {
     path: __dirname + '/dist/',
   },
+  devServer: {
+    historyApiFallback: true,
+  },
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
@@ -22,6 +25,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
+      '@Context': path.resolve(__dirname, 'src/context/'),
       '@Core': path.resolve(__dirname, 'src/core/'),
       '@Views': path.resolve(__dirname, 'src/views/')
     }

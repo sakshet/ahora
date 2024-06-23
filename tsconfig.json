@@ -2,8 +2,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@Views/*": ["src/views/*"],
-      "@Core/*": ["src/core/*"]
+      "@Context/*": ["src/context/*"],
+      "@Core/*": ["src/core/*"],
+      "@Views/*": ["src/views/*"]
     },
     "esModuleInterop": true,
     "jsx": "react",
