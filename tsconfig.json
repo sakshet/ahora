@@ -19,9 +19,9 @@
     "target": "esnext",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["jest", "node"]
+    "types": ["jest", "node", "@testing-library/jest-dom"]
   },
-  "include": ["src"],
+  "include": ["src", "setupTests.js"],
   "exclude": [
     "node_modules",
     "**/*.spec.ts",
