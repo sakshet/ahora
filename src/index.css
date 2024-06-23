@@ -1,9 +1,9 @@
-/* @import url('./fonts.css'); */
+@import url('./fonts.css');
 
 body {
   height: 100vh;
   width: 100%;
   margin: 0;
-  /* font-family: 'rubikItalic'; */
+  font-family: 'rubikItalic';
   /* , Arial, sans-serif; */
 }
