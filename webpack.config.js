@@ -14,11 +14,11 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
-  // devServer: {
-  //   historyApiFallback: true,
-  //   contentBase: path.resolve(__dirname, 'dist'), // Serve from the 'dist' directory
-  //   open: true, // Open the browser automatically
-  // },
+  devServer: {
+    historyApiFallback: true,
+    // contentBase: path.resolve(__dirname, 'dist'), // Serve from the 'dist' directory
+    // open: true, // Open the browser automatically
+  },
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
