@@ -86,7 +86,7 @@ module.exports = {
   devtool: prod ? undefined : 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'index.html',
+      template: 'src/index.html',
     }),
     new MiniCssExtractPlugin(),
     // new BundleAnalyzerPlugin(),
