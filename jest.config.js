@@ -5,6 +5,7 @@ module.exports = {
     '^.+\\.(ts|tsx)$': 'ts-jest'
   },
   moduleNameMapper: {
+    '^@Components/(.*)$': '<rootDir>/src/components/$1',
     '^@Context/(.*)$': '<rootDir>/src/context/$1',
     '^@Core/(.*)$': '<rootDir>/src/core/$1',
     '^@Views/(.*)$': '<rootDir>/src/views/$1'

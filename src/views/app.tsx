@@ -1,12 +1,12 @@
-import { AppStateProvider, ServerStateProvider } from '@Context/context';
-import { Homepage } from '@Views/homepage';
-
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { Header } from "@Components/header";
+import { AppStateProvider, ServerStateProvider } from "@Context/context";
+import { Homepage } from "@Views/homepage";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export const App = () => {
   return (
-    <div style={{height: '100%', width: '100%'}}>
+    <div style={{ height: "100%", width: "100%" }}>
       <AppStateProvider>
         <ServerStateProvider>
           <AppContainer />
@@ -19,28 +19,11 @@ export const App = () => {
 const AppContainer = () => {
   return (
     <Router>
+      <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        {/* <Route path="/about" element={<About />} /> */}
+        <Route path="*" element={<Homepage />} />
       </Routes>
     </Router>
   );
 };
-
-// const Home = () => {
-//   // const navigate = useNavigate();
-//   // const handleClick = () => navigate('/about');
-
-//   // return (
-//   //   <div>
-//   //     <button onClick={handleClick}>Go to About Page</button>
-//   //   </div>
-//   // );
-//   return (
-
-//   );
-// };
-
-// const About = () => {
-//   return <div>About Page</div>;
-// };
