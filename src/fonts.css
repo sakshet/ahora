@@ -1,17 +1,15 @@
-/* Define @font-face for rubikRegular */
+/* Define @font-face for rubikRegular
 @font-face {
   font-family: 'rubikRegular';
   src: url('../fonts/rubikRegular.ttf') format('truetype');
 }
 
-/* Define @font-face for rubikSemiBold */
 @font-face {
   font-family: 'rubikSemiBold';
   src: url('../fonts/rubikSemiBold.ttf') format('truetype');
 }
 
-/* Define @font-face for rubikItalic */
 @font-face {
   font-family: 'rubikItalic';
   src: url('../fonts/rubikItalic.ttf') format('truetype');
-}
+}*/
