@@ -11,14 +11,12 @@ const headerStyleSheet = createStyleSheet("headerStyles", {
     height: "40px",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: colors.blueGray080,
-    color: colors.gray030,
-    borderBottom: `3px solid ${colors.gray030}`,
+    borderBottom: `1px solid ${colors.white}`,
     "@media only screen and (max-width: 500px)": {
-      flexDirection: 'column',
-      height: '70px',
-      alignItems: 'flex-start'
-    }
+      flexDirection: "column",
+      height: "70px",
+      alignItems: "flex-start",
+    },
   },
   navigation: {
     display: "flex",
@@ -26,9 +24,9 @@ const headerStyleSheet = createStyleSheet("headerStyles", {
     justifyContent: "space-between",
     gap: "40px",
     "@media only screen and (max-width: 500px)": {
-      justifyContent: 'flex-end',
-      width: '100%'
-    }
+      justifyContent: "flex-end",
+      width: "100%",
+    },
   },
 });
 export const Header = () => {
@@ -43,7 +41,7 @@ export const Header = () => {
           <Link to="/about">About Us</Link>
         </Text>
         <Text typography="body02">
-          <Link to="/login">Log In / Sign Up</Link>
+          <Link to="/login">Login / Sign Up</Link>
         </Text>
       </div>
     </div>

@@ -1,5 +1,4 @@
-import { Link } from "@Core/link";
-import { colors, createStyleSheet, useStyleSheet } from "@Core/styles";
+import { createStyleSheet, useStyleSheet } from "@Core/styles";
 import { Heading, Text } from "@Core/text";
 import React from "react";
 
@@ -10,8 +9,6 @@ const homepageStyleSheet = createStyleSheet("homepageStyles", {
     height: "100%",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.blueGray080,
-    color: colors.white,
     gap: "5px",
   },
 });

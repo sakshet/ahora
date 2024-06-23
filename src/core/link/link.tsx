@@ -1,4 +1,4 @@
-import { colors, createStyleSheet, useStyleSheet } from "@Core/styles";
+import { createStyleSheet, useStyleSheet } from "@Core/styles";
 import React, { ReactNode } from "react";
 import {
   Link as RouterLink,
