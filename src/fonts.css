@@ -1,9 +1,11 @@
+/* Define @font-face for rubikRegular */
 @font-face {
-  font-family: 'RubikRegular';
+  font-family: 'rubikRegular';
   src: url('../fonts/rubikRegular.ttf') format('truetype');
 }
 
+/* Define @font-face for rubikSemiBold */
 @font-face {
-  font-family: 'RubikSemiBold';
+  font-family: 'rubikSemiBold';
   src: url('../fonts/rubikSemiBold.ttf') format('truetype');
 }
