@@ -1,12 +1,12 @@
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const prod = process.env.NODE_ENV === 'production';
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: prod ? 'production' : 'development',
@@ -83,7 +83,8 @@ module.exports = {
       },
     ]
   },
-  devtool: prod ? undefined : 'source-map',
+  // devtool: prod ? undefined : 'source-map',
+  devtool: 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
