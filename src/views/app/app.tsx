@@ -5,7 +5,7 @@ import { colors, createStyleSheet, useStyleSheet } from '@Core/styles';
 import { Homepage } from '@Views/homepage';
 
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './app.css';
 

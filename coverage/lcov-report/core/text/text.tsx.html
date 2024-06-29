@@ -178,7 +178,7 @@
 <a name='L113'></a><a href='#L113'>113</a>
 <a name='L114'></a><a href='#L114'>114</a>
 <a name='L115'></a><a href='#L115'>115</a>
-<a name='L116'></a><a href='#L116'>116</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<a name='L116'></a><a href='#L116'>116</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -209,10 +209,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -232,9 +232,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -244,19 +241,22 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -276,9 +276,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -288,36 +285,39 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { ReactNode } from "react";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { ReactNode } from 'react';
 &nbsp;
 type TextTypography =
-  | "body01"
-  | "body02"
-  | "body03"
-  | "body04"
-  | "body05"
-  | "body06"
-  | "body07"
-  | "body08"
-  | "body09"
-  | "body10";
+  | 'body01'
+  | 'body02'
+  | 'body03'
+  | 'body04'
+  | 'body05'
+  | 'body06'
+  | 'body07'
+  | 'body08'
+  | 'body09'
+  | 'body10';
 &nbsp;
 type HeadingTypography =
-  | "heading01"
-  | "heading02"
-  | "heading03"
-  | "heading04"
-  | "heading05"
-  | "heading06"
-  | "heading07"
-  | "heading08"
-  | "heading09"
-  | "heading10";
+  | 'heading01'
+  | 'heading02'
+  | 'heading03'
+  | 'heading04'
+  | 'heading05'
+  | 'heading06'
+  | 'heading07'
+  | 'heading08'
+  | 'heading09'
+  | 'heading10';
 &nbsp;
 type TextProps = {
   typography: TextTypography;
@@ -325,42 +325,42 @@ type TextProps = {
 };
 &nbsp;
 export const Text = ({ children, typography }: TextProps) =&gt; {
-  let fontSize = "16px"; // Default font size
+  let fontSize = '16px'; // Default font size
 &nbsp;
   switch (typography) {
-    case "body01":
-      fontSize = "24px";
+    case 'body01':
+      fontSize = '24px';
       break;
-    case "body02":
-      fontSize = "22px";
+    case 'body02':
+      fontSize = '22px';
       break;
-    case "body03":
-      fontSize = "20px";
+    case 'body03':
+      fontSize = '20px';
       break;
-    case "body04":
-      fontSize = "18px";
+    case 'body04':
+      fontSize = '18px';
       break;
-    case "body05":
-      fontSize = "16px"; // Default size (same as initial)
+    case 'body05':
+      fontSize = '16px'; // Default size (same as initial)
       break;
-    case "body06":
-      fontSize = "14px";
+    case 'body06':
+      fontSize = '14px';
       break;
-    case "body07":
-      fontSize = "12px";
+    case 'body07':
+      fontSize = '12px';
       break;
-    case "body08":
-      fontSize = "10px";
+    case 'body08':
+      fontSize = '10px';
       break;
-    case "body09":
-      fontSize = "8px";
+    case 'body09':
+      fontSize = '8px';
       break;
-    case "body10":
-      fontSize = "6px";
+    case 'body10':
+      fontSize = '6px';
       break;
   }
 &nbsp;
-  return &lt;p style={{ fontSize, margin: 0, textAlign: "center" }}&gt;{children}&lt;/p&gt;;
+  return &lt;p style={{ fontSize, margin: 0, textAlign: 'center' }}&gt;{children}&lt;/p&gt;;
 };
 &nbsp;
 type HeadingProps = {
@@ -369,43 +369,43 @@ type HeadingProps = {
 };
 &nbsp;
 export const Heading = ({ children, typography }: HeadingProps) =&gt; {
-  let fontSize = "32px"; // Default font size
+  let fontSize = '32px'; // Default font size
 &nbsp;
   switch (typography) {
-    case "heading01":
-      fontSize = "48px";
+    case 'heading01':
+      fontSize = '48px';
       break;
-    case "heading02":
-      fontSize = "42px";
+    case 'heading02':
+      fontSize = '42px';
       break;
-    case "heading03":
-      fontSize = "36px";
+    case 'heading03':
+      fontSize = '36px';
       break;
-    case "heading04":
-      fontSize = "32px"; // Default size (same as initial)
+    case 'heading04':
+      fontSize = '32px'; // Default size (same as initial)
       break;
-    case "heading05":
-      fontSize = "28px";
+    case 'heading05':
+      fontSize = '28px';
       break;
-    case "heading06":
-      fontSize = "24px";
+    case 'heading06':
+      fontSize = '24px';
       break;
-    case "heading07":
-      fontSize = "20px";
+    case 'heading07':
+      fontSize = '20px';
       break;
-    case "heading08":
-      fontSize = "18px";
+    case 'heading08':
+      fontSize = '18px';
       break;
-    case "heading09":
-      fontSize = "16px";
+    case 'heading09':
+      fontSize = '16px';
       break;
-    case "heading10":
-      fontSize = "14px";
+    case 'heading10':
+      fontSize = '14px';
       break;
   }
 &nbsp;
   return (
-    &lt;h1 style={{ fontSize, margin: 0, textAlign: "center" }}&gt;{children}&lt;/h1&gt;
+    &lt;h1 style={{ fontSize, margin: 0, textAlign: 'center' }}&gt;{children}&lt;/h1&gt;
   );
 };
 &nbsp;</pre></td></tr></table></pre>
@@ -415,7 +415,7 @@ export const Heading = ({ children, typography }: HeadingProps) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-06-23T22:01:35.622Z
+                at 2024-06-29T13:49:31.391Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

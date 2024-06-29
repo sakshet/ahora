@@ -12,6 +12,12 @@ module.exports = {
     filename: 'main.js',
     publicPath: '/'
   },
+  devServer: {
+    port: 3000,
+    historyApiFallback: {
+      index: 'index.html',
+    },
+  },
   performance: {
     hints: false,
     maxEntrypointSize: 512000,

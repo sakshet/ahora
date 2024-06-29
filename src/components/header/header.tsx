@@ -36,12 +36,12 @@ export const Header = () => {
         <Link to="">AHORA</Link>
       </Heading>
       <div className={classes.navigation}>
-        <Text typography="body07">
+        <Heading typography="heading10">
           <Link to="/about">About Us</Link>
-        </Text>
-        <Text typography="body07">
+        </Heading>
+        <Heading typography="heading10">
           <Link to="/login">Login / Sign Up</Link>
-        </Text>
+        </Heading>
       </div>
     </div>
   );
