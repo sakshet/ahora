@@ -31,7 +31,7 @@ const headerStyleSheet = createStyleSheet('headerStyles', {
 export const Header = () => {
   const classes = useStyleSheet(headerStyleSheet, null);
   return (
-    <div className={classes.container}>
+    <div className={classes.container} data-testid="header-container">
       <Heading typography="heading07">
         <Link to="">AHORA</Link>
       </Heading>
