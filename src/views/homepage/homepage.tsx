@@ -1,4 +1,4 @@
-import { Dropdown, DropdownData} from '@Core/dropdown';
+// import { Dropdown, DropdownData} from '@Core/dropdown';
 import { createStyleSheet, useStyleSheet } from '@Core/styles';
 import { Heading, Text } from '@Core/text';
 import React from 'react';

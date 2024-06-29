@@ -5,7 +5,6 @@ import {
   useAppState,
   appReducer,
   AppState,
-  Dispatch,
   AppAction,
 } from './context';
 

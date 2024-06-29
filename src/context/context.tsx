@@ -1,11 +1,10 @@
 import { createStyleSheet, useStyleSheet } from '@Core/styles';
 import React, {
-  createContext,
   ReactNode,
+  createContext,
   useContext,
   useEffect,
   useReducer,
-  useState,
 } from 'react';
 
 // The context object itself
@@ -83,9 +82,9 @@ const containerStyleSheet = createStyleSheet('containerStyles', {
 });
 // Provider shorthand
 export const ServerStateProvider = ({ children }: { children: ReactNode }) => {
-  const [data, setData] = useState<ServerState | undefined>();
-  const { dispatch, state } = useAppState();
-
+  // const [data, setData] = useState<ServerState | undefined>();
+  // const { dispatch, state } = useAppState();
+  const data: ServerState | undefined = {};
   useEffect(() => {
     // API calls on load
   }, []);
