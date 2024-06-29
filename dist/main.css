@@ -1,16 +1,24 @@
+* {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+}
+
 @font-face {
   font-family: rubikRegular;
-  src: url(/ba80c0322012d6157ea6.ttf) format("truetype");
+  src: url(/ba80c0322012d6157ea6.ttf) format('truetype');
 }
 
 @font-face {
   font-family: rubikSemiBold;
-  src: url(/2966af40fffd7b85b5e2.ttf) format("truetype");
+  src: url(/2966af40fffd7b85b5e2.ttf) format('truetype');
 }
 
 @font-face {
   font-family: rubikItalic;
-  src: url(/4d8d3bf2395fef314be4.ttf) format("truetype");
+  src: url(/4d8d3bf2395fef314be4.ttf) format('truetype');
 }
 
 body {

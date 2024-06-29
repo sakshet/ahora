@@ -1,15 +1,15 @@
-import { createStyleSheet, useStyleSheet } from "@Core/styles";
-import { Heading, Text } from "@Core/text";
-import React from "react";
+import { createStyleSheet, useStyleSheet } from '@Core/styles';
+import { Heading, Text } from '@Core/text';
+import React from 'react';
 
-const homepageStyleSheet = createStyleSheet("homepageStyles", {
+const homepageStyleSheet = createStyleSheet('homepageStyles', {
   container: {
-    display: "flex",
-    flexDirection: "column",
-    height: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "5px",
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '5px',
   },
 });
 export const Homepage = () => {

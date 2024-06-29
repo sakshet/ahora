@@ -1,20 +1,20 @@
-import { createStyleSheet, useStyleSheet } from "@Core/styles";
-import React, { ReactNode } from "react";
+import { createStyleSheet, useStyleSheet } from '@Core/styles';
+import React, { ReactNode } from 'react';
 import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
-} from "react-router-dom";
+} from 'react-router-dom';
 
 export interface LinkProps extends RouterLinkProps {
   to: string;
   children: ReactNode;
 }
 
-const linkStyleSheet = createStyleSheet("linkStyles", {
+const linkStyleSheet = createStyleSheet('linkStyles', {
   link: {
-    textDecoration: "none",
-    color: "inherit",
-    "&:hover": {
+    textDecoration: 'none',
+    color: 'inherit',
+    '&:hover': {
       filter: `brightness(75%)`,
     },
   },

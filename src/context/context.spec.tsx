@@ -1,5 +1,5 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
+import React from 'react';
+import { render, screen } from '@testing-library/react';
 import {
   AppStateProvider,
   useAppState,
@@ -7,7 +7,7 @@ import {
   AppState,
   Dispatch,
   AppAction,
-} from "./context";
+} from './context';
 
 // Mock child component to test the context
 const MockChild = () => {
@@ -23,10 +23,10 @@ const MockChild = () => {
         data-testid="success-button"
         onClick={() =>
           dispatch({
-            type: "API_SUCCESS",
+            type: 'API_SUCCESS',
             payload: {
-              title: "Success!",
-              message: "Operation was successful.",
+              title: 'Success!',
+              message: 'Operation was successful.',
             },
           })
         }
@@ -42,62 +42,62 @@ const renderWithProviders = (ui: React.ReactNode) => {
   return render(<AppStateProvider>{ui}</AppStateProvider>);
 };
 
-describe("AppStateProvider", () => {
-  it("renders without crashing and displays no alert by default", () => {
+describe('AppStateProvider', () => {
+  it('renders without crashing and displays no alert by default', () => {
     renderWithProviders(<MockChild />);
-    expect(screen.getByTestId("no-alert")).toBeInTheDocument();
+    expect(screen.getByTestId('no-alert')).toBeInTheDocument();
   });
 });
 
-describe("appReducer", () => {
-  it("returns the initial state", () => {
+describe('appReducer', () => {
+  it('returns the initial state', () => {
     const initialState: AppState = { alertBanner: null };
-    expect(appReducer(initialState, { type: "ALERT_CLEAR" })).toEqual(
+    expect(appReducer(initialState, { type: 'ALERT_CLEAR' })).toEqual(
       initialState,
     );
   });
 
-  it("handles API_SUCCESS action", () => {
+  it('handles API_SUCCESS action', () => {
     const initialState: AppState = { alertBanner: null };
     const action: AppAction = {
-      type: "API_SUCCESS",
-      payload: { title: "Success!", message: "Operation was successful." },
+      type: 'API_SUCCESS',
+      payload: { title: 'Success!', message: 'Operation was successful.' },
     };
     const expectedState: AppState = {
       alertBanner: {
-        title: "Success!",
-        message: "Operation was successful.",
-        status: "success",
+        title: 'Success!',
+        message: 'Operation was successful.',
+        status: 'success',
       },
     };
     expect(appReducer(initialState, action)).toEqual(expectedState);
   });
 
-  it("handles API_ERROR action", () => {
+  it('handles API_ERROR action', () => {
     const initialState: AppState = { alertBanner: null };
     const action: AppAction = {
-      type: "API_ERROR",
-      payload: { title: "Error!", message: "Operation failed." },
+      type: 'API_ERROR',
+      payload: { title: 'Error!', message: 'Operation failed.' },
     };
     const expectedState: AppState = {
       alertBanner: {
-        title: "Error!",
-        message: "Operation failed.",
-        status: "error",
+        title: 'Error!',
+        message: 'Operation failed.',
+        status: 'error',
       },
     };
     expect(appReducer(initialState, action)).toEqual(expectedState);
   });
 
-  it("handles ALERT_CLEAR action", () => {
+  it('handles ALERT_CLEAR action', () => {
     const initialState: AppState = {
       alertBanner: {
-        title: "Error!",
-        message: "Operation failed.",
-        status: "error",
+        title: 'Error!',
+        message: 'Operation failed.',
+        status: 'error',
       },
     };
-    const action: AppAction = { type: "ALERT_CLEAR" };
+    const action: AppAction = { type: 'ALERT_CLEAR' };
     const expectedState: AppState = { alertBanner: null };
     expect(appReducer(initialState, action)).toEqual(expectedState);
   });

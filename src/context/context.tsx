@@ -1,4 +1,4 @@
-import { createStyleSheet, useStyleSheet } from "@Core/styles";
+import { createStyleSheet, useStyleSheet } from '@Core/styles';
 import React, {
   createContext,
   ReactNode,
@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useReducer,
   useState,
-} from "react";
+} from 'react';
 
 // The context object itself
 const AppContext = createContext<
@@ -17,7 +17,7 @@ const AppContext = createContext<
 export const useAppState = () => {
   const state = useContext(AppContext);
   if (!state) {
-    throw new Error("useAppState must be used within a Provider");
+    throw new Error('useAppState must be used within a Provider');
   } else {
     return state;
   }
@@ -36,17 +36,17 @@ export const AppStateProvider = ({ children }: { children: ReactNode }) => {
 };
 
 declare const statuses: readonly [
-  "none",
-  "information",
-  "success",
-  "warning",
-  "error",
-  "loading",
+  'none',
+  'information',
+  'success',
+  'warning',
+  'error',
+  'loading',
 ];
 declare type Status = (typeof statuses)[number];
 type AlertStatus = Extract<
   Status,
-  "none" | "information" | "success" | "warning" | "error"
+  'none' | 'information' | 'success' | 'warning' | 'error'
 >;
 
 type AlertBannerState = {
@@ -67,7 +67,7 @@ const ServerStateContext = createContext<ServerState | undefined>(undefined);
 export const useServerState = () => {
   const state = useContext(ServerStateContext);
   if (!state) {
-    throw new Error("useServerState must be used within a Provider");
+    throw new Error('useServerState must be used within a Provider');
   } else {
     return state;
   }
@@ -75,10 +75,10 @@ export const useServerState = () => {
 
 const containerStyleSheet = createStyleSheet('containerStyles', {
   container: {
-    height: "100%",
-    width: "100%",
-    display: "grid",
-    gridTemplateRows: "auto 1fr auto",
+    height: '100%',
+    width: '100%',
+    display: 'grid',
+    gridTemplateRows: 'auto 1fr auto',
   },
 });
 // Provider shorthand
@@ -101,20 +101,20 @@ export const ServerStateProvider = ({ children }: { children: ReactNode }) => {
 };
 
 type AlertBannerBase = {
-  payload: Omit<AlertBannerState, "status">;
+  payload: Omit<AlertBannerState, 'status'>;
 };
 
 // action types
 type APIErrorAction = {
-  type: "API_ERROR";
+  type: 'API_ERROR';
 } & AlertBannerBase;
 
 type AlertClearAction = {
-  type: "ALERT_CLEAR";
+  type: 'ALERT_CLEAR';
 };
 
 type APISuccessAction = {
-  type: "API_SUCCESS";
+  type: 'API_SUCCESS';
 } & AlertBannerBase;
 
 // union of actions available to dispatch
@@ -123,17 +123,17 @@ export type AppAction = AlertClearAction | APIErrorAction | APISuccessAction;
 // reducer for the app
 export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
-    case "API_ERROR":
+    case 'API_ERROR':
       return {
         ...state,
-        alertBanner: { ...action.payload, status: "error" },
+        alertBanner: { ...action.payload, status: 'error' },
       };
-    case "API_SUCCESS":
+    case 'API_SUCCESS':
       return {
         ...state,
-        alertBanner: { ...action.payload, status: "success" },
+        alertBanner: { ...action.payload, status: 'success' },
       };
-    case "ALERT_CLEAR":
+    case 'ALERT_CLEAR':
       return { ...state, alertBanner: null };
     default:
       return state;

@@ -1,19 +1,20 @@
-import { Footer } from "@Components/footer";
-import { Header } from "@Components/header";
-import { AppStateProvider, ServerStateProvider } from "@Context/context";
-import { colors, createStyleSheet, useStyleSheet } from "@Core/styles";
-import { Homepage } from "@Views/homepage";
+import { Footer } from '@Components/footer';
+import { Header } from '@Components/header';
+import { AppStateProvider, ServerStateProvider } from '@Context/context';
+import { colors, createStyleSheet, useStyleSheet } from '@Core/styles';
+import { Homepage } from '@Views/homepage';
 
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-const appStyles = createStyleSheet("appStyles", {
+import './app.css';
+
+const appStyles = createStyleSheet('appStyles', {
   app: {
-    height: "100%",
-    width: "100%",
+    height: '100%',
+    width: '100%',
     backgroundColor: colors.black,
     color: colors.white,
-    userSelect: 'none',
   },
 });
 export const App = () => {

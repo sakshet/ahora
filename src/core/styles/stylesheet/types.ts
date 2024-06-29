@@ -1,4 +1,4 @@
-import { CSSProperties as ReactCSSProperties } from "react";
+import { CSSProperties as ReactCSSProperties } from 'react';
 
 // Extend the existing React.CSSProperties type to include pseudo-class styles
 export type CSSProperties = ReactCSSProperties & {

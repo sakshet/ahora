@@ -1,2 +1,2 @@
-export * from "./colors";
-export * from "./stylesheet";
+export * from './colors';
+export * from './stylesheet';
