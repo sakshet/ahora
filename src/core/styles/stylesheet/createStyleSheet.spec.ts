@@ -1,4 +1,4 @@
-import { createStyleSheet } from './createStyleSheet'; // Adjust the import path as per your project structure
+import { createStyleSheet } from './createStyleSheet';
 
 describe('createStyleSheet', () => {
   it('creates a stylesheet with given styles', () => {
@@ -12,19 +12,17 @@ describe('createStyleSheet', () => {
       },
     });
 
-    const expectedStyles = JSON.stringify({
+    const expectedStyles = {
       link: {
         textDecoration: 'none',
         color: 'inherit',
-        '&': {
-          '&:hover': {
-            color: 'red',
-          },
+        '&:hover': {
+          color: 'red',
         },
       },
-    });
+    };
 
     expect(prefix).toBe('test');
-    expect(JSON.stringify(styles)).toEqual(expectedStyles);
+    expect(styles).toEqual(expectedStyles);
   });
 });

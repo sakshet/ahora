@@ -7,58 +7,66 @@ export type SelectData = {
   value: string | number;
 };
 
-const dropdownStyleSheet = createStyleSheet('dropdownStyles', {
-  container: {
-    position: 'relative',
-    width: '200px',
-  },
-  input: {
-    padding: '5px',
-    width: '100%',
-    borderRadius: '2px',
-  },
-  options: {
-    listStyleType: 'none',
-    padding: 0,
-    margin: 0,
-    position: 'absolute',
-    width: '100%',
-    maxHeight: '150px',
-    overflowY: 'auto',
-    backgroundColor: colors.white,
-    zIndex: 1,
-    marginTop: '5px',
-    borderRadius: '2px',
-  },
-  option: {
-    padding: '10px',
-    cursor: 'pointer',
-    backgroundColor: colors.white,
-    color: colors.black,
-    alignItems: 'flex-start',
-    borderBottom: `1px solid ${colors.gray020}`,
-    '&:hover': {
-      backgroundColor: colors.lightBlue010,
+const dropdownStyleSheet = createStyleSheet(
+  'dropdownStyles',
+  ({ width }: { width: number }) => ({
+    container: {
+      position: 'relative',
+      width: `${width > 1000 ? 1000 : width}px`,
     },
-  },
-  selected: {
-    backgroundColor: colors.lightBlue020,
-  },
-  noOption: {
-    padding: '10px',
-    color: colors.gray060,
-  },
-});
+    input: {
+      padding: '5px',
+      width: 'calc(100% - 10px)',
+      border: 'none',
+      boxShadow: `0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19)`,
+      outline: 'none',
+    },
+    options: {
+      listStyleType: 'none',
+      padding: 0,
+      margin: 0,
+      position: 'absolute',
+      width: '100%',
+      maxHeight: '150px',
+      overflowY: 'auto',
+      backgroundColor: colors.white,
+      zIndex: 1,
+      marginTop: '5px',
+      borderRadius: '2px',
+      boxShadow: `0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19)`,
+    },
+    option: {
+      padding: '10px',
+      cursor: 'pointer',
+      backgroundColor: colors.white,
+      color: colors.black,
+      alignItems: 'flex-start',
+      borderBottom: `1px solid ${colors.gray020}`,
+      '&:hover': {
+        backgroundColor: colors.lightBlue010,
+      },
+    },
+    selected: {
+      backgroundColor: colors.lightBlue020,
+    },
+    noOption: {
+      padding: '10px',
+      color: colors.gray060,
+    },
+  }),
+);
 export const Select = ({
   onSelect,
   options,
   placeholder = 'Search or select...',
   selectedOption = null,
+  width = 200,
 }: {
   onSelect: (selectedOption: SelectData) => void;
   options: SelectData[];
   placeholder?: string;
   selectedOption?: SelectData | null;
+  width?: number;
 }) => {
   const [searchInput, setSearchInput] = useState('');
   const [isOpen, setIsOpen] = useState(false);
@@ -98,7 +106,7 @@ export const Select = ({
     onSelect(option);
   };
 
-  const classes = useStyleSheet(dropdownStyleSheet, null);
+  const classes = useStyleSheet(dropdownStyleSheet, { width });
   return (
     <div ref={dropdownRef} className={classes.container}>
       <input
