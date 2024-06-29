@@ -1,9 +1,6 @@
 const path = require('path');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 
 const prod = process.env.NODE_ENV === 'production';
 
@@ -15,11 +12,6 @@ module.exports = {
     filename: 'main.js',
     publicPath: '/'
   },
-  // devServer: {
-  //   historyApiFallback: true,
-  //   // contentBase: path.resolve(__dirname, 'dist'), // Serve from the 'dist' directory
-  //   // open: true, // Open the browser automatically
-  // },
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
@@ -34,31 +26,6 @@ module.exports = {
       '@Views': path.resolve(__dirname, 'src/views/')
     }
   },
-  // optimization: {
-  //   usedExports: true,
-  //   minimize: true,
-  //   minimizer: [
-  //     new CssMinimizerPlugin(),
-  //     new TerserPlugin()
-  //   ],
-  //   sideEffects: true,
-  //   splitChunks: {
-  //     chunks: 'all',
-  //     minSize: 0,
-  //     cacheGroups: {
-  //       defaultVendors: {
-  //         test: /[\\/]node_modules[\\/]/,
-  //         priority: -10,
-  //         reuseExistingChunk: true,
-  //       },
-  //       default: {
-  //         minChunks: 2,
-  //         priority: -20,
-  //         reuseExistingChunk: true,
-  //       },
-  //     },
-  //   },
-  // },
   module: {
     rules: [
       {
@@ -95,6 +62,5 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'main.css'
     }),
-    // new BundleAnalyzerPlugin(),
   ],
 };
