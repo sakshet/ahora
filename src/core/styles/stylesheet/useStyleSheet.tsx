@@ -40,7 +40,11 @@ export const useStyleSheet = (
     const classMap: { [key: string]: string } = {};
     const prefix = styleSheet.__prefix__ || ''; // Get the prefix from the stylesheet
     for (const key in styleSheet) {
-      if (key !== '__prefix__' && styleSheet.hasOwnProperty(key)) {
+      if (
+        key !== '__prefix__' &&
+        Object.prototype.hasOwnProperty.call(styleSheet, key)
+      ) {
+        // if (key !== '__prefix__' && styleSheet.hasOwnProperty(key)) {
         classMap[key] = `${prefix}-${key}`; // Use the prefix and key to form class names
       }
     }

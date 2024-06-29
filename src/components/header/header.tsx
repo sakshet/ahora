@@ -1,6 +1,6 @@
 import { Link } from '@Core/link';
 import { colors, createStyleSheet, useStyleSheet } from '@Core/styles';
-import { Heading, Text } from '@Core/text';
+import { Heading } from '@Core/text';
 import React from 'react';
 
 const headerStyleSheet = createStyleSheet('headerStyles', {

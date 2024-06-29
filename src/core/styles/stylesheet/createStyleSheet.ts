@@ -1,4 +1,4 @@
-import { StyleSheet, CreateStyleSheetType, CSSProperties } from './types';
+import { StyleSheet, CreateStyleSheetType } from './types';
 
 export const createStyleSheet = (
   prefix: string,
