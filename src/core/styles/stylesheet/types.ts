@@ -2,7 +2,7 @@ import { CSSProperties as ReactCSSProperties } from 'react';
 
 // Extend the existing React.CSSProperties type to include pseudo-class styles
 export type CSSProperties = ReactCSSProperties & {
-  [key: string]: ReactCSSProperties | string | undefined; // Allow string values for pseudo-classes like '&:hover'
+  [key: string]: ReactCSSProperties | string | number | undefined; // Allow string values for pseudo-classes like '&:hover'
 };
 
 // Type definition for the stylesheet

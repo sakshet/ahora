@@ -1,3 +1,4 @@
+// import { Select, SelectData } from '@Core/select';
 import { createStyleSheet, useStyleSheet } from '@Core/styles';
 import { Heading, Text } from '@Core/text';
 import React from 'react';
@@ -18,6 +19,21 @@ export const Homepage = () => {
     <div className={classes.container}>
       <Heading typography="heading04">We'll be back soon</Heading>
       <Text typography="body04">All good things take time</Text>
+
+      {/* <Select
+        options={[
+          { label: 'Option 1', value: 1 },
+          { label: 'Option 2', value: 2 },
+          { label: 'Option 3', value: 3 },
+          { label: 'Option 4', value: 4 },
+          { label: 'Option 5', value: 5 },
+          { label: 'Option 6', value: 6 },
+          { label: 'Option 7', value: 7 },
+          { label: 'Option 8', value: 8 },
+          { label: 'Option 9', value: 9 },
+        ]}
+        onSelect={(value: SelectData) => {}}
+      /> */}
     </div>
   );
 };

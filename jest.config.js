@@ -1,6 +1,6 @@
 module.exports = {
   testEnvironment: 'jest-environment-jsdom',
-  setupFilesAfterEnv: ['<rootDir>/setupTests.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest'
   },
@@ -8,7 +8,8 @@ module.exports = {
     '^@Components/(.*)$': '<rootDir>/src/components/$1',
     '^@Context/(.*)$': '<rootDir>/src/context/$1',
     '^@Core/(.*)$': '<rootDir>/src/core/$1',
-    '^@Views/(.*)$': '<rootDir>/src/views/$1'
+    '^@Views/(.*)$': '<rootDir>/src/views/$1',
+    '\\.(css|less|scss|sass)$': '<rootDir>/jest.mock.js',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   // Jest coverage configuration
