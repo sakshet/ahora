@@ -2,7 +2,7 @@ import { colors, createStyleSheet, useStyleSheet } from '@Core/styles';
 import { Text } from '@Core/text';
 import React, { useEffect, useRef, useState } from 'react';
 
-export type SelectData = {
+export type DropdownData = {
   label: string;
   value: string | number;
 };
@@ -55,22 +55,22 @@ const dropdownStyleSheet = createStyleSheet(
     },
   }),
 );
-export const Select = ({
+export const Dropdown = ({
   onSelect,
   options,
   placeholder = 'Search or select...',
   selectedOption = null,
   width = 200,
 }: {
-  onSelect: (selectedOption: SelectData) => void;
-  options: SelectData[];
+  onSelect: (selectedOption: DropdownData) => void;
+  options: DropdownData[];
   placeholder?: string;
-  selectedOption?: SelectData | null;
+  selectedOption?: DropdownData | null;
   width?: number;
 }) => {
   const [searchInput, setSearchInput] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<SelectData | null>(
+  const [selectedValue, setSelectedValue] = useState<DropdownData | null>(
     selectedOption,
   );
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -95,11 +95,11 @@ export const Select = ({
     }
   };
 
-  const filteredOptions: SelectData[] = options.filter((option) =>
+  const filteredOptions: DropdownData[] = options.filter((option) =>
     option.label.toLowerCase().includes(searchInput.toLowerCase()),
   );
 
-  const handleSelect = (option: SelectData) => {
+  const handleSelect = (option: DropdownData) => {
     setSelectedValue(option);
     setIsOpen(false);
     setSearchInput('');

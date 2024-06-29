@@ -1,8 +1,8 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
-import { Select, SelectData } from './select';
+import { Dropdown, DropdownData } from './dropdown';
 
-const options: SelectData[] = [
+const options: DropdownData[] = [
   { label: 'Option 1', value: '1' },
   { label: 'Option 2', value: '2' },
   { label: 'Option 3', value: '3' },
@@ -11,7 +11,7 @@ const options: SelectData[] = [
 describe('<Select />', () => {
   test('renders with placeholder text', () => {
     render(
-      <Select
+      <Dropdown
         onSelect={jest.fn()}
         options={options}
         placeholder="Search or select..."
@@ -23,7 +23,7 @@ describe('<Select />', () => {
   });
 
   test('displays options when input is clicked', () => {
-    render(<Select onSelect={jest.fn()} options={options} />);
+    render(<Dropdown onSelect={jest.fn()} options={options} />);
     fireEvent.click(screen.getByPlaceholderText('Search or select...'));
     options.forEach((option) => {
       expect(screen.getByText(option.label)).toBeInTheDocument();
@@ -31,7 +31,7 @@ describe('<Select />', () => {
   });
 
   test('filters options based on input', () => {
-    render(<Select onSelect={jest.fn()} options={options} />);
+    render(<Dropdown onSelect={jest.fn()} options={options} />);
     fireEvent.click(screen.getByPlaceholderText('Search or select...'));
     fireEvent.change(screen.getByPlaceholderText('Search or select...'), {
       target: { value: 'Option 1' },
@@ -43,7 +43,7 @@ describe('<Select />', () => {
 
   test('calls onSelect with correct option when an option is clicked', () => {
     const handleSelect = jest.fn();
-    render(<Select onSelect={handleSelect} options={options} />);
+    render(<Dropdown onSelect={handleSelect} options={options} />);
     fireEvent.click(screen.getByPlaceholderText('Search or select...'));
     fireEvent.click(screen.getByText('Option 1'));
     expect(handleSelect).toHaveBeenCalledWith({
@@ -53,14 +53,14 @@ describe('<Select />', () => {
   });
 
   test('displays selected option label in the input after selection', () => {
-    render(<Select onSelect={jest.fn()} options={options} />);
+    render(<Dropdown onSelect={jest.fn()} options={options} />);
     fireEvent.click(screen.getByPlaceholderText('Search or select...'));
     fireEvent.click(screen.getByText('Option 1'));
     expect(screen.getByDisplayValue('Option 1')).toBeInTheDocument();
   });
 
   test('closes dropdown when clicking outside', () => {
-    render(<Select onSelect={jest.fn()} options={options} />);
+    render(<Dropdown onSelect={jest.fn()} options={options} />);
     fireEvent.click(screen.getByPlaceholderText('Search or select...'));
     fireEvent.mouseDown(document);
     options.forEach((option) => {
@@ -69,7 +69,7 @@ describe('<Select />', () => {
   });
 
   test('displays "No options found" when no options match the input', () => {
-    render(<Select onSelect={jest.fn()} options={options} />);
+    render(<Dropdown onSelect={jest.fn()} options={options} />);
     fireEvent.click(screen.getByPlaceholderText('Search or select...'));
     fireEvent.change(screen.getByPlaceholderText('Search or select...'), {
       target: { value: 'Non-existent option' },
@@ -79,7 +79,7 @@ describe('<Select />', () => {
 
   test('displays selected option on mount if selectedOption prop is provided', () => {
     render(
-      <Select
+      <Dropdown
         onSelect={jest.fn()}
         options={options}
         selectedOption={{ label: 'Option 2', value: '2' }}
@@ -89,7 +89,7 @@ describe('<Select />', () => {
   });
 
   test('opens dropdown when input is clicked if it is not already open', () => {
-    render(<Select onSelect={jest.fn()} options={options} />);
+    render(<Dropdown onSelect={jest.fn()} options={options} />);
     const input = screen.getByPlaceholderText('Search or select...');
     fireEvent.click(input);
     expect(screen.getByText('Option 1')).toBeInTheDocument();
@@ -101,7 +101,7 @@ describe('<Select />', () => {
   test('applies the selected class to the selected option', () => {
     const handleSelect = jest.fn();
     render(
-      <Select
+      <Dropdown
         onSelect={handleSelect}
         options={options}
         selectedOption={options[1]}
