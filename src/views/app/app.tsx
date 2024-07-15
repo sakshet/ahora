@@ -8,6 +8,7 @@ import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './app.css';
+import '../../core/styles/fonts.css';
 
 const appStyles = createStyleSheet('appStyles', {
   app: {
@@ -15,6 +16,7 @@ const appStyles = createStyleSheet('appStyles', {
     width: '100%',
     backgroundColor: colors.black,
     color: colors.white,
+    fontFamily: `IBMPlexSans-Light sans-serif`,
   },
 });
 export const App = () => {
