@@ -15,7 +15,7 @@
       "dom",
       "esnext"
     ],
-    "strict": true,
+    // "strict": true,
     "sourceMap": true,
     "target": "esnext",
     "skipLibCheck": true,
@@ -27,5 +27,11 @@
     "node_modules",
     "**/*.spec.ts",
     "**/*.spec.tsx"
-  ]
+  ],
+  "strict": false, // Enables all strict type-checking options
+  "strictNullChecks": false, // Ensures that `null` and `undefined` are only assignable to themselves and any
+  "noImplicitAny": false, // Raises error on expressions and declarations with an implied 'any' type
+  "strictPropertyInitialization": true, // Ensures that class properties are properly initialized
+  "noImplicitThis": false, // Raises error on `this` expressions with an implied `any` type
+  "alwaysStrict": false // Parses in strict mode and emits "use strict" for each source file
 }

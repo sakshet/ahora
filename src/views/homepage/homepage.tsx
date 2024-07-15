@@ -1,4 +1,5 @@
 // import { Dropdown, DropdownData} from '@Core/dropdown';
+import { OrgChart, mockOptions } from '@Core/org-chart';
 import { createStyleSheet, useStyleSheet } from '@Core/styles';
 import { Heading, Text } from '@Core/text';
 import React from 'react';
@@ -17,6 +18,7 @@ export const Homepage = () => {
   const classes = useStyleSheet(homepageStyleSheet, null);
   return (
     <div className={classes.container}>
+      <OrgChart options={mockOptions} />
       <Heading typography="heading04">We'll be back soon</Heading>
       <Text typography="body04">All good things take time</Text>
       {/* <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'white', padding: '20px'}}>
