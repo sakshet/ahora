@@ -7,24 +7,66 @@
 }
 
 @font-face {
+  font-family: 'IBMPlexSansBold';
+  src: url(/03c4935bb8804585e5ce.ttf) format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IBMPlexSansLight';
+  src: url(/c0f1fc5da80ce2d1d941.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IBMPlexSansMedium';
+  src: url(/f4d2c6298a52f852aa46.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RubikItalic';
+  src: url(/e90539e9b2f012c3d3e3.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RubikRegular';
+  src: url(/a47887209bcc689b76e0.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RubikSemiBold';
+  src: url(/98f467bc098a1a10576f.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* @font-face {
   font-family: rubikRegular;
-  src: url(/ba80c0322012d6157ea6.ttf) format('truetype');
+  src: url('../dist/fonts/rubikRegular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: rubikSemiBold;
-  src: url(/2966af40fffd7b85b5e2.ttf) format('truetype');
+  src: url('../dist/fonts/rubikSemiBold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: rubikItalic;
-  src: url(/4d8d3bf2395fef314be4.ttf) format('truetype');
-}
+  src: url('../dist/fonts/rubikItalic.ttf') format('truetype');
+} */
 
 body {
   height: 100vh;
   width: 100%;
   margin: 0;
-  font-family: rubik, Arial, sans-serif;
+  /* font-family: sans-serif, 'IBMPlexSans-Light', Arial; */
 }
 

@@ -48,17 +48,16 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/',
-            },
+        test: /\.(ttf|otf|eot|svg|woff|woff2)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'fonts/',
+            publicPath: '/fonts/',
           },
-        ],
-      },
+        },
+      }
     ]
   },
   devtool: prod ? undefined : 'source-map',

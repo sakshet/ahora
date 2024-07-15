@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'IBMPlexSansBold';
+  src: url('../../assets/fonts/IBMPlexSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IBMPlexSansLight';
+  src: url('../../assets/fonts/IBMPlexSans-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IBMPlexSansMedium';
+  src: url('../../assets/fonts/IBMPlexSans-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RubikItalic';
+  src: url('../../assets/fonts/Rubik-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RubikRegular';
+  src: url('../../assets/fonts/Rubik-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RubikSemiBold';
+  src: url('../../assets/fonts/Rubik-SemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
