@@ -4,7 +4,7 @@ import { colors } from '@Core/colors';
 import { Homepage } from '@Views/homepage';
 
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const App = () => {
@@ -17,7 +17,7 @@ export const App = () => {
   );
 };
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -26,16 +26,16 @@ const Wrapper = styled.section`
   background: ${colors.gray090};
   color: ${colors.gray050};
 `;
+
 const AppRoutes = () => {
   return (
     <Wrapper>
       <Header />
-      <Router>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          {/* <Route path="*" element={<Homepage />} /> */}
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/about" element={<Homepage />} />
+        <Route path="/login" element={<Homepage />} />
+      </Routes>
     </Wrapper>
   );
 };

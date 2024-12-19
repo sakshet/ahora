@@ -1,9 +1,9 @@
 import { colors } from '@Core/colors';
+import { Link } from '@Core/link';
 import { Heading, Text } from '@Core/text';
 import { APP_NAME } from '@Utils/constants';
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -21,9 +21,8 @@ const Buttons = styled.div`
   gap: 30px;
 `;
 
-const ButtonWrapper = styled.div<{ selected: boolean; }>`
-  border: none;
-  border-bottom: ${p => (p.selected ? `2px solid ${colors.gray060}` : "none")};
+const StyledLink = styled(Link)<{ selected: boolean; }>`
+  border-bottom: ${p => (p.selected ? `5px solid ${colors.gray060}` : "none")} !important;
   padding-bottom: 5px;
   &:hover {
     cursor: pointer;
@@ -32,8 +31,8 @@ const ButtonWrapper = styled.div<{ selected: boolean; }>`
 `;
 
 enum Tab {
-  ABOUT = 'About',
-  LOGIN = 'Login',
+  ABOUT = 'about',
+  LOGIN = 'login',
 }
 
 const tabs = {
@@ -46,23 +45,19 @@ const tabs = {
 };
 
 export const Header = () => {
-  const [activeTab, setActiveTab] = useState<Tab>(Tab.ABOUT);
+  const [activeTab, setActiveTab] = useState<Tab | null>(null);
   const appName: string = APP_NAME.toUpperCase();
-
-  const onBtnClick = (key: Tab) => {
-    setActiveTab(key);
-  };
 
   return (
     <Wrapper>
-      <Heading typography="heading04">{appName}</Heading>
+      <Link to={'/'} onClick={() => setActiveTab(null)}>
+        <Heading typography="heading04">{appName}</Heading>
+      </Link>
       <Buttons>
         {Object.keys(tabs).map((key) => (
-          <Link key={key} to={`/${key}`} onClick={() => onBtnClick(key as Tab)}>
-            <ButtonWrapper selected={key === activeTab}>
-              <Text typography='body04'>{tabs[key as Tab].label}</Text>
-            </ButtonWrapper>
-          </Link>
+          <StyledLink key={key} to={key} onClick={() => setActiveTab(key as Tab)} selected={key === activeTab}>
+            <Text typography='body04'>{tabs[key as Tab].label}</Text>
+          </StyledLink>
         ))}
       </Buttons>
     </Wrapper>
