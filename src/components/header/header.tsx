@@ -21,8 +21,9 @@ const Buttons = styled.div`
   gap: 30px;
 `;
 
-const StyledLink = styled(Link)<{ selected: boolean; }>`
-  border-bottom: ${p => (p.selected ? `5px solid ${colors.gray060}` : "none")} !important;
+const StyledLink = styled(Link)<{ selected: boolean }>`
+  border-bottom: ${(p) =>
+    p.selected ? `5px solid ${colors.gray060}` : 'none'} !important;
   padding-bottom: 5px;
   &:hover {
     cursor: pointer;
@@ -41,7 +42,7 @@ const tabs = {
   },
   [Tab.LOGIN]: {
     label: 'Log In / Sign Up',
-  }
+  },
 };
 
 export const Header = () => {
@@ -55,8 +56,13 @@ export const Header = () => {
       </Link>
       <Buttons>
         {Object.keys(tabs).map((key) => (
-          <StyledLink key={key} to={key} onClick={() => setActiveTab(key as Tab)} selected={key === activeTab}>
-            <Text typography='body04'>{tabs[key as Tab].label}</Text>
+          <StyledLink
+            key={key}
+            to={key}
+            onClick={() => setActiveTab(key as Tab)}
+            selected={key === activeTab}
+          >
+            <Text typography="body04">{tabs[key as Tab].label}</Text>
           </StyledLink>
         ))}
       </Buttons>
