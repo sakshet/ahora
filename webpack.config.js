@@ -30,7 +30,8 @@ module.exports = {
       '@Components': path.resolve(__dirname, 'src/components/'),
       '@Context': path.resolve(__dirname, 'src/context/'),
       '@Core': path.resolve(__dirname, 'src/core/'),
-      '@Views': path.resolve(__dirname, 'src/views/')
+      '@Views': path.resolve(__dirname, 'src/views/'),
+      '@Utils': path.resolve(__dirname, 'src/utils/')
     }
   },
   module: {

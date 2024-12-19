@@ -1,9 +1,9 @@
-import { Link } from '@Core/link';
-import { colors, createStyleSheet, useStyleSheet } from '@Core/styles';
-import { Heading, Text } from '@Core/text';
+import { Link } from 'src/core/link';
+import { colors, createStyleSheet, useStyleSheet } from 'src/core/styles';
+import { Heading } from 'src/core/text';
 import React from 'react';
 
-const footerStyleSheet = createStyleSheet('footerStyles', {
+const headerStyleSheet = createStyleSheet('headerStyles', {
   container: {
     display: 'flex',
     flexDirection: 'row',
@@ -13,9 +13,9 @@ const footerStyleSheet = createStyleSheet('footerStyles', {
     borderBottom: `1px solid ${colors.white}`,
     '@media only screen and (max-width: 300px)': {
       flexDirection: 'column',
+      height: '70px',
       alignItems: 'flex-start',
     },
-    visibility: 'hidden',
   },
   navigation: {
     display: 'flex',
@@ -28,20 +28,20 @@ const footerStyleSheet = createStyleSheet('footerStyles', {
     },
   },
 });
-export const Footer = () => {
-  const classes = useStyleSheet(footerStyleSheet, null);
+export const Header = () => {
+  const classes = useStyleSheet(headerStyleSheet, null);
   return (
-    <div className={classes.container}>
+    <div className={classes.container} data-testid="header-container">
       <Heading typography="heading07">
         <Link to="">AHORA</Link>
       </Heading>
       <div className={classes.navigation}>
-        <Text typography="body07">
+        <Heading typography="heading10">
           <Link to="/about">About Us</Link>
-        </Text>
-        <Text typography="body07">
+        </Heading>
+        <Heading typography="heading10">
           <Link to="/login">Login / Sign Up</Link>
-        </Text>
+        </Heading>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ module.exports = {
     '^@Context/(.*)$': '<rootDir>/src/context/$1',
     '^@Core/(.*)$': '<rootDir>/src/core/$1',
     '^@Views/(.*)$': '<rootDir>/src/views/$1',
+    '^@Utils/(.*)$': '<rootDir>/src/utils/$1',
     '\\.(css|less|scss|sass)$': '<rootDir>/jest.mock.js',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],

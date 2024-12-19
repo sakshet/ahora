@@ -1,44 +1,41 @@
-import { Footer } from '@Components/footer';
 import { Header } from '@Components/header';
 import { AppStateProvider, ServerStateProvider } from '@Context/context';
-import { colors, createStyleSheet, useStyleSheet } from '@Core/styles';
+import { colors } from '@Core/colors';
 import { Homepage } from '@Views/homepage';
 
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import styled from 'styled-components';
 
-import './app.css';
-
-const appStyles = createStyleSheet('appStyles', {
-  app: {
-    height: '100%',
-    width: '100%',
-    backgroundColor: colors.black,
-    color: colors.white,
-  },
-});
 export const App = () => {
-  const classes = useStyleSheet(appStyles, null);
   return (
-    <div className={classes.app}>
-      <AppStateProvider>
-        <ServerStateProvider>
-          <AppContainer />
-        </ServerStateProvider>
-      </AppStateProvider>
-    </div>
+    <AppStateProvider>
+      <ServerStateProvider>
+        <AppRoutes />
+      </ServerStateProvider>
+    </AppStateProvider>
   );
 };
 
-const AppContainer = () => {
+const Wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 10px;
+  height: 100%;
+  background: ${colors.gray090};
+  color: ${colors.gray050};
+`;
+const AppRoutes = () => {
   return (
-    <Router>
+    <Wrapper>
       <Header />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="*" element={<Homepage />} />
-      </Routes>
-      <Footer />
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          {/* <Route path="*" element={<Homepage />} /> */}
+        </Routes>
+      </Router>
+    </Wrapper>
   );
 };

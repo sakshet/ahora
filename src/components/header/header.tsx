@@ -1,48 +1,70 @@
-import { Link } from '@Core/link';
-import { colors, createStyleSheet, useStyleSheet } from '@Core/styles';
-import { Heading } from '@Core/text';
-import React from 'react';
+import { colors } from '@Core/colors';
+import { Heading, Text } from '@Core/text';
+import { APP_NAME } from '@Utils/constants';
 
-const headerStyleSheet = createStyleSheet('headerStyles', {
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    padding: '5px 40px',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderBottom: `1px solid ${colors.white}`,
-    '@media only screen and (max-width: 300px)': {
-      flexDirection: 'column',
-      height: '70px',
-      alignItems: 'flex-start',
-    },
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 2px solid ${colors.gray080};
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+`;
+
+const ButtonWrapper = styled.div<{ selected: boolean; }>`
+  border: none;
+  border-bottom: ${p => (p.selected ? `2px solid ${colors.gray060}` : "none")};
+  padding-bottom: 5px;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+`;
+
+enum Tab {
+  ABOUT = 'About',
+  LOGIN = 'Login',
+}
+
+const tabs = {
+  [Tab.ABOUT]: {
+    label: 'About',
   },
-  navigation: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: '40px',
-    '@media only screen and (max-width: 300px)': {
-      justifyContent: 'flex-end',
-      width: '100%',
-    },
-  },
-});
+  [Tab.LOGIN]: {
+    label: 'Log In / Sign Up',
+  }
+};
+
 export const Header = () => {
-  const classes = useStyleSheet(headerStyleSheet, null);
+  const [activeTab, setActiveTab] = useState<Tab>(Tab.ABOUT);
+  const appName: string = APP_NAME.toUpperCase();
+
+  const onBtnClick = (key: Tab) => {
+    setActiveTab(key);
+  };
+
   return (
-    <div className={classes.container} data-testid="header-container">
-      <Heading typography="heading07">
-        <Link to="">AHORA</Link>
-      </Heading>
-      <div className={classes.navigation}>
-        <Heading typography="heading10">
-          <Link to="/about">About Us</Link>
-        </Heading>
-        <Heading typography="heading10">
-          <Link to="/login">Login / Sign Up</Link>
-        </Heading>
-      </div>
-    </div>
+    <Wrapper>
+      <Heading typography="heading04">{appName}</Heading>
+      <Buttons>
+        {Object.keys(tabs).map((key) => (
+          <Link key={key} to={`/${key}`} onClick={() => onBtnClick(key as Tab)}>
+            <ButtonWrapper selected={key === activeTab}>
+              <Text typography='body04'>{tabs[key as Tab].label}</Text>
+            </ButtonWrapper>
+          </Link>
+        ))}
+      </Buttons>
+    </Wrapper>
   );
 };
