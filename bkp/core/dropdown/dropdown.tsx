@@ -1,5 +1,5 @@
-import { colors, createStyleSheet, useStyleSheet } from '@Core/styles';
-import { Text } from '@Core/text';
+import { colors, createStyleSheet, useStyleSheet } from 'src/core/styles';
+import { Text } from 'src/core/text';
 import React, { useEffect, useRef, useState } from 'react';
 
 export type DropdownData = {

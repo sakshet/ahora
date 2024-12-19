@@ -5,7 +5,8 @@
       "@Components/*": ["src/components/*"],
       "@Context/*": ["src/context/*"],
       "@Core/*": ["src/core/*"],
-      "@Views/*": ["src/views/*"]
+      "@Views/*": ["src/views/*"],
+      "@Utils/*": ["src/utils/*"],
     },
     "esModuleInterop": true,
     "jsx": "react",

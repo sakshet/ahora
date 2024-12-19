@@ -1,48 +1,71 @@
+import { colors } from '@Core/colors';
 import { Link } from '@Core/link';
-import { colors, createStyleSheet, useStyleSheet } from '@Core/styles';
-import { Heading } from '@Core/text';
-import React from 'react';
+import { Heading, Text } from '@Core/text';
+import { APP_NAME } from '@Utils/constants';
 
-const headerStyleSheet = createStyleSheet('headerStyles', {
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    padding: '5px 40px',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderBottom: `1px solid ${colors.white}`,
-    '@media only screen and (max-width: 300px)': {
-      flexDirection: 'column',
-      height: '70px',
-      alignItems: 'flex-start',
-    },
+import React, { useState } from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 2px solid ${colors.gray080};
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+`;
+
+const StyledLink = styled(Link)<{ selected: boolean }>`
+  border-bottom: ${(p) =>
+    p.selected ? `5px solid ${colors.gray060}` : 'none'} !important;
+  padding-bottom: 5px;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+`;
+
+enum Tab {
+  ABOUT = 'about',
+  LOGIN = 'login',
+}
+
+const tabs = {
+  [Tab.ABOUT]: {
+    label: 'About',
   },
-  navigation: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: '40px',
-    '@media only screen and (max-width: 300px)': {
-      justifyContent: 'flex-end',
-      width: '100%',
-    },
+  [Tab.LOGIN]: {
+    label: 'Log In / Sign Up',
   },
-});
+};
+
 export const Header = () => {
-  const classes = useStyleSheet(headerStyleSheet, null);
+  const [activeTab, setActiveTab] = useState<Tab | null>(null);
+  const appName: string = APP_NAME.toUpperCase();
+
   return (
-    <div className={classes.container} data-testid="header-container">
-      <Heading typography="heading07">
-        <Link to="">AHORA</Link>
-      </Heading>
-      <div className={classes.navigation}>
-        <Heading typography="heading10">
-          <Link to="/about">About Us</Link>
-        </Heading>
-        <Heading typography="heading10">
-          <Link to="/login">Login / Sign Up</Link>
-        </Heading>
-      </div>
-    </div>
+    <Wrapper>
+      <Link to={'/'} onClick={() => setActiveTab(null)}>
+        <Heading typography="heading04">{appName}</Heading>
+      </Link>
+      <Buttons>
+        {Object.keys(tabs).map((key) => (
+          <StyledLink
+            key={key}
+            to={key}
+            onClick={() => setActiveTab(key as Tab)}
+            selected={key === activeTab}
+          >
+            <Text typography="body04">{tabs[key as Tab].label}</Text>
+          </StyledLink>
+        ))}
+      </Buttons>
+    </Wrapper>
   );
 };

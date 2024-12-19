@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run lint && NODE_ENV=production node node_modules/.bin/webpack && cp src/index.html dist/index.html",
+    "build": "npm run lint && npm run prettier:format && NODE_ENV=production node node_modules/.bin/webpack && cp src/index.html dist/index.html",
     "test:run": "jest --coverage && nyc report --reporter=html && open coverage/index.html",
     "test:pattern": "jest",
     "_test": "npm run test:pattern --",
@@ -55,6 +55,10 @@
     "express": "^4.19.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.23.1"
+    "react-router-dom": "^6.23.1",
+    "styled-components": "^6.1.13"
+  },
+  "resolutions": {
+    "styled-components": "^5"
   }
 }

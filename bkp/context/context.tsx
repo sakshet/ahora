@@ -1,3 +1,4 @@
+import { createStyleSheet, useStyleSheet } from 'src/core/styles';
 import React, {
   ReactNode,
   createContext,
@@ -71,6 +72,14 @@ export const useServerState = () => {
   }
 };
 
+const containerStyleSheet = createStyleSheet('containerStyles', {
+  container: {
+    height: '100%',
+    width: '100%',
+    display: 'grid',
+    gridTemplateRows: 'auto 1fr auto',
+  },
+});
 // Provider shorthand
 export const ServerStateProvider = ({ children }: { children: ReactNode }) => {
   // const [data, setData] = useState<ServerState | undefined>();
@@ -81,10 +90,13 @@ export const ServerStateProvider = ({ children }: { children: ReactNode }) => {
     // API calls on load
   }, []);
 
+  const classes = useStyleSheet(containerStyleSheet, null);
   return (
-    <ServerStateContext.Provider value={data}>
-      {children}
-    </ServerStateContext.Provider>
+    <div className={classes.container}>
+      <ServerStateContext.Provider value={data}>
+        {children}
+      </ServerStateContext.Provider>
+    </div>
   );
 };
 
