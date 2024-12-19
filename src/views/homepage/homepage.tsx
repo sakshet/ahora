@@ -16,8 +16,8 @@ const Wrapper = styled.div`
 export const Homepage = () => {
   return (
     <Wrapper>
-      <Heading typography='heading02'>We'll be back soon</Heading>
-      <Text typography='body01'>All good things take time</Text>
+      <Heading typography="heading02">We'll be back soon</Heading>
+      <Text typography="body01">All good things take time</Text>
     </Wrapper>
   );
 };
