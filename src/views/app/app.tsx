@@ -3,15 +3,16 @@ import { AppStateProvider, ServerStateProvider } from '@Context';
 import { colors } from '@Core/colors';
 import { tabUrls } from '@Utils/constants';
 import { Homepage } from '@Views/homepage';
-
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
+import { GlobalStyle } from '../../global-styles';
 
 export const App = () => {
   return (
     <AppStateProvider>
       <ServerStateProvider>
+        <GlobalStyle />
         <AppRoutes />
       </ServerStateProvider>
     </AppStateProvider>
@@ -25,6 +26,7 @@ const Wrapper = styled.div`
   padding: 0 10px;
   height: 100%;
   background: ${colors.gray030};
+  font-family: 'OregonBold', sans-serif;
 `;
 
 const AppRoutes = () => {
