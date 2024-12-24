@@ -3,10 +3,17 @@ import { AppStateProvider, ServerStateProvider } from '@Context';
 import { colors } from '@Core/colors';
 import { tabUrls } from '@Utils/constants';
 import { Homepage } from '@Views/homepage';
-import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import {
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
 import styled from 'styled-components';
 import { GlobalStyle } from '../../global-styles';
+// import { BrowserRouter as Router, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 
 export const App = () => {
   return (
@@ -30,6 +37,17 @@ const Wrapper = styled.div`
 `;
 
 const AppRoutes = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const redirectPath = params.get('redirect');
+    if (redirectPath) {
+      navigate(redirectPath);
+    }
+  }, [navigate, location.search]);
+
   return (
     <Wrapper>
       <Header />

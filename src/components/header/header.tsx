@@ -40,7 +40,7 @@ export const Header = () => {
   useEffect(() => {
     const currentPath = location.pathname;
     const activeTab = Object.keys(tabUrls).find(
-      (key) => tabUrls[key as Tab] === currentPath
+      (key) => tabUrls[key as Tab] === currentPath,
     ) as Tab | undefined;
     setActiveTab(activeTab || null);
   }, [location.pathname]);
