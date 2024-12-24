@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding: 10px 0;
-  border-bottom: 2px solid ${colors.gray080};
+  border-bottom: 2px solid ${colors.blueGray070};
 `;
 
 const Buttons = styled.div`
@@ -21,13 +21,15 @@ const Buttons = styled.div`
 `;
 
 const StyledLink = styled(Link)<{ selected: boolean }>`
-  border-bottom: ${(p) =>
-    p.selected ? `5px solid ${colors.gray080}` : 'none'} !important;
-  padding-bottom: 5px;
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.02);
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: ${(props) => (props.selected ? colors.blueGray070 : 'none')};
+`;
+
+const Border = styled.div<{ selected: boolean }>`
+  border-bottom: ${(props) =>
+    props.selected ? `5px solid ${colors.blueGray070}` : 'none'};
 `;
 
 export const Header = () => {
@@ -47,6 +49,11 @@ export const Header = () => {
         {Object.values(Tab).map((label) => (
           <StyledLink key={label} selected={label === tab} to={tabUrls[label]}>
             <Text typography="body04">{label}</Text>
+            {label === tab ? (
+              <Border selected={label === tab} />
+            ) : (
+              <div style={{ height: '5px' }} />
+            )}
           </StyledLink>
         ))}
       </Buttons>
