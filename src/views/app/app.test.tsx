@@ -8,7 +8,7 @@ describe('<App />', () => {
     render(
       <Router>
         <App />
-      </Router>
+      </Router>,
     );
 
     // Check if the Header is rendered
@@ -19,7 +19,7 @@ describe('<App />', () => {
     render(
       <MemoryRouter initialEntries={['/about']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     // Check if the Homepage component is rendered for /about route
@@ -30,7 +30,7 @@ describe('<App />', () => {
     render(
       <MemoryRouter initialEntries={['/unknown']}>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     // Check if the Homepage component is rendered for unknown route
