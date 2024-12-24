@@ -1,19 +1,18 @@
 import { Header } from '@Components';
-import { AppStateProvider, ServerStateProvider } from '@Context';
-import { colors } from '@Core/colors';
-import { tabUrls } from '@Utils/constants';
-import { Homepage } from '@Views/homepage';
+import { useAppState, AppStateProvider, ServerStateProvider } from '@Context';
+import { colors } from '@Core';
+import { tabUrls, Tab } from '@Utils';
+import { Homepage } from '@Views';
 import React, { useEffect } from 'react';
 import {
+  useLocation,
+  useNavigate,
   Navigate,
   Route,
   Routes,
-  useNavigate,
-  useLocation,
 } from 'react-router-dom';
 import styled from 'styled-components';
 import { GlobalStyle } from '../../global-styles';
-// import { BrowserRouter as Router, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 
 export const App = () => {
   return (
@@ -37,8 +36,19 @@ const Wrapper = styled.div`
 `;
 
 const AppRoutes = () => {
+  const { dispatch } = useAppState();
+
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    const currentPath = location.pathname;
+    const activeTab = Object.keys(tabUrls).find(
+      (key) => tabUrls[key as Tab] === currentPath,
+    ) as Tab | null;
+
+    dispatch({ type: 'SET_ACTIVE_TAB', activeTab });
+  }, [dispatch, location.pathname]);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);

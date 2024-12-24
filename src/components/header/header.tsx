@@ -1,10 +1,8 @@
-import { colors } from '@Core/colors';
-import { Link } from '@Core/link';
-import { Heading, Text } from '@Core/text';
-import { APP_NAME, Tab, tabUrls } from '@Utils/constants';
+import { useAppState } from '@Context';
+import { colors, Heading, Link, Text } from '@Core';
+import { tabUrls, APP_NAME, Tab } from '@Utils';
 
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -33,31 +31,21 @@ const StyledLink = styled(Link)<{ selected: boolean }>`
 `;
 
 export const Header = () => {
-  const location = useLocation();
-  const [activeTab, setActiveTab] = useState<Tab | null>(null);
-  const appName: string = APP_NAME.toUpperCase();
+  const { state } = useAppState();
+  const [tab, setTab] = useState<Tab | null>(state.activeTab);
 
   useEffect(() => {
-    const currentPath = location.pathname;
-    const activeTab = Object.keys(tabUrls).find(
-      (key) => tabUrls[key as Tab] === currentPath,
-    ) as Tab | undefined;
-    setActiveTab(activeTab || null);
-  }, [location.pathname]);
+    setTab(state.activeTab);
+  }, [state.activeTab]);
 
   return (
     <Wrapper>
-      <Link to={'/'} onClick={() => setActiveTab(null)}>
-        <Heading typography="heading04">{appName}</Heading>
+      <Link to={'/'}>
+        <Heading typography="heading04">{APP_NAME.toUpperCase()}</Heading>
       </Link>
       <Buttons>
         {Object.values(Tab).map((label) => (
-          <StyledLink
-            key={label}
-            to={tabUrls[label]}
-            onClick={() => setActiveTab(label as Tab)}
-            selected={label === activeTab}
-          >
+          <StyledLink key={label} selected={label === tab} to={tabUrls[label]}>
             <Text typography="body04">{label}</Text>
           </StyledLink>
         ))}

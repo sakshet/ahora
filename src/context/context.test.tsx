@@ -69,7 +69,10 @@ describe('ServerStateProvider and useServerState', () => {
 });
 
 describe('appReducer', () => {
-  const initialState: AppState = { alertBanner: null };
+  const initialState: AppState = {
+    activeTab: null,
+    alertBanner: null,
+  };
 
   test('handles API_ERROR action', () => {
     const action: AppAction = {
@@ -95,7 +98,10 @@ describe('appReducer', () => {
   test('handles ALERT_CLEAR action', () => {
     const action: AppAction = { type: 'ALERT_CLEAR' };
     const newState = appReducer(
-      { alertBanner: { title: 'Error', status: 'error' } },
+      {
+        activeTab: null,
+        alertBanner: { title: 'Error', status: 'error' },
+      },
       action,
     );
     expect(newState.alertBanner).toBeNull();
