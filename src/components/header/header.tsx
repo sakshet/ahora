@@ -1,7 +1,7 @@
 import { colors } from '@Core/colors';
 import { Link } from '@Core/link';
 import { Heading, Text } from '@Core/text';
-import { APP_NAME } from '@Utils/constants';
+import { APP_NAME, Tab, tabUrls } from '@Utils/constants';
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -23,27 +23,13 @@ const Buttons = styled.div`
 
 const StyledLink = styled(Link)<{ selected: boolean }>`
   border-bottom: ${(p) =>
-    p.selected ? `5px solid ${colors.gray060}` : 'none'} !important;
+    p.selected ? `5px solid ${colors.gray080}` : 'none'} !important;
   padding-bottom: 5px;
   &:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 `;
-
-enum Tab {
-  ABOUT = 'about',
-  LOGIN = 'login',
-}
-
-const tabs = {
-  [Tab.ABOUT]: {
-    label: 'About',
-  },
-  [Tab.LOGIN]: {
-    label: 'Log In / Sign Up',
-  },
-};
 
 export const Header = () => {
   const [activeTab, setActiveTab] = useState<Tab | null>(null);
@@ -55,14 +41,14 @@ export const Header = () => {
         <Heading typography="heading04">{appName}</Heading>
       </Link>
       <Buttons>
-        {Object.keys(tabs).map((key) => (
+        {Object.values(Tab).map((label) => (
           <StyledLink
-            key={key}
-            to={key}
-            onClick={() => setActiveTab(key as Tab)}
-            selected={key === activeTab}
+            key={label}
+            to={tabUrls[label]}
+            onClick={() => setActiveTab(label as Tab)}
+            selected={label === activeTab}
           >
-            <Text typography="body04">{tabs[key as Tab].label}</Text>
+            <Text typography="body04">{label}</Text>
           </StyledLink>
         ))}
       </Buttons>

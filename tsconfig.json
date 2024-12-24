@@ -1,12 +1,17 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
-      "@Components/*": ["src/components/*"],
-      "@Context/*": ["src/context/*"],
-      "@Core/*": ["src/core/*"],
-      "@Views/*": ["src/views/*"],
-      "@Utils/*": ["src/utils/*"],
+      "@Components/*": ["components/*"],
+      "@Components": ["components"],
+      "@Context/*": ["context/*"],
+      "@Context": ["context"],
+      "@Core/*": ["core/*"],
+      "@Core": ["core"],
+      "@Views/*": ["views/*"],
+      "@Views": ["views"],
+      "@Utils/*": ["utils/*"],
+      "@Utils": ["utils"]
     },
     "esModuleInterop": true,
     "jsx": "react",

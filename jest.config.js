@@ -23,7 +23,7 @@ module.exports = {
     '!**/index.ts',
     '!**/index.tsx',
   ],
-  coverageReporters: ['json', 'lcov', 'text', 'clover'],
+  coverageReporters: ['html', 'json', 'lcov', 'text', 'clover'],
   coverageDirectory: '<rootDir>/coverage',
   coveragePathIgnorePatterns: [
     '/node_modules/'

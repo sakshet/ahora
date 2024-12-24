@@ -1,5 +1,10 @@
 import React, { ReactNode } from 'react';
 
+const commonStyles: React.CSSProperties = {
+  margin: 0,
+  textAlign: 'center',
+};
+
 type TextTypography =
   | 'body01'
   | 'body02'
@@ -65,7 +70,7 @@ export const Text = ({ children, typography }: TextProps) => {
       break;
   }
 
-  return <p style={{ fontSize, margin: 0 }}>{children}</p>;
+  return <p style={{ fontSize, ...commonStyles }}>{children}</p>;
 };
 
 type HeadingProps = {
@@ -109,5 +114,5 @@ export const Heading = ({ children, typography }: HeadingProps) => {
       break;
   }
 
-  return <h1 style={{ fontSize, margin: 0 }}>{children}</h1>;
+  return <h1 style={{ fontSize, ...commonStyles }}>{children}</h1>;
 };

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run lint && npm run prettier:format && NODE_ENV=production node node_modules/.bin/webpack && cp src/index.html dist/index.html",
-    "test:run": "jest --coverage && nyc report --reporter=html && open coverage/index.html",
+    "test": "jest --coverage && open coverage/index.html",
     "test:pattern": "jest",
     "_test": "npm run test:pattern --",
     "start": "webpack serve --port 3000",
@@ -17,8 +17,8 @@
   "author": "Sakshet",
   "license": "ISC",
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.4.6",
-    "@testing-library/react": "^16.0.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.3.3",
