@@ -3,7 +3,8 @@ import { Link } from '@Core/link';
 import { Heading, Text } from '@Core/text';
 import { APP_NAME, Tab, tabUrls } from '@Utils/constants';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -32,8 +33,17 @@ const StyledLink = styled(Link)<{ selected: boolean }>`
 `;
 
 export const Header = () => {
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState<Tab | null>(null);
   const appName: string = APP_NAME.toUpperCase();
+
+  useEffect(() => {
+    const currentPath = location.pathname;
+    const activeTab = Object.keys(tabUrls).find(
+      (key) => tabUrls[key as Tab] === currentPath
+    ) as Tab | undefined;
+    setActiveTab(activeTab || null);
+  }, [location.pathname]);
 
   return (
     <Wrapper>
