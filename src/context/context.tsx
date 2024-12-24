@@ -1,3 +1,4 @@
+import { Tab } from '@Utils';
 import React, {
   ReactNode,
   createContext,
@@ -24,6 +25,7 @@ export const useAppState = () => {
 // Provider shorthand
 export const AppStateProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(appReducer, {
+    activeTab: null,
     alertBanner: null,
   });
   return (
@@ -54,6 +56,7 @@ type AlertBannerState = {
 };
 
 export type AppState = {
+  activeTab: Tab | null;
   alertBanner: AlertBannerState | null;
 };
 
@@ -105,8 +108,17 @@ type APISuccessAction = {
   type: 'API_SUCCESS';
 } & AlertBannerBase;
 
+type SetActiveTabAction = {
+  type: 'SET_ACTIVE_TAB';
+  activeTab: Tab | null;
+};
+
 // union of actions available to dispatch
-export type AppAction = AlertClearAction | APIErrorAction | APISuccessAction;
+export type AppAction =
+  | AlertClearAction
+  | APIErrorAction
+  | APISuccessAction
+  | SetActiveTabAction;
 
 // reducer for the app
 export function appReducer(state: AppState, action: AppAction): AppState {
@@ -123,6 +135,8 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       };
     case 'ALERT_CLEAR':
       return { ...state, alertBanner: null };
+    case 'SET_ACTIVE_TAB':
+      return { ...state, ...action };
     default:
       return state;
   }
