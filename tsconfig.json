@@ -8,10 +8,10 @@
       "@Context": ["context"],
       "@Core/*": ["core/*"],
       "@Core": ["core"],
-      "@Views/*": ["views/*"],
-      "@Views": ["views"],
       "@Utils/*": ["utils/*"],
-      "@Utils": ["utils"]
+      "@Utils": ["utils"],
+      "@Views/*": ["views/*"],
+      "@Views": ["views"]
     },
     "esModuleInterop": true,
     "jsx": "react",

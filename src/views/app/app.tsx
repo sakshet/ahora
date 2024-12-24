@@ -32,7 +32,7 @@ const AppRoutes = () => {
     <Wrapper>
       <Header />
       <Routes>
-      <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Homepage />} />
         {Object.values(tabUrls).map((url) => (
           <Route key={url} path={url} element={<Homepage />} />
         ))}

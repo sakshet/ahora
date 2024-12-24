@@ -6,14 +6,18 @@ module.exports = {
   },
   moduleNameMapper: {
     '^@Components/(.*)$': '<rootDir>/src/components/$1',
+    '^@Components$': '<rootDir>/src/components',
     '^@Context/(.*)$': '<rootDir>/src/context/$1',
+    '^@Context$': '<rootDir>/src/context',
     '^@Core/(.*)$': '<rootDir>/src/core/$1',
+    '^@Core$': '<rootDir>/src/core',
     '^@Views/(.*)$': '<rootDir>/src/views/$1',
+    '^@Views$': '<rootDir>/src/views',
     '^@Utils/(.*)$': '<rootDir>/src/utils/$1',
-    '\\.(css|less|scss|sass)$': '<rootDir>/jest.mock.js',
+    '^@Utils$': '<rootDir>/src/utils',
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  // Jest coverage configuration
   collectCoverage: true,
   collectCoverageFrom: [
     'src/**/*.ts',
@@ -27,5 +31,8 @@ module.exports = {
   coverageDirectory: '<rootDir>/coverage',
   coveragePathIgnorePatterns: [
     '/node_modules/'
+  ],
+  testMatch: [
+    '**/?(*.)+(spec|test).[tj]s?(x)'
   ],
 };
