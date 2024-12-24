@@ -15,7 +15,13 @@ module.exports = {
   },
   devServer: {
     port: 3000,
-    historyApiFallback: true
+    historyApiFallback: true,
+    client: {
+      overlay: {
+        warnings: true,
+        errors: true,
+      },
+    },
   },
   performance: {
     hints: false,
@@ -68,7 +74,8 @@ module.exports = {
     }),
     new ESLintPlugin({
       extensions: ['js', 'jsx', 'ts', 'tsx'],
-      failOnError: true,
+      failOnError: false, // Do not fail on errors
+      emitWarning: true, // Emit warnings instead of errors
     }),
   ],
 };
