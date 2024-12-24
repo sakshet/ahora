@@ -1,10 +1,11 @@
-import { Header } from '@Components/header';
-import { AppStateProvider, ServerStateProvider } from '@Context/context';
+import { Header } from '@Components';
+import { AppStateProvider, ServerStateProvider } from '@Context';
 import { colors } from '@Core/colors';
+import { tabUrls } from '@Utils/constants';
 import { Homepage } from '@Views/homepage';
 
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const App = () => {
@@ -23,8 +24,7 @@ const Wrapper = styled.div`
   gap: 10px;
   padding: 0 10px;
   height: 100%;
-  background: ${colors.gray090};
-  color: ${colors.gray050};
+  background: ${colors.gray030};
 `;
 
 const AppRoutes = () => {
@@ -33,8 +33,10 @@ const AppRoutes = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/about" element={<Homepage />} />
-        <Route path="/login" element={<Homepage />} />
+        {Object.values(tabUrls).map((url) => (
+          <Route key={url} path={url} element={<Homepage />} />
+        ))}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Wrapper>
   );

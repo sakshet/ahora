@@ -6,35 +6,13 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  mode: prod ? 'production' : 'development',
-  entry: './src/index.tsx',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
-    publicPath: '/'
-  },
   devServer: {
     port: 3000,
-    // historyApiFallback: {
-    //   index: 'index.html',
-    // },
     historyApiFallback: true
   },
-  performance: {
-    hints: false,
-    maxEntrypointSize: 512000,
-    maxAssetSize: 512000
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
-    alias: {
-      '@Components': path.resolve(__dirname, 'src/components/'),
-      '@Context': path.resolve(__dirname, 'src/context/'),
-      '@Core': path.resolve(__dirname, 'src/core/'),
-      '@Views': path.resolve(__dirname, 'src/views/'),
-      '@Utils': path.resolve(__dirname, 'src/utils/')
-    }
-  },
+  devtool: prod ? undefined : 'source-map',
+  entry: './src/index.tsx',
+  mode: prod ? 'production' : 'development',
   module: {
     rules: [
       {
@@ -63,7 +41,16 @@ module.exports = {
       },
     ]
   },
-  devtool: prod ? undefined : 'source-map',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'main.js',
+    publicPath: '/'
+  },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
@@ -76,4 +63,14 @@ module.exports = {
       failOnError: true,
     }),
   ],
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
+    alias: {
+      '@Components': path.resolve(__dirname, 'src/components/'),
+      '@Context': path.resolve(__dirname, 'src/context/'),
+      '@Core': path.resolve(__dirname, 'src/core/'),
+      '@Views': path.resolve(__dirname, 'src/views/'),
+      '@Utils': path.resolve(__dirname, 'src/utils/')
+    }
+  },
 };
