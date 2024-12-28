@@ -2,7 +2,6 @@ import { AppStateProvider, ServerStateProvider } from '@Context';
 import { render, RenderOptions } from '@testing-library/react';
 import React, { ReactElement, ReactNode } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { GlobalStyle } from './../global-styles';
 
 interface ProvidersProps {
   children: ReactNode;
@@ -10,12 +9,9 @@ interface ProvidersProps {
 
 const AllProviders: React.FC<ProvidersProps> = ({ children }) => {
   return (
-    <AppStateProvider>
+    <AppStateProvider useMockData={true}>
       <ServerStateProvider>
-        <Router>
-          <GlobalStyle />
-          {children}
-        </Router>
+        <Router>{children}</Router>
       </ServerStateProvider>
     </AppStateProvider>
   );

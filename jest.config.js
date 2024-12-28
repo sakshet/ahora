@@ -5,6 +5,8 @@ module.exports = {
     '^.+\\.(ts|tsx)$': 'ts-jest'
   },
   moduleNameMapper: {
+    '^@Api/(.*)$': '<rootDir>/src/api/$1',
+    '^@Api$': '<rootDir>/src/api',
     '^@Components/(.*)$': '<rootDir>/src/components/$1',
     '^@Components$': '<rootDir>/src/components',
     '^@Context/(.*)$': '<rootDir>/src/context/$1',

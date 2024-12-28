@@ -1,62 +1,53 @@
-import { useAppState } from '@Context';
-import { colors, Heading, Link, Text } from '@Core';
-import { tabUrls, APP_NAME, Tab } from '@Utils';
+import { useServicesData } from '@Context';
+import { colors, Icon, Link, Text } from '@Core';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  background-color: ${colors.black};
+  opacity: 85%;
+  color: ${colors.white};
+  height: 45px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  &:hover {
+    opacity: 100%;
+  }
+`;
+
+const Content = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 2px solid ${colors.blueGray070};
-`;
-
-const Buttons = styled.div`
-  display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 30px;
-`;
-
-const StyledLink = styled(Link)<{ selected: boolean }>`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  color: ${(props) => (props.selected ? colors.blueGray070 : 'none')};
-`;
-
-const Border = styled.div<{ selected: boolean }>`
-  border-bottom: ${(props) =>
-    props.selected ? `5px solid ${colors.blueGray070}` : 'none'};
+  width: 100%;
+  padding: 0 20px;
+  color: ${colors.gray050};
+  @media (min-width: 1250px) {
+    width: 70%;
+  }
 `;
 
 export const Header = () => {
-  const { state } = useAppState();
-  const [tab, setTab] = useState<Tab | null>(state.activeTab);
-
-  useEffect(() => {
-    setTab(state.activeTab);
-  }, [state.activeTab]);
+  const data = useServicesData();
 
   return (
-    <Wrapper>
-      <Link to={'/'}>
-        <Heading typography="heading04">{APP_NAME.toUpperCase()}</Heading>
-      </Link>
-      <Buttons>
-        {Object.values(Tab).map((label) => (
-          <StyledLink key={label} selected={label === tab} to={tabUrls[label]}>
-            <Text typography="body04">{label}</Text>
-            {label === tab ? (
-              <Border selected={label === tab} />
-            ) : (
-              <div style={{ height: '5px' }} />
-            )}
-          </StyledLink>
+    <Container>
+      <Content>
+        {data.map((service, key) => (
+          <Text typography='body07' key={key}>
+            <Link to={service.path} key={key}>
+              {service.icon && <Icon name={service.icon} type={service.iconType ? service.iconType : 'outlined'} />}
+              {service.label}
+            </Link>
+          </Text>
         ))}
-      </Buttons>
-    </Wrapper>
+      </Content>
+    </Container>
   );
 };

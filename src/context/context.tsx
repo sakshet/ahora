@@ -1,10 +1,12 @@
-import { Tab } from '@Utils';
+import { getServices } from '@Api';
+import { Service } from '@Utils/types';
 import React, {
   ReactNode,
   createContext,
   useContext,
   useEffect,
   useReducer,
+  useState,
 } from 'react';
 
 // The context object itself
@@ -23,10 +25,18 @@ export const useAppState = () => {
 };
 
 // Provider shorthand
-export const AppStateProvider = ({ children }: { children: ReactNode }) => {
+export const AppStateProvider = ({
+  children,
+  useMockData,
+}: {
+  children: ReactNode;
+  useMockData?: boolean;
+}) => {
   const [state, dispatch] = useReducer(appReducer, {
     activeTab: null,
     alertBanner: null,
+    fetching: true,
+    useMockData: useMockData || true,
   });
   return (
     <AppContext.Provider value={{ dispatch, state }}>
@@ -56,12 +66,16 @@ type AlertBannerState = {
 };
 
 export type AppState = {
-  activeTab: Tab | null;
+  activeTab: string | null;
   alertBanner: AlertBannerState | null;
+  fetching: boolean;
+  useMockData: boolean;
 };
 
 export type Dispatch = (action: AppAction) => void;
-export type ServerState = {};
+export type ServerState = {
+  services: Service[];
+};
 const ServerStateContext = createContext<ServerState | undefined>(undefined);
 
 // Don't leak the context itself, provide a mechanism for accessing it
@@ -76,19 +90,28 @@ export const useServerState = () => {
 
 // Provider shorthand
 export const ServerStateProvider = ({ children }: { children: ReactNode }) => {
-  // const [data, setData] = useState<ServerState | undefined>();
-  // const { dispatch, state } = useAppState();
-  const data: ServerState | undefined = {};
+  const [data, setData] = useState<ServerState | undefined>();
+  const { dispatch, state } = useAppState();
 
   useEffect(() => {
-    // API calls on load
-  }, []);
+    const fetchData = async () => {
+      const services: Service[] = await getServices(
+        state.useMockData,
+        dispatch,
+      );
+      setData({ services });
+    };
 
-  return (
+    if (state.fetching) {
+      fetchData();
+    }
+  }, [state.fetching]);
+
+  return data ? (
     <ServerStateContext.Provider value={data}>
       {children}
     </ServerStateContext.Provider>
-  );
+  ) : null;
 };
 
 type AlertBannerBase = {
@@ -108,9 +131,17 @@ type APISuccessAction = {
   type: 'API_SUCCESS';
 } & AlertBannerBase;
 
+type FetchDataAction = {
+  type: 'FETCH_DATA';
+};
+
+type FetchDataSuccessAction = {
+  type: 'FETCH_DATA_SUCCESS';
+};
+
 type SetActiveTabAction = {
   type: 'SET_ACTIVE_TAB';
-  activeTab: Tab | null;
+  activeTab: string | null;
 };
 
 // union of actions available to dispatch
@@ -118,6 +149,8 @@ export type AppAction =
   | AlertClearAction
   | APIErrorAction
   | APISuccessAction
+  | FetchDataAction
+  | FetchDataSuccessAction
   | SetActiveTabAction;
 
 // reducer for the app
@@ -135,6 +168,11 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       };
     case 'ALERT_CLEAR':
       return { ...state, alertBanner: null };
+    case 'FETCH_DATA':
+      return { ...state, fetching: true };
+    case 'FETCH_DATA_SUCCESS': {
+      return { ...state, fetching: false };
+    }
     case 'SET_ACTIVE_TAB':
       return { ...state, ...action };
     default:
