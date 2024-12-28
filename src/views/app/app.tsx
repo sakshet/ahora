@@ -55,7 +55,7 @@ const generateRoutes = (services: Service[]): JSX.Element[] => {
 };
 
 const AppRoutes = () => {
-  const services = useServicesData();
+  const { enhancedOptions } = useServicesData();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -82,7 +82,7 @@ const AppRoutes = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Content />} />
-        {generateRoutes(services)}
+        {generateRoutes(enhancedOptions)}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Wrapper>
