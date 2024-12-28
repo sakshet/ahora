@@ -30,7 +30,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 10px;
   padding: 0;
   background: ${colors.white};
   box-sizing: border-box;

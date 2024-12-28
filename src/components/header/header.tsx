@@ -20,10 +20,11 @@ const Container = styled.div`
   background-color: ${colors.black};
   opacity: 85%;
   color: ${colors.white};
-  position: fixed;
+  position: sticky;
   width: 100%;
   top: 0;
   z-index: 1000;
+  overflow-y: auto;
   &:hover {
     opacity: 100%;
   }
@@ -91,17 +92,22 @@ const HiddenOptions = ({ services }: { services: Service[] }) => {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    gap: 2px;
-    padding: 0 5px;
+    gap: 20px;
+    padding: 0 15px;
     box-sizing: border-box;
+    max-height: 100vh;
+    overflow-y: auto;
   `;
 
-  return <Wrapper>{getOptions(services)}</Wrapper>;
+  return <Wrapper>{getOptions(services, true)}</Wrapper>;
 };
 
-const getOptions = (services: Service[]): JSX.Element[] => {
+const getOptions = (
+  services: Service[],
+  large: boolean = false,
+): JSX.Element[] => {
   return services.map((service, key) => (
-    <Text typography="body07" key={key}>
+    <Text typography={large ? 'body01' : 'body07'} key={key}>
       <Link to={service.path} onClick={service.onClick}>
         {service.icon && (
           <Icon name={service.icon} type={service.iconType || 'outlined'} />
