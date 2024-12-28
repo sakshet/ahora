@@ -15,7 +15,6 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   gap: 15px;
-  margin-top: 40px;
 `;
 
 const Tile = styled.div<{ bgColor: string }>`

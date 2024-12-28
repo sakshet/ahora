@@ -13,10 +13,11 @@
   background-color: ${"#000000"};
   opacity: 85%;
   color: ${m};
-  position: fixed;
+  position: sticky;
   width: 100%;
   top: 0;
   z-index: 1000;
+  overflow-y: auto;
   &:hover {
     opacity: 100%;
   }
@@ -42,15 +43,16 @@
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    gap: 2px;
-    padding: 0 5px;
+    gap: 20px;
+    padding: 0 15px;
     box-sizing: border-box;
-  `;return t.createElement(r,null,rs(e))},rs=e=>e.map(((e,r)=>t.createElement(Qi,{typography:"body07",key:r},t.createElement(Ki,{to:e.path,onClick:e.onClick},e.icon&&t.createElement(Fn,{name:e.icon,type:e.iconType||"outlined"}),e.label)))),ns={About:t.createElement((()=>t.createElement(Yi,{typography:"heading02"},"About")),null),Login:t.createElement((()=>t.createElement(Yi,{typography:"heading02"},"Login")),null)},as=()=>{const{state:e}=o();return e.activeTab?ns[e.activeTab]:t.createElement(Ts,null)};var os=a(5161),ls=a(5338),is=a(7276);const ss="function"==typeof t.act?t.act:os.act;function us(){if("undefined"!=typeof globalThis)return globalThis;if("undefined"!=typeof self)return self;if("undefined"!=typeof window)return window;if(void 0!==a.g)return a.g;throw new Error("unable to locate global object")}function cs(e){us().IS_REACT_ACT_ENVIRONMENT=e}function ds(){return us().IS_REACT_ACT_ENVIRONMENT}const ps=(fs=ss,e=>{const t=ds();cs(!0);try{let r=!1;const n=fs((()=>{const t=e();return null!==t&&"object"==typeof t&&"function"==typeof t.then&&(r=!0),t}));if(r){const e=n;return{then:(r,n)=>{e.then((e=>{cs(t),r(e)}),(e=>{cs(t),n(e)}))}}}return cs(t),n}catch(e){throw cs(t),e}});var fs;const ms=function(){return(0,is.rC)(...arguments)};Object.keys(is.rC).forEach((e=>{ms[e]=function(){return is.rC[e](...arguments)}}));const hs=ms.mouseEnter,bs=ms.mouseLeave;ms.mouseEnter=function(){return hs(...arguments),ms.mouseOver(...arguments)},ms.mouseLeave=function(){return bs(...arguments),ms.mouseOut(...arguments)};const ys=ms.pointerEnter,vs=ms.pointerLeave;ms.pointerEnter=function(){return ys(...arguments),ms.pointerOver(...arguments)},ms.pointerLeave=function(){return vs(...arguments),ms.pointerOut(...arguments)};const gs=ms.select;ms.select=(e,t)=>{gs(e,t),e.focus(),ms.keyUp(e,t)};const ws=ms.blur,Cs=ms.focus;ms.blur=function(){return ms.focusOut(...arguments),ws(...arguments)},ms.focus=function(){return ms.focusIn(...arguments),Cs(...arguments)},(0,is.jK)({unstable_advanceTimersWrapper:e=>ps(e),asyncWrapper:async e=>{const t=ds();cs(!1);try{const t=await e();return await new Promise((e=>{setTimeout((()=>{e()}),0),"undefined"==typeof jest||null===jest||!0!==setTimeout._isMockFunction&&!Object.prototype.hasOwnProperty.call(setTimeout,"clock")||jest.advanceTimersByTime(0)})),t}finally{cs(t)}},eventWrapper:e=>{let t;return ps((()=>{t=e()})),t}});const Ss=new Set,xs=[];function Es(){xs.forEach((e=>{let{root:t,container:r}=e;ps((()=>{t.unmount()})),r.parentNode===document.body&&document.body.removeChild(r)})),xs.length=0,Ss.clear()}if(("undefined"==typeof process||!process.env?.RTL_SKIP_AUTO_CLEANUP)&&("function"==typeof afterEach?afterEach((()=>{Es()})):"function"==typeof teardown&&teardown((()=>{Es()})),"function"==typeof beforeAll&&"function"==typeof afterAll)){let e=ds();beforeAll((()=>{e=ds(),cs(!0)})),afterAll((()=>{cs(e)}))}const Ps=()=>`hsl(${Math.floor(360*Math.random())}, 20%, 90%)`,ks=Hi.div`
+    max-height: 100vh;
+    overflow-y: auto;
+  `;return t.createElement(r,null,rs(e,!0))},rs=(e,r=!1)=>e.map(((e,n)=>t.createElement(Qi,{typography:r?"body01":"body07",key:n},t.createElement(Ki,{to:e.path,onClick:e.onClick},e.icon&&t.createElement(Fn,{name:e.icon,type:e.iconType||"outlined"}),e.label)))),ns={About:t.createElement((()=>t.createElement(Yi,{typography:"heading02"},"About")),null),Login:t.createElement((()=>t.createElement(Yi,{typography:"heading02"},"Login")),null)},as=()=>{const{state:e}=o();return e.activeTab?ns[e.activeTab]:t.createElement(Ts,null)};var os=a(5161),ls=a(5338),is=a(7276);const ss="function"==typeof t.act?t.act:os.act;function us(){if("undefined"!=typeof globalThis)return globalThis;if("undefined"!=typeof self)return self;if("undefined"!=typeof window)return window;if(void 0!==a.g)return a.g;throw new Error("unable to locate global object")}function cs(e){us().IS_REACT_ACT_ENVIRONMENT=e}function ds(){return us().IS_REACT_ACT_ENVIRONMENT}const ps=(fs=ss,e=>{const t=ds();cs(!0);try{let r=!1;const n=fs((()=>{const t=e();return null!==t&&"object"==typeof t&&"function"==typeof t.then&&(r=!0),t}));if(r){const e=n;return{then:(r,n)=>{e.then((e=>{cs(t),r(e)}),(e=>{cs(t),n(e)}))}}}return cs(t),n}catch(e){throw cs(t),e}});var fs;const ms=function(){return(0,is.rC)(...arguments)};Object.keys(is.rC).forEach((e=>{ms[e]=function(){return is.rC[e](...arguments)}}));const hs=ms.mouseEnter,bs=ms.mouseLeave;ms.mouseEnter=function(){return hs(...arguments),ms.mouseOver(...arguments)},ms.mouseLeave=function(){return bs(...arguments),ms.mouseOut(...arguments)};const ys=ms.pointerEnter,vs=ms.pointerLeave;ms.pointerEnter=function(){return ys(...arguments),ms.pointerOver(...arguments)},ms.pointerLeave=function(){return vs(...arguments),ms.pointerOut(...arguments)};const gs=ms.select;ms.select=(e,t)=>{gs(e,t),e.focus(),ms.keyUp(e,t)};const ws=ms.blur,Cs=ms.focus;ms.blur=function(){return ms.focusOut(...arguments),ws(...arguments)},ms.focus=function(){return ms.focusIn(...arguments),Cs(...arguments)},(0,is.jK)({unstable_advanceTimersWrapper:e=>ps(e),asyncWrapper:async e=>{const t=ds();cs(!1);try{const t=await e();return await new Promise((e=>{setTimeout((()=>{e()}),0),"undefined"==typeof jest||null===jest||!0!==setTimeout._isMockFunction&&!Object.prototype.hasOwnProperty.call(setTimeout,"clock")||jest.advanceTimersByTime(0)})),t}finally{cs(t)}},eventWrapper:e=>{let t;return ps((()=>{t=e()})),t}});const Ss=new Set,xs=[];function Es(){xs.forEach((e=>{let{root:t,container:r}=e;ps((()=>{t.unmount()})),r.parentNode===document.body&&document.body.removeChild(r)})),xs.length=0,Ss.clear()}if(("undefined"==typeof process||!process.env?.RTL_SKIP_AUTO_CLEANUP)&&("function"==typeof afterEach?afterEach((()=>{Es()})):"function"==typeof teardown&&teardown((()=>{Es()})),"function"==typeof beforeAll&&"function"==typeof afterAll)){let e=ds();beforeAll((()=>{e=ds(),cs(!0)})),afterAll((()=>{cs(e)}))}const Ps=()=>`hsl(${Math.floor(360*Math.random())}, 20%, 90%)`,ks=Hi.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 15px;
-  margin-top: 40px;
 `,_s=Hi.div`
   display: flex;
   justify-content: center;
@@ -96,7 +98,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 10px;
   padding: 0;
   background: ${m};
   box-sizing: border-box;
