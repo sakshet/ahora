@@ -8,6 +8,7 @@ import {
   AppState,
   AppAction,
 } from './context';
+import { defaultAppState } from '@Utils/mocks';
 
 // Mock components to test the providers and hooks
 const MockAppStateComponent = () => {
@@ -69,10 +70,7 @@ describe('ServerStateProvider and useServerState', () => {
 });
 
 describe('appReducer', () => {
-  const initialState: AppState = {
-    activeTab: null,
-    alertBanner: null,
-  };
+  const initialState: AppState = defaultAppState;
 
   test('handles API_ERROR action', () => {
     const action: AppAction = {
@@ -99,7 +97,7 @@ describe('appReducer', () => {
     const action: AppAction = { type: 'ALERT_CLEAR' };
     const newState = appReducer(
       {
-        activeTab: null,
+        ...defaultAppState,
         alertBanner: { title: 'Error', status: 'error' },
       },
       action,

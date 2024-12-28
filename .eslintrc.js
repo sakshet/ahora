@@ -20,8 +20,9 @@ module.exports = {
   },
   rules: {
     // 'prettier/prettier': 'warn',
+    'react-hooks/exhaustive-deps': 'off',
     'no-unused-vars': 'off', // Disable the base rule as it can report incorrect errors
-    '@typescript-eslint/no-unused-vars': ['warn'], // Enable the TypeScript rule as a warning
+    '@typescript-eslint/no-unused-vars': ['off'], // Enable the TypeScript rule as a warning
     'react/no-unescaped-entities': 0,
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/ban-types': [

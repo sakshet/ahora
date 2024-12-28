@@ -14,7 +14,7 @@ const StyledRouterLink = styled(RouterLink)`
   text-decoration: none;
   color: inherit;
   &:hover {
-    filter: brightness(75%);
+    transform: scale(1.03);
   }
 `;
 
