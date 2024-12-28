@@ -8,7 +8,8 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import AcUnitOutlinedIcon from '@mui/icons-material/AcUnitOutlined';
-import { SvgIconProps } from '@mui/material/SvgIcon';
+import DragHandleIcon from '@mui/icons-material/DragHandle';
+import DragHandleOutlinedIcon from '@mui/icons-material/DragHandleOutlined';
 
 interface IconProps {
   name: string;
@@ -16,51 +17,55 @@ interface IconProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-const getSize = (
-  size: 'sm' | 'md' | 'lg' | undefined,
-): SvgIconProps['fontSize'] => {
+const getSize = (size: 'sm' | 'md' | 'lg' | undefined): string => {
   switch (size) {
     case 'sm':
-      return 'small';
+      return '16px';
     case 'lg':
-      return 'large';
+      return '32px';
     case 'md':
     default:
-      return 'medium';
+      return '24px';
   }
 };
 
 export const Icon: React.FC<IconProps> = ({
   name,
   type = 'filled',
-  size = 'sm',
+  size = 'md',
 }) => {
   const fontSize = getSize(size);
 
   switch (name) {
     case 'home':
       return type === 'outlined' ? (
-        <HomeOutlinedIcon fontSize={fontSize} />
+        <HomeOutlinedIcon style={{ fontSize }} />
       ) : (
-        <HomeIcon fontSize={fontSize} />
+        <HomeIcon style={{ fontSize }} />
       );
     case 'search':
       return type === 'outlined' ? (
-        <SearchOutlinedIcon fontSize={fontSize} />
+        <SearchOutlinedIcon style={{ fontSize }} />
       ) : (
-        <SearchIcon fontSize={fontSize} />
+        <SearchIcon style={{ fontSize }} />
       );
     case 'bag':
       return type === 'outlined' ? (
-        <ShoppingBagOutlinedIcon fontSize={fontSize} />
+        <ShoppingBagOutlinedIcon style={{ fontSize }} />
       ) : (
-        <ShoppingBagIcon fontSize={fontSize} />
+        <ShoppingBagIcon style={{ fontSize }} />
       );
     case 'ac_unit':
       return type === 'outlined' ? (
-        <AcUnitOutlinedIcon fontSize={fontSize} />
+        <AcUnitOutlinedIcon style={{ fontSize }} />
       ) : (
-        <AcUnitIcon fontSize={fontSize} />
+        <AcUnitIcon style={{ fontSize }} />
+      );
+    case 'drag_handle':
+      return type === 'outlined' ? (
+        <DragHandleOutlinedIcon style={{ fontSize }} />
+      ) : (
+        <DragHandleIcon style={{ fontSize }} />
       );
     // Add more cases for other icons as needed
     default:
