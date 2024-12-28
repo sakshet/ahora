@@ -16,7 +16,9 @@ interface IconProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-const getSize = (size: 'sm' | 'md' | 'lg' | undefined): SvgIconProps['fontSize'] => {
+const getSize = (
+  size: 'sm' | 'md' | 'lg' | undefined,
+): SvgIconProps['fontSize'] => {
   switch (size) {
     case 'sm':
       return 'small';
@@ -28,18 +30,38 @@ const getSize = (size: 'sm' | 'md' | 'lg' | undefined): SvgIconProps['fontSize']
   }
 };
 
-export const Icon: React.FC<IconProps> = ({ name, type = 'filled', size = 'sm' }) => {
+export const Icon: React.FC<IconProps> = ({
+  name,
+  type = 'filled',
+  size = 'sm',
+}) => {
   const fontSize = getSize(size);
 
   switch (name) {
     case 'home':
-      return type === 'outlined' ? <HomeOutlinedIcon fontSize={fontSize} /> : <HomeIcon fontSize={fontSize} />;
+      return type === 'outlined' ? (
+        <HomeOutlinedIcon fontSize={fontSize} />
+      ) : (
+        <HomeIcon fontSize={fontSize} />
+      );
     case 'search':
-      return type === 'outlined' ? <SearchOutlinedIcon fontSize={fontSize} /> : <SearchIcon fontSize={fontSize} />;
+      return type === 'outlined' ? (
+        <SearchOutlinedIcon fontSize={fontSize} />
+      ) : (
+        <SearchIcon fontSize={fontSize} />
+      );
     case 'bag':
-      return type === 'outlined' ? <ShoppingBagOutlinedIcon fontSize={fontSize} /> : <ShoppingBagIcon fontSize={fontSize} />;
+      return type === 'outlined' ? (
+        <ShoppingBagOutlinedIcon fontSize={fontSize} />
+      ) : (
+        <ShoppingBagIcon fontSize={fontSize} />
+      );
     case 'ac_unit':
-      return type === 'outlined' ? <AcUnitOutlinedIcon fontSize={fontSize} /> : <AcUnitIcon fontSize={fontSize} />;
+      return type === 'outlined' ? (
+        <AcUnitOutlinedIcon fontSize={fontSize} />
+      ) : (
+        <AcUnitIcon fontSize={fontSize} />
+      );
     // Add more cases for other icons as needed
     default:
       return null;

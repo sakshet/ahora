@@ -1,6 +1,6 @@
-import { Service } from "@Utils/types";
-import { useEffect, useState } from "react";
-import { useServerState } from "./context";
+import { Service } from '@Utils/types';
+import { useEffect, useState } from 'react';
+import { useServerState } from './context';
 
 export const useServicesData = (): Service[] => {
   const [services, setServices] = useState<Service[]>([]);

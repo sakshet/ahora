@@ -1,5 +1,6 @@
 import { useServicesData } from '@Context';
 import { colors, Icon, Link, Text } from '@Core';
+import { MIN_SIZE_FOR_DESKTOP } from '@Utils';
 
 import React from 'react';
 import styled from 'styled-components';
@@ -28,7 +29,7 @@ const Content = styled.div`
   width: 100%;
   padding: 0 20px;
   color: ${colors.gray050};
-  @media (min-width: 1250px) {
+  @media (min-width: ${MIN_SIZE_FOR_DESKTOP}px) {
     width: 70%;
   }
 `;
@@ -40,9 +41,14 @@ export const Header = () => {
     <Container>
       <Content>
         {data.map((service, key) => (
-          <Text typography='body07' key={key}>
+          <Text typography="body07" key={key}>
             <Link to={service.path} key={key}>
-              {service.icon && <Icon name={service.icon} type={service.iconType ? service.iconType : 'outlined'} />}
+              {service.icon && (
+                <Icon
+                  name={service.icon}
+                  type={service.iconType ? service.iconType : 'outlined'}
+                />
+              )}
               {service.label}
             </Link>
           </Text>

@@ -29,11 +29,11 @@ export const App = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 10px;
   padding: 0;
-  height: 100%;
   background: ${colors.white};
-  font-family: 'OregonBold', sans-serif;
+  box-sizing: border-box;
 `;
 
 const generateRoutes = (services: Service[]): JSX.Element[] => {
@@ -41,7 +41,9 @@ const generateRoutes = (services: Service[]): JSX.Element[] => {
 
   const createRoutes = (services: Service[]) => {
     services.forEach((service) => {
-      routes.push(<Route key={service.path} path={service.path} element={<Content />} />);
+      routes.push(
+        <Route key={service.path} path={service.path} element={<Content />} />,
+      );
       if (service.subServices && service.subServices.length > 0) {
         createRoutes(service.subServices);
       }
