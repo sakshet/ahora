@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useServerState } from './context';
 
 export const useServicesData = (): {
-  enhancedOptions: Service[];
   options: Service[];
 } => {
   const [services, setServices] = useState<Service[]>([]);
@@ -14,8 +13,5 @@ export const useServicesData = (): {
     setServices([...formerOptions, ...data.services, ...latterOptions]);
   }, [data]);
 
-  return {
-    enhancedOptions: services,
-    options: data.services,
-  };
+  return { options: services };
 };

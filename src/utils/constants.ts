@@ -6,17 +6,27 @@ export const MIN_SIZE_FOR_DESKTOP = 1250;
 export const MIN_SIZE_FOR_SMALL_SCREEN = 650;
 
 export const formerOptions: Service[] = [
-  { icon: 'home', path: '', iconType: 'filled' },
+  { icon: 'home', id: 'home', path: '', iconType: 'filled' },
 ];
 
 export const latterOptions: Service[] = [
-  { icon: 'search', path: '/search', iconType: 'outlined' },
-  { icon: 'bag', path: '/bag', iconType: 'outlined' },
+  { icon: 'search', id: 'search', iconType: 'outlined' },
+  { icon: 'bag', id: 'bag', iconType: 'outlined' },
 ];
 
-export const getDragOption = (onClick: () => void): Service => ({
+export const dragOption: Service = {
+  hoverDisabled: true,
   icon: 'drag_handle',
-  path: '',
   iconType: 'filled',
+  id: 'drag',
+  path: '',
+};
+
+export const getDragOption = (onClick: () => void): Service => ({
+  hoverDisabled: true,
+  icon: 'drag_handle',
+  iconType: 'filled',
+  id: 'drag',
   onClick,
+  path: '',
 });

@@ -54,7 +54,7 @@ const generateRoutes = (services: Service[]): JSX.Element[] => {
 };
 
 const AppRoutes = () => {
-  const { enhancedOptions } = useServicesData();
+  const { options } = useServicesData();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -71,6 +71,7 @@ const AppRoutes = () => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const redirectPath = params.get('redirect');
+    options;
     if (redirectPath) {
       navigate(redirectPath);
     }
@@ -81,7 +82,7 @@ const AppRoutes = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Content />} />
-        {generateRoutes(enhancedOptions)}
+        {generateRoutes(options)}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Wrapper>
