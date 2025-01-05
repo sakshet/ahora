@@ -10,7 +10,7 @@ import {
 import { Service } from '@Utils/types';
 
 import React, { useEffect, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
@@ -35,9 +35,13 @@ const Menu = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 10px 20px;
-  box-sizing: border-box;
   color: ${colors.gray050};
+`;
+
+const Content = styled.div`
+  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
   @media (min-width: ${MIN_SIZE_FOR_DESKTOP}px) {
     width: 70%;
   }
@@ -58,36 +62,31 @@ export const Header = () => {
 
   return (
     <Container onMouseLeave={() => setSubMenu([])}>
-      <Menu>
-        {(width > MIN_SIZE_FOR_SMALL_SCREEN
-          ? options
-          : [...formerOptions, ...latterOptions, dragOption]
-        ).map((option, key) => (
-          <MenuItem
-            key={key}
-            onHover={() => setSubMenu(option.subServices || [])}
-            option={option}
-          />
-        ))}
-      </Menu>
-      {subMenu && <SubMenu options={subMenu} />}
+      <Content>
+        <Menu>
+          {(width > MIN_SIZE_FOR_SMALL_SCREEN
+            ? options
+            : [...formerOptions, ...latterOptions, dragOption]
+          ).map((option, key) => (
+            <MenuItem
+              key={key}
+              onHover={() => setSubMenu(option.subServices || [])}
+              option={option}
+            />
+          ))}
+        </Menu>
+        {subMenu.length > 0 && <SubMenu options={subMenu} />}
+      </Content>
     </Container>
   );
 };
 
-const slideInFromTop = keyframes`
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`;
-
 const Wrapper = styled.div`
-  animation: ${slideInFromTop} 0.2s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 0;
+  gap: 20px;
 `;
 
 const SubMenu = ({ options }: { options: Service[] }) => {

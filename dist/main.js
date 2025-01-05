@@ -27,23 +27,20 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 10px 20px;
-  box-sizing: border-box;
   color: ${"#BDBDBD"};
+`,es=Vi.div`
+  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
   @media (min-width: ${c}px) {
     width: 70%;
   }
-`,es=()=>{const{options:e}=m(),[r,n]=(0,t.useState)([]),[a,o]=(0,t.useState)(window.innerWidth);return(0,t.useEffect)((()=>{const e=()=>o(window.innerWidth);return window.addEventListener("resize",e),()=>{window.removeEventListener("resize",e)}}),[]),t.createElement(Ji,{onMouseLeave:()=>n([])},t.createElement(Zi,null,(a>650?e:[...d,...p,f]).map(((e,r)=>t.createElement(os,{key:r,onHover:()=>n(e.subServices||[]),option:e})))),r&&t.createElement(ns,{options:r}))},ts=(function(e){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];var n=Gl($i.apply(void 0,no([e],t,!1))),a=Ol(n);return new Oi(a,n)})`
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`,rs=Vi.div`
-  animation: ${ts} 0.2s ease-out;
+`,ts=()=>{const{options:e}=m(),[r,n]=(0,t.useState)([]),[a,o]=(0,t.useState)(window.innerWidth);return(0,t.useEffect)((()=>{const e=()=>o(window.innerWidth);return window.addEventListener("resize",e),()=>{window.removeEventListener("resize",e)}}),[]),t.createElement(Ji,{onMouseLeave:()=>n([])},t.createElement(es,null,t.createElement(Zi,null,(a>650?e:[...d,...p,f]).map(((e,r)=>t.createElement(os,{key:r,onHover:()=>n(e.subServices||[]),option:e})))),r.length>0&&t.createElement(ns,{options:r})))},rs=Vi.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 0;
+  gap: 20px;
 `,ns=({options:e})=>t.createElement(rs,null,e.map(((e,r)=>t.createElement(os,{key:r,large:!0,option:e})))),as=Vi.div`
   color: ${h};
   opacity: 60%;
@@ -103,4 +100,4 @@
   padding: 0;
   background: ${h};
   box-sizing: border-box;
-`,Ls=()=>{const{options:e}=m(),r=Aa(),n=Ta();return(0,t.useEffect)((()=>{const e=new URLSearchParams(n.search).get("redirect");e&&r(e)}),[r,n.search]),t.createElement(Is,null,t.createElement(es,null),t.createElement(Wa,null,t.createElement(Ha,{path:"/",element:t.createElement(is,null)}),(e=>{const r=[],n=e=>{e.forEach((e=>{r.push(t.createElement(Ha,{key:e.path,path:e.path,element:t.createElement(is,null)})),e.subServices&&e.subServices.length>0&&n(e.subServices)}))};return n(e),r})(e),t.createElement(Ha,{path:"*",element:t.createElement(Ua,{to:"/"})})))},Fs=document.getElementById("app-root");(0,us.H)(Fs).render(t.createElement((function(e){let{basename:r,children:n,future:a,window:o}=e,l=t.useRef();var i;null==l.current&&(l.current=(void 0===(i={window:o,v5Compat:!0})&&(i={}),function(e,t,r,n){void 0===n&&(n={});let{window:a=document.defaultView,v5Compat:o=!1}=n,l=a.history,i=zn.Pop,s=null,u=c();function c(){return(l.state||{idx:null}).idx}function d(){i=zn.Pop;let e=c(),t=null==e?null:e-u;u=e,s&&s({action:i,location:f.location,delta:t})}function p(e){let t="null"!==a.location.origin?a.location.origin:a.location.href,r="string"==typeof e?e:Qn(e);return r=r.replace(/ $/,"%20"),Vn(t,"No window.location.(origin|href) available to create URL for href: "+r),new URL(r,t)}null==u&&(u=0,l.replaceState(Un({},l.state,{idx:u}),""));let f={get action(){return i},get location(){return e(a,l)},listen(e){if(s)throw new Error("A history only accepts one active listener");return a.addEventListener(Hn,d),s=e,()=>{a.removeEventListener(Hn,d),s=null}},createHref:e=>t(a,e),createURL:p,encodeLocation(e){let t=p(e);return{pathname:t.pathname,search:t.search,hash:t.hash}},push:function(e,t){i=zn.Push;let n=Gn(f.location,e,t);r&&r(n,e),u=c()+1;let d=Kn(n,u),p=f.createHref(n);try{l.pushState(d,"",p)}catch(e){if(e instanceof DOMException&&"DataCloneError"===e.name)throw e;a.location.assign(p)}o&&s&&s({action:i,location:f.location,delta:1})},replace:function(e,t){i=zn.Replace;let n=Gn(f.location,e,t);r&&r(n,e),u=c();let a=Kn(n,u),d=f.createHref(n);l.replaceState(a,"",d),o&&s&&s({action:i,location:f.location,delta:0})},go:e=>l.go(e)};return f}((function(e,t){let{pathname:r,search:n,hash:a}=e.location;return Gn("",{pathname:r,search:n,hash:a},t.state&&t.state.usr||null,t.state&&t.state.key||"default")}),(function(e,t){return"string"==typeof t?t:Qn(t)}),null,i)));let s=l.current,[u,c]=t.useState({action:s.action,location:s.location}),{v7_startTransition:d}=a||{},p=t.useCallback((e=>{d&&Ya?Ya((()=>c(e))):c(e)}),[c,d]);return t.useLayoutEffect((()=>s.listen(p)),[s,p]),t.createElement(Va,{basename:r,children:n,location:u.location,navigationType:u.action,navigator:s,future:a})}),null,t.createElement((()=>t.createElement(l,{useMockData:!0},t.createElement(s,null,t.createElement(js,null),t.createElement(Ls,null)))),null)))})()})();
+`,Ls=()=>{const{options:e}=m(),r=Aa(),n=Ta();return(0,t.useEffect)((()=>{const e=new URLSearchParams(n.search).get("redirect");e&&r(e)}),[r,n.search]),t.createElement(Is,null,t.createElement(ts,null),t.createElement(Wa,null,t.createElement(Ha,{path:"/",element:t.createElement(is,null)}),(e=>{const r=[],n=e=>{e.forEach((e=>{r.push(t.createElement(Ha,{key:e.path,path:e.path,element:t.createElement(is,null)})),e.subServices&&e.subServices.length>0&&n(e.subServices)}))};return n(e),r})(e),t.createElement(Ha,{path:"*",element:t.createElement(Ua,{to:"/"})})))},Fs=document.getElementById("app-root");(0,us.H)(Fs).render(t.createElement((function(e){let{basename:r,children:n,future:a,window:o}=e,l=t.useRef();var i;null==l.current&&(l.current=(void 0===(i={window:o,v5Compat:!0})&&(i={}),function(e,t,r,n){void 0===n&&(n={});let{window:a=document.defaultView,v5Compat:o=!1}=n,l=a.history,i=zn.Pop,s=null,u=c();function c(){return(l.state||{idx:null}).idx}function d(){i=zn.Pop;let e=c(),t=null==e?null:e-u;u=e,s&&s({action:i,location:f.location,delta:t})}function p(e){let t="null"!==a.location.origin?a.location.origin:a.location.href,r="string"==typeof e?e:Qn(e);return r=r.replace(/ $/,"%20"),Vn(t,"No window.location.(origin|href) available to create URL for href: "+r),new URL(r,t)}null==u&&(u=0,l.replaceState(Un({},l.state,{idx:u}),""));let f={get action(){return i},get location(){return e(a,l)},listen(e){if(s)throw new Error("A history only accepts one active listener");return a.addEventListener(Hn,d),s=e,()=>{a.removeEventListener(Hn,d),s=null}},createHref:e=>t(a,e),createURL:p,encodeLocation(e){let t=p(e);return{pathname:t.pathname,search:t.search,hash:t.hash}},push:function(e,t){i=zn.Push;let n=Gn(f.location,e,t);r&&r(n,e),u=c()+1;let d=Kn(n,u),p=f.createHref(n);try{l.pushState(d,"",p)}catch(e){if(e instanceof DOMException&&"DataCloneError"===e.name)throw e;a.location.assign(p)}o&&s&&s({action:i,location:f.location,delta:1})},replace:function(e,t){i=zn.Replace;let n=Gn(f.location,e,t);r&&r(n,e),u=c();let a=Kn(n,u),d=f.createHref(n);l.replaceState(a,"",d),o&&s&&s({action:i,location:f.location,delta:0})},go:e=>l.go(e)};return f}((function(e,t){let{pathname:r,search:n,hash:a}=e.location;return Gn("",{pathname:r,search:n,hash:a},t.state&&t.state.usr||null,t.state&&t.state.key||"default")}),(function(e,t){return"string"==typeof t?t:Qn(t)}),null,i)));let s=l.current,[u,c]=t.useState({action:s.action,location:s.location}),{v7_startTransition:d}=a||{},p=t.useCallback((e=>{d&&Ya?Ya((()=>c(e))):c(e)}),[c,d]);return t.useLayoutEffect((()=>s.listen(p)),[s,p]),t.createElement(Va,{basename:r,children:n,location:u.location,navigationType:u.action,navigator:s,future:a})}),null,t.createElement((()=>t.createElement(l,{useMockData:!0},t.createElement(s,null,t.createElement(js,null),t.createElement(Ls,null)))),null)))})()})();
