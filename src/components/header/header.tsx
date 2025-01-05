@@ -1,7 +1,7 @@
 import { useServicesData } from '@Context';
 import { colors, Icon, Link, Text } from '@Core';
 import {
-  getDragOption,
+  dragOption,
   formerOptions,
   latterOptions,
   MIN_SIZE_FOR_DESKTOP,
@@ -18,9 +18,9 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${colors.black};
-  opacity: 85%;
+  opacity: 95%;
   color: ${colors.white};
-  position: sticky;
+  position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
@@ -29,31 +29,27 @@ const Container = styled.div`
     opacity: 100%;
   }
 `;
-
-const Content = styled.div`
+const Menu = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 10px 20px;
-  box-sizing: border-box;
   color: ${colors.gray050};
+`;
+
+const Content = styled.div`
+  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
   @media (min-width: ${MIN_SIZE_FOR_DESKTOP}px) {
     width: 70%;
   }
 `;
 
-const DefaultOptions = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
-  align-items: center;
-`;
-
 export const Header = () => {
-  const { enhancedOptions, options } = useServicesData();
-  const [showOptions, setShowOptions] = useState<boolean>(false);
+  const { options } = useServicesData();
+  const [subMenu, setSubMenu] = useState<Service[]>([]);
   const [width, setWidth] = useState<number>(window.innerWidth);
 
   useEffect(() => {
@@ -65,55 +61,71 @@ export const Header = () => {
   }, []);
 
   return (
-    <Container>
+    <Container onMouseLeave={() => setSubMenu([])}>
       <Content>
-        {width > MIN_SIZE_FOR_SMALL_SCREEN ? (
-          getOptions(enhancedOptions)
-        ) : (
-          <>
-            <DefaultOptions>{getOptions(formerOptions)}</DefaultOptions>
-            <DefaultOptions>
-              {getOptions([
-                ...latterOptions,
-                getDragOption(() => setShowOptions(!showOptions)),
-              ])}
-            </DefaultOptions>
-          </>
-        )}
+        <Menu>
+          {(width > MIN_SIZE_FOR_SMALL_SCREEN
+            ? options
+            : [...formerOptions, ...latterOptions, dragOption]
+          ).map((option, key) => (
+            <MenuItem
+              key={key}
+              onHover={() => setSubMenu(option.subServices || [])}
+              option={option}
+            />
+          ))}
+        </Menu>
+        {subMenu.length > 0 && <SubMenu options={subMenu} />}
       </Content>
-      {showOptions && <HiddenOptions services={options} />}
     </Container>
   );
 };
 
-const HiddenOptions = ({ services }: { services: Service[] }) => {
-  const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    gap: 20px;
-    padding: 0 15px;
-    box-sizing: border-box;
-    max-height: 100vh;
-    overflow-y: auto;
-  `;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 0;
+  gap: 20px;
+`;
 
-  return <Wrapper>{getOptions(services, true)}</Wrapper>;
+const SubMenu = ({ options }: { options: Service[] }) => {
+  return (
+    <Wrapper>
+      {options.map((option, key) => (
+        <MenuItem key={key} large option={option} />
+      ))}
+    </Wrapper>
+  );
 };
 
-const getOptions = (
-  services: Service[],
-  large: boolean = false,
-): JSX.Element[] => {
-  return services.map((service, key) => (
-    <Text typography={large ? 'body01' : 'body07'} key={key}>
-      <Link to={service.path} onClick={service.onClick}>
-        {service.icon && (
-          <Icon name={service.icon} type={service.iconType || 'outlined'} />
-        )}
-        {service.label}
-      </Link>
-    </Text>
-  ));
+const MenuItemWrapper = styled.div`
+  color: ${colors.white};
+  opacity: 60%;
+  &:hover {
+    opacity: 80%;
+  }
+`;
+
+const MenuItem = ({
+  large = false,
+  onHover = () => undefined,
+  option,
+}: {
+  large?: boolean;
+  onHover?: () => void;
+  option: Service;
+}) => {
+  return (
+    <MenuItemWrapper onMouseEnter={onHover}>
+      <Text typography={large ? 'body01' : 'body07'}>
+        <Link to={option.path || ''}>
+          {option.icon && (
+            <Icon name={option.icon} type={option.iconType || 'outlined'} />
+          )}
+          {option.label}
+        </Link>
+      </Text>
+    </MenuItemWrapper>
+  );
 };
