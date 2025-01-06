@@ -5,7 +5,7 @@ import { Homepage } from './homepage';
 describe('Homepage', () => {
   test('renders Homepage component with tiles', () => {
     render(<Homepage />);
-    
+
     // Check if the main titles are rendered
     expect(screen.getByText('Title 1')).toBeInTheDocument();
     expect(screen.getByText('Title 2')).toBeInTheDocument();

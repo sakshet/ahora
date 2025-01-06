@@ -7,9 +7,7 @@ export const renderWithProviders = (ui: React.ReactElement) => {
   return render(
     <AppStateProvider>
       <ServerStateProvider>
-        <MemoryRouter initialEntries={['/']}>
-          {ui}
-        </MemoryRouter>
+        <MemoryRouter initialEntries={['/']}>{ui}</MemoryRouter>
       </ServerStateProvider>
     </AppStateProvider>,
   );

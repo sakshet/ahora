@@ -15,14 +15,17 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   background-color: ${colors.black};
   flex-shrink: 0;
-  &:hover {
-    opacity: 100%;
-  }
   z-index: 1000;
   position: fixed;
   width: 100%;
+  &:hover {
+    opacity: 100%;
+  }
 `;
 
 const Content = styled.div`
@@ -55,7 +58,13 @@ const SubMenu = styled.div`
   border-top: 2px solid ${colors.gray100};
 `;
 
-export const Header = () => {
+export const Header = ({
+  onSubMenuHide,
+  onSubMenuShow,
+}: {
+  onSubMenuHide: () => void;
+  onSubMenuShow: () => void;
+}) => {
   const { options } = useServicesData();
   const [subMenu, setSubMenu] = useState<Service[]>([]);
   const [width, setWidth] = useState<number>(window.innerWidth);
@@ -69,7 +78,12 @@ export const Header = () => {
   }, []);
 
   return (
-    <Container onMouseLeave={() => setSubMenu([])}>
+    <Container
+      onMouseLeave={() => {
+        setSubMenu([]);
+        onSubMenuHide();
+      }}
+    >
       <Content>
         <Menu>
           {(width > MIN_SIZE_FOR_SMALL_SCREEN
@@ -78,8 +92,14 @@ export const Header = () => {
           ).map((option, key) => (
             <MenuItem
               key={key}
-              onClick={() => setSubMenu([])}
-              onHover={() => setSubMenu(option.subServices || [])}
+              onClick={() => {
+                setSubMenu([]);
+                onSubMenuHide();
+              }}
+              onHover={() => {
+                setSubMenu(option.subServices || []);
+                onSubMenuShow();
+              }}
               option={option}
             />
           ))}
@@ -87,7 +107,15 @@ export const Header = () => {
         {subMenu.length > 0 && (
           <SubMenu>
             {subMenu.map((option, key) => (
-              <MenuItem key={key} large onClick={() => setSubMenu([])} option={option} />
+              <MenuItem
+                key={key}
+                large
+                onClick={() => {
+                  setSubMenu([]);
+                  onSubMenuHide();
+                }}
+                option={option}
+              />
             ))}
           </SubMenu>
         )}
