@@ -35,10 +35,6 @@ const generateRoutes = (
 ): JSX.Element[] => {
   const routes: JSX.Element[] = [];
 
-  const StyledComponent = ({ children }: { children: ReactElement }) => (
-    <StyledRoute blurContent={blurContent}>{children}</StyledRoute>
-  );
-
   const createRoutes = (services: Service[]) => {
     services.forEach((service) => {
       routes.push(
@@ -46,7 +42,7 @@ const generateRoutes = (
           key={service.path}
           path={service.path}
           element={
-            <StyledComponent>
+            <StyledComponent blurContent={blurContent}>
               <Content />
             </StyledComponent>
           }
@@ -83,6 +79,14 @@ const StyledRoute = styled.div<{ blurContent: boolean }>`
   align-items: center;
 `;
 
+const StyledComponent = ({
+  blurContent,
+  children,
+}: {
+  blurContent: boolean;
+  children: ReactElement;
+}) => <StyledRoute blurContent={blurContent}>{children}</StyledRoute>;
+
 export const AppRoutes = () => {
   const [blurContent, setBlurContent] = useState<boolean>(false);
   const { options } = useServicesData();
@@ -99,10 +103,6 @@ export const AppRoutes = () => {
     }
   }, [navigate, location.search]);
 
-  const StyledComponent = ({ children }: { children: ReactElement }) => (
-    <StyledRoute blurContent={blurContent}>{children}</StyledRoute>
-  );
-
   return (
     <Wrapper>
       <Header
@@ -113,7 +113,7 @@ export const AppRoutes = () => {
         <Route
           path="/"
           element={
-            <StyledComponent>
+            <StyledComponent blurContent={blurContent}>
               <Content />
             </StyledComponent>
           }
@@ -121,7 +121,7 @@ export const AppRoutes = () => {
         <Route
           path="/mortgage-calculator"
           element={
-            <StyledComponent>
+            <StyledComponent blurContent={blurContent}>
               <MortgageCalculator />
             </StyledComponent>
           }

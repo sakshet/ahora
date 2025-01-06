@@ -28,5 +28,4 @@ export const MortgageCalculator = () => {
       <Content>Mortgage Calculator</Content>
     </Container>
   );
-  // return <Content>Mortgage Calculator</Content>;
 };

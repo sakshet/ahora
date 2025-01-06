@@ -77,13 +77,13 @@ export const Header = ({
     };
   }, []);
 
+  useEffect(() => {
+    if (subMenu.length) onSubMenuShow();
+    else onSubMenuHide();
+  }, [subMenu]);
+
   return (
-    <Container
-      onMouseLeave={() => {
-        setSubMenu([]);
-        onSubMenuHide();
-      }}
-    >
+    <Container onMouseLeave={() => setSubMenu([])}>
       <Content>
         <Menu>
           {(width > MIN_SIZE_FOR_SMALL_SCREEN
@@ -92,14 +92,8 @@ export const Header = ({
           ).map((option, key) => (
             <MenuItem
               key={key}
-              onClick={() => {
-                setSubMenu([]);
-                onSubMenuHide();
-              }}
-              onHover={() => {
-                setSubMenu(option.subServices || []);
-                onSubMenuShow();
-              }}
+              onClick={() => setSubMenu([])}
+              onHover={() => setSubMenu(option.subServices || [])}
               option={option}
             />
           ))}
@@ -110,10 +104,7 @@ export const Header = ({
               <MenuItem
                 key={key}
                 large
-                onClick={() => {
-                  setSubMenu([]);
-                  onSubMenuHide();
-                }}
+                onClick={() => setSubMenu([])}
                 option={option}
               />
             ))}
