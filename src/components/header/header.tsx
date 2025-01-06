@@ -4,6 +4,8 @@ import {
   dragOption,
   formerOptions,
   latterOptions,
+  HEADER_HEIGHT,
+  HEADER_PADDING,
   MIN_SIZE_FOR_DESKTOP,
   MIN_SIZE_FOR_SMALL_SCREEN,
 } from '@Utils/constants';
@@ -13,29 +15,14 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: ${colors.black};
-  opacity: 95%;
-  color: ${colors.white};
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  overflow-y: auto;
+  flex-shrink: 0;
   &:hover {
     opacity: 100%;
   }
-`;
-const Menu = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  z-index: 1000;
+  position: fixed;
   width: 100%;
-  color: ${colors.gray050};
 `;
 
 const Content = styled.div`
@@ -45,6 +32,27 @@ const Content = styled.div`
   @media (min-width: ${MIN_SIZE_FOR_DESKTOP}px) {
     width: 70%;
   }
+`;
+
+const Menu = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: ${colors.gray050};
+  height: ${HEADER_HEIGHT};
+`;
+
+const SubMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: ${HEADER_PADDING}px 0;
+  margin-top: 10px;
+  gap: 20px;
+  border-top: 2px solid ${colors.gray100};
 `;
 
 export const Header = () => {
@@ -70,32 +78,21 @@ export const Header = () => {
           ).map((option, key) => (
             <MenuItem
               key={key}
+              onClick={() => setSubMenu([])}
               onHover={() => setSubMenu(option.subServices || [])}
               option={option}
             />
           ))}
         </Menu>
-        {subMenu.length > 0 && <SubMenu options={subMenu} />}
+        {subMenu.length > 0 && (
+          <SubMenu>
+            {subMenu.map((option, key) => (
+              <MenuItem key={key} large onClick={() => setSubMenu([])} option={option} />
+            ))}
+          </SubMenu>
+        )}
       </Content>
     </Container>
-  );
-};
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 10px 0;
-  gap: 20px;
-`;
-
-const SubMenu = ({ options }: { options: Service[] }) => {
-  return (
-    <Wrapper>
-      {options.map((option, key) => (
-        <MenuItem key={key} large option={option} />
-      ))}
-    </Wrapper>
   );
 };
 
@@ -109,17 +106,19 @@ const MenuItemWrapper = styled.div`
 
 const MenuItem = ({
   large = false,
-  onHover = () => undefined,
+  onClick,
+  onHover,
   option,
 }: {
   large?: boolean;
+  onClick: () => void;
   onHover?: () => void;
   option: Service;
 }) => {
   return (
     <MenuItemWrapper onMouseEnter={onHover}>
       <Text typography={large ? 'body01' : 'body07'}>
-        <Link to={option.path || ''}>
+        <Link to={option.path || ''} onClick={onClick}>
           {option.icon && (
             <Icon name={option.icon} type={option.iconType || 'outlined'} />
           )}

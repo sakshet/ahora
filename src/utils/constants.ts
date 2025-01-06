@@ -2,6 +2,9 @@ import { Service } from './types';
 
 export const APP_NAME = 'Ahora';
 
+export const HEADER_HEIGHT = 25;
+export const HEADER_PADDING = 10;
+
 export const MIN_SIZE_FOR_DESKTOP = 1250;
 export const MIN_SIZE_FOR_SMALL_SCREEN = 650;
 
