@@ -1,32 +1,14 @@
 import { AppStateProvider, ServerStateProvider } from '@Context';
-import { render, RenderOptions } from '@testing-library/react';
-import React, { ReactElement, ReactNode } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { render } from '@testing-library/react';
+import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 
-interface ProvidersProps {
-  children: ReactNode;
-}
-
-const AllProviders: React.FC<ProvidersProps> = ({ children }) => {
-  return (
-    <AppStateProvider useMockData={true}>
+export const renderWithProviders = (ui: React.ReactElement) => {
+  return render(
+    <AppStateProvider>
       <ServerStateProvider>
-        <Router>{children}</Router>
+        <MemoryRouter initialEntries={['/']}>{ui}</MemoryRouter>
       </ServerStateProvider>
-    </AppStateProvider>
+    </AppStateProvider>,
   );
 };
-
-interface CustomRenderOptions extends Omit<RenderOptions, 'wrapper'> {}
-
-const renderWithProviders = (
-  ui: ReactElement,
-  options?: CustomRenderOptions,
-) => {
-  return render(ui, {
-    wrapper: AllProviders,
-    ...options,
-  });
-};
-
-export { renderWithProviders };

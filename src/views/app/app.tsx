@@ -1,9 +1,12 @@
 import { Header } from '@Components';
 import { AppStateProvider, ServerStateProvider } from '@Context';
-import { colors } from '@Core';
+import { useServicesData } from '@Context/data-processors';
+import { colors } from '@Core/colors';
+import { HEADER_HEIGHT, HEADER_PADDING } from '@Utils/constants';
 import { Service } from '@Utils/types';
-import { Content } from '@Views';
-import React, { useEffect } from 'react';
+import { Content, MortgageCalculator } from '@Views';
+
+import React, { ReactElement, useEffect, useState } from 'react';
 import {
   useLocation,
   useNavigate,
@@ -12,8 +15,8 @@ import {
   Routes,
 } from 'react-router-dom';
 import styled from 'styled-components';
+
 import { GlobalStyle } from '../../global-styles';
-import { useServicesData } from '@Context/data-processors';
 
 export const App = () => {
   return (
@@ -26,22 +29,28 @@ export const App = () => {
   );
 };
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 0;
-  background: ${colors.white};
-  box-sizing: border-box;
-`;
-
-const generateRoutes = (services: Service[]): JSX.Element[] => {
+const generateRoutes = (
+  blurContent: boolean,
+  services: Service[],
+): JSX.Element[] => {
   const routes: JSX.Element[] = [];
+
+  const StyledComponent = ({ children }: { children: ReactElement }) => (
+    <StyledRoute blurContent={blurContent}>{children}</StyledRoute>
+  );
 
   const createRoutes = (services: Service[]) => {
     services.forEach((service) => {
       routes.push(
-        <Route key={service.path} path={service.path} element={<Content />} />,
+        <Route
+          key={service.path}
+          path={service.path}
+          element={
+            <StyledComponent>
+              <Content />
+            </StyledComponent>
+          }
+        />,
       );
       if (service.subServices && service.subServices.length > 0) {
         createRoutes(service.subServices);
@@ -53,20 +62,33 @@ const generateRoutes = (services: Service[]): JSX.Element[] => {
   return routes;
 };
 
-const AppRoutes = () => {
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+`;
+const StyledRoute = styled.div<{ blurContent: boolean }>`
+  flex-grow: 1;
+  overflow: auto;
+  background: ${colors.gray010};
+  position: absolute;
+  width: 100%;
+  margin-top: 45px;
+  margin-top: ${HEADER_HEIGHT + 2 * HEADER_PADDING}px;
+  opacity: ${(props) => (props.blurContent ? '25%' : '100%')};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const AppRoutes = () => {
+  const [blurContent, setBlurContent] = useState<boolean>(false);
   const { options } = useServicesData();
 
   const navigate = useNavigate();
   const location = useLocation();
-
-  // useEffect(() => {
-  //   const currentPath = location.pathname;
-  //   const activeTab = Object.keys(tabUrls).find(
-  //     (key) => tabUrls[key as Tab] === currentPath,
-  //   ) as Tab | null;
-
-  //   dispatch({ type: 'SET_ACTIVE_TAB', activeTab });
-  // }, [dispatch, location.pathname]);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -77,12 +99,34 @@ const AppRoutes = () => {
     }
   }, [navigate, location.search]);
 
+  const StyledComponent = ({ children }: { children: ReactElement }) => (
+    <StyledRoute blurContent={blurContent}>{children}</StyledRoute>
+  );
+
   return (
     <Wrapper>
-      <Header />
+      <Header
+        onSubMenuHide={() => setBlurContent(false)}
+        onSubMenuShow={() => setBlurContent(true)}
+      />
       <Routes>
-        <Route path="/" element={<Content />} />
-        {generateRoutes(options)}
+        <Route
+          path="/"
+          element={
+            <StyledComponent>
+              <Content />
+            </StyledComponent>
+          }
+        />
+        <Route
+          path="/mortgage-calculator"
+          element={
+            <StyledComponent>
+              <MortgageCalculator />
+            </StyledComponent>
+          }
+        />
+        {generateRoutes(blurContent, options)}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Wrapper>

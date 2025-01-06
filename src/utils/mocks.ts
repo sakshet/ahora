@@ -172,9 +172,9 @@ export const mockServices: Service[] = [
     path: '/service-9',
     subServices: [
       {
-        id: 'sub-service-10',
-        label: 'Sub Service 10',
-        path: '/sub-service-10',
+        id: 'mortgage-calculator',
+        label: 'Mortgage Calculator',
+        path: '/mortgage-calculator',
         subServices: [],
       },
     ],

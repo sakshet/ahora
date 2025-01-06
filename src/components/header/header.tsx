@@ -4,6 +4,8 @@ import {
   dragOption,
   formerOptions,
   latterOptions,
+  HEADER_HEIGHT,
+  HEADER_PADDING,
   MIN_SIZE_FOR_DESKTOP,
   MIN_SIZE_FOR_SMALL_SCREEN,
 } from '@Utils/constants';
@@ -14,28 +16,16 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
   background-color: ${colors.black};
-  opacity: 95%;
-  color: ${colors.white};
+  flex-shrink: 0;
+  z-index: 1000;
   position: fixed;
   width: 100%;
-  top: 0;
-  z-index: 1000;
-  overflow-y: auto;
   &:hover {
     opacity: 100%;
   }
-`;
-const Menu = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  color: ${colors.gray050};
 `;
 
 const Content = styled.div`
@@ -47,7 +37,34 @@ const Content = styled.div`
   }
 `;
 
-export const Header = () => {
+const Menu = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: ${colors.gray050};
+  height: ${HEADER_HEIGHT};
+`;
+
+const SubMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: ${HEADER_PADDING}px 0;
+  margin-top: 10px;
+  gap: 20px;
+  border-top: 2px solid ${colors.gray100};
+`;
+
+export const Header = ({
+  onSubMenuHide,
+  onSubMenuShow,
+}: {
+  onSubMenuHide: () => void;
+  onSubMenuShow: () => void;
+}) => {
   const { options } = useServicesData();
   const [subMenu, setSubMenu] = useState<Service[]>([]);
   const [width, setWidth] = useState<number>(window.innerWidth);
@@ -61,7 +78,12 @@ export const Header = () => {
   }, []);
 
   return (
-    <Container onMouseLeave={() => setSubMenu([])}>
+    <Container
+      onMouseLeave={() => {
+        setSubMenu([]);
+        onSubMenuHide();
+      }}
+    >
       <Content>
         <Menu>
           {(width > MIN_SIZE_FOR_SMALL_SCREEN
@@ -70,32 +92,35 @@ export const Header = () => {
           ).map((option, key) => (
             <MenuItem
               key={key}
-              onHover={() => setSubMenu(option.subServices || [])}
+              onClick={() => {
+                setSubMenu([]);
+                onSubMenuHide();
+              }}
+              onHover={() => {
+                setSubMenu(option.subServices || []);
+                onSubMenuShow();
+              }}
               option={option}
             />
           ))}
         </Menu>
-        {subMenu.length > 0 && <SubMenu options={subMenu} />}
+        {subMenu.length > 0 && (
+          <SubMenu>
+            {subMenu.map((option, key) => (
+              <MenuItem
+                key={key}
+                large
+                onClick={() => {
+                  setSubMenu([]);
+                  onSubMenuHide();
+                }}
+                option={option}
+              />
+            ))}
+          </SubMenu>
+        )}
       </Content>
     </Container>
-  );
-};
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 10px 0;
-  gap: 20px;
-`;
-
-const SubMenu = ({ options }: { options: Service[] }) => {
-  return (
-    <Wrapper>
-      {options.map((option, key) => (
-        <MenuItem key={key} large option={option} />
-      ))}
-    </Wrapper>
   );
 };
 
@@ -109,17 +134,19 @@ const MenuItemWrapper = styled.div`
 
 const MenuItem = ({
   large = false,
-  onHover = () => undefined,
+  onClick,
+  onHover,
   option,
 }: {
   large?: boolean;
+  onClick: () => void;
   onHover?: () => void;
   option: Service;
 }) => {
   return (
     <MenuItemWrapper onMouseEnter={onHover}>
       <Text typography={large ? 'body01' : 'body07'}>
-        <Link to={option.path || ''}>
+        <Link to={option.path || ''} onClick={onClick}>
           {option.icon && (
             <Icon name={option.icon} type={option.iconType || 'outlined'} />
           )}
