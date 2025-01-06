@@ -74,8 +74,8 @@ const StyledRoute = styled.div<{ blurContent: boolean }>`
   overflow: auto;
   background: ${colors.gray010};
   position: absolute;
+  height: 100%;
   width: 100%;
-  margin-top: 45px;
   margin-top: ${HEADER_HEIGHT + 2 * HEADER_PADDING}px;
   opacity: ${(props) => (props.blurContent ? '25%' : '100%')};
   display: flex;

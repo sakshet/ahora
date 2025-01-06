@@ -75,16 +75,22 @@
       grid-template-columns: repeat(${r}, 1fr);
     }
   `;return t.createElement(n,null,e.map(((e,r)=>t.createElement(Os,{key:r,bgColor:ks()},t.createElement(Rs,null,e.title)))))},As=Hi.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: ${"#F5F5F5"};
+`,Ns=Hi.div`
   padding: 10px 20px;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   position: fixed;
-  background-color: ${"#F5F5F5"};
   @media (min-width: ${c}px) {
     width: 70%;
   }
-`,Ns=()=>t.createElement(As,null,"Mortgage Calculator"),js=(function(e){for(var r=[],n=1;n<arguments.length;n++)r[n-1]=arguments[n];var a=Di.apply(void 0,ro([e],r,!1)),o="sc-global-".concat(_l(JSON.stringify(a))),l=new Vi(a,o),i=function(e){var r=Pi(),n=t.useContext(Ii),a=t.useRef(r.styleSheet.allocateGSInstance(o)).current;return r.styleSheet.server&&s(a,e,r.styleSheet,n,r.stylis),t.useLayoutEffect((function(){if(!r.styleSheet.server)return s(a,e,r.styleSheet,n,r.stylis),function(){return l.removeStyles(a,r.styleSheet)}}),[a,e,r.styleSheet,n,r.stylis]),null};function s(e,t,r,n,a){if(l.isStatic)l.renderStyles(e,dl,r,a);else{var o=to(to({},t),{theme:ml(t,n,i.defaultProps)});l.renderStyles(e,o,r,a)}}return t.memo(i)})`
+`,js=()=>t.createElement(As,null,t.createElement(Ns,null,"Mortgage Calculator")),Is=(function(e){for(var r=[],n=1;n<arguments.length;n++)r[n-1]=arguments[n];var a=Di.apply(void 0,ro([e],r,!1)),o="sc-global-".concat(_l(JSON.stringify(a))),l=new Vi(a,o),i=function(e){var r=Pi(),n=t.useContext(Ii),a=t.useRef(r.styleSheet.allocateGSInstance(o)).current;return r.styleSheet.server&&s(a,e,r.styleSheet,n,r.stylis),t.useLayoutEffect((function(){if(!r.styleSheet.server)return s(a,e,r.styleSheet,n,r.stylis),function(){return l.removeStyles(a,r.styleSheet)}}),[a,e,r.styleSheet,n,r.stylis]),null};function s(e,t,r,n,a){if(l.isStatic)l.renderStyles(e,dl,r,a);else{var o=to(to({},t),{theme:ml(t,n,i.defaultProps)});l.renderStyles(e,o,r,a)}}return t.memo(i)})`
   @font-face {
     font-family: 'Oregon';
     src: url('./core/fonts/Oregon.ttf') format('truetype');
@@ -103,22 +109,22 @@
     // font-family: Oregon, Arial, sans-serif;
     // font-family: 'Times New Square';
   }
-`,Is=Hi.div`
+`,Ls=Hi.div`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-`,Ls=Hi.div`
+`,Fs=Hi.div`
   flex-grow: 1;
   overflow: auto;
   background: ${"#FAFAFA"};
   position: absolute;
+  height: 100%;
   width: 100%;
-  margin-top: 45px;
   margin-top: ${45}px;
   opacity: ${e=>e.blurContent?"25%":"100%"};
   display: flex;
   flex-direction: column;
   align-items: center;
-`,Fs=()=>{const[e,r]=(0,t.useState)(!1),{options:n}=m(),a=qa(),o=Ra();(0,t.useEffect)((()=>{const e=new URLSearchParams(o.search).get("redirect");e&&a(e)}),[a,o.search]);const l=({children:r})=>t.createElement(Ls,{blurContent:e},r);return t.createElement(Is,null,t.createElement(ts,{onSubMenuHide:()=>r(!1),onSubMenuShow:()=>r(!0)}),t.createElement(Va,null,t.createElement(Ua,{path:"/",element:t.createElement(l,null,t.createElement(os,null))}),t.createElement(Ua,{path:"/mortgage-calculator",element:t.createElement(l,null,t.createElement(Ns,null))}),((e,r)=>{const n=[],a=({children:r})=>t.createElement(Ls,{blurContent:e},r),o=e=>{e.forEach((e=>{n.push(t.createElement(Ua,{key:e.path,path:e.path,element:t.createElement(a,null,t.createElement(os,null))})),e.subServices&&e.subServices.length>0&&o(e.subServices)}))};return o(r),n})(e,n),t.createElement(Ua,{path:"*",element:t.createElement($a,{to:"/"})})))},Bs=document.getElementById("app-root");(0,is.H)(Bs).render(t.createElement((function(e){let{basename:r,children:n,future:a,window:o}=e,l=t.useRef();var i;null==l.current&&(l.current=(void 0===(i={window:o,v5Compat:!0})&&(i={}),function(e,t,r,n){void 0===n&&(n={});let{window:a=document.defaultView,v5Compat:o=!1}=n,l=a.history,i=Bn.Pop,s=null,u=c();function c(){return(l.state||{idx:null}).idx}function d(){i=Bn.Pop;let e=c(),t=null==e?null:e-u;u=e,s&&s({action:i,location:f.location,delta:t})}function p(e){let t="null"!==a.location.origin?a.location.origin:a.location.href,r="string"==typeof e?e:Gn(e);return r=r.replace(/ $/,"%20"),Hn(t,"No window.location.(origin|href) available to create URL for href: "+r),new URL(r,t)}null==u&&(u=0,l.replaceState($n({},l.state,{idx:u}),""));let f={get action(){return i},get location(){return e(a,l)},listen(e){if(s)throw new Error("A history only accepts one active listener");return a.addEventListener(Un,d),s=e,()=>{a.removeEventListener(Un,d),s=null}},createHref:e=>t(a,e),createURL:p,encodeLocation(e){let t=p(e);return{pathname:t.pathname,search:t.search,hash:t.hash}},push:function(e,t){i=Bn.Push;let n=Kn(f.location,e,t);r&&r(n,e),u=c()+1;let d=Wn(n,u),p=f.createHref(n);try{l.pushState(d,"",p)}catch(e){if(e instanceof DOMException&&"DataCloneError"===e.name)throw e;a.location.assign(p)}o&&s&&s({action:i,location:f.location,delta:1})},replace:function(e,t){i=Bn.Replace;let n=Kn(f.location,e,t);r&&r(n,e),u=c();let a=Wn(n,u),d=f.createHref(n);l.replaceState(a,"",d),o&&s&&s({action:i,location:f.location,delta:0})},go:e=>l.go(e)};return f}((function(e,t){let{pathname:r,search:n,hash:a}=e.location;return Kn("",{pathname:r,search:n,hash:a},t.state&&t.state.usr||null,t.state&&t.state.key||"default")}),(function(e,t){return"string"==typeof t?t:Gn(t)}),null,i)));let s=l.current,[u,c]=t.useState({action:s.action,location:s.location}),{v7_startTransition:d}=a||{},p=t.useCallback((e=>{d&&Qa?Qa((()=>c(e))):c(e)}),[c,d]);return t.useLayoutEffect((()=>s.listen(p)),[s,p]),t.createElement(Ha,{basename:r,children:n,location:u.location,navigationType:u.action,navigator:s,future:a})}),null,t.createElement((()=>t.createElement(l,{useMockData:!0},t.createElement(s,null,t.createElement(js,null),t.createElement(Fs,null)))),null)))})()})();
+`,Bs=()=>{const[e,r]=(0,t.useState)(!1),{options:n}=m(),a=qa(),o=Ra();(0,t.useEffect)((()=>{const e=new URLSearchParams(o.search).get("redirect");e&&a(e)}),[a,o.search]);const l=({children:r})=>t.createElement(Fs,{blurContent:e},r);return t.createElement(Ls,null,t.createElement(ts,{onSubMenuHide:()=>r(!1),onSubMenuShow:()=>r(!0)}),t.createElement(Va,null,t.createElement(Ua,{path:"/",element:t.createElement(l,null,t.createElement(os,null))}),t.createElement(Ua,{path:"/mortgage-calculator",element:t.createElement(l,null,t.createElement(js,null))}),((e,r)=>{const n=[],a=({children:r})=>t.createElement(Fs,{blurContent:e},r),o=e=>{e.forEach((e=>{n.push(t.createElement(Ua,{key:e.path,path:e.path,element:t.createElement(a,null,t.createElement(os,null))})),e.subServices&&e.subServices.length>0&&o(e.subServices)}))};return o(r),n})(e,n),t.createElement(Ua,{path:"*",element:t.createElement($a,{to:"/"})})))},zs=document.getElementById("app-root");(0,is.H)(zs).render(t.createElement((function(e){let{basename:r,children:n,future:a,window:o}=e,l=t.useRef();var i;null==l.current&&(l.current=(void 0===(i={window:o,v5Compat:!0})&&(i={}),function(e,t,r,n){void 0===n&&(n={});let{window:a=document.defaultView,v5Compat:o=!1}=n,l=a.history,i=Bn.Pop,s=null,u=c();function c(){return(l.state||{idx:null}).idx}function d(){i=Bn.Pop;let e=c(),t=null==e?null:e-u;u=e,s&&s({action:i,location:f.location,delta:t})}function p(e){let t="null"!==a.location.origin?a.location.origin:a.location.href,r="string"==typeof e?e:Gn(e);return r=r.replace(/ $/,"%20"),Hn(t,"No window.location.(origin|href) available to create URL for href: "+r),new URL(r,t)}null==u&&(u=0,l.replaceState($n({},l.state,{idx:u}),""));let f={get action(){return i},get location(){return e(a,l)},listen(e){if(s)throw new Error("A history only accepts one active listener");return a.addEventListener(Un,d),s=e,()=>{a.removeEventListener(Un,d),s=null}},createHref:e=>t(a,e),createURL:p,encodeLocation(e){let t=p(e);return{pathname:t.pathname,search:t.search,hash:t.hash}},push:function(e,t){i=Bn.Push;let n=Kn(f.location,e,t);r&&r(n,e),u=c()+1;let d=Wn(n,u),p=f.createHref(n);try{l.pushState(d,"",p)}catch(e){if(e instanceof DOMException&&"DataCloneError"===e.name)throw e;a.location.assign(p)}o&&s&&s({action:i,location:f.location,delta:1})},replace:function(e,t){i=Bn.Replace;let n=Kn(f.location,e,t);r&&r(n,e),u=c();let a=Wn(n,u),d=f.createHref(n);l.replaceState(a,"",d),o&&s&&s({action:i,location:f.location,delta:0})},go:e=>l.go(e)};return f}((function(e,t){let{pathname:r,search:n,hash:a}=e.location;return Kn("",{pathname:r,search:n,hash:a},t.state&&t.state.usr||null,t.state&&t.state.key||"default")}),(function(e,t){return"string"==typeof t?t:Gn(t)}),null,i)));let s=l.current,[u,c]=t.useState({action:s.action,location:s.location}),{v7_startTransition:d}=a||{},p=t.useCallback((e=>{d&&Qa?Qa((()=>c(e))):c(e)}),[c,d]);return t.useLayoutEffect((()=>s.listen(p)),[s,p]),t.createElement(Ha,{basename:r,children:n,location:u.location,navigationType:u.action,navigator:s,future:a})}),null,t.createElement((()=>t.createElement(l,{useMockData:!0},t.createElement(s,null,t.createElement(Is,null),t.createElement(Bs,null)))),null)))})()})();
