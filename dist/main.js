@@ -105,7 +105,7 @@
   justify-content: center;
   height: 500px;
   width: 100%;
-  background-color: ${e=>e.bgColor};
+  background-color: ${e=>e.$bgcolor};
 `,iu=or.div`
   display: flex;
   align-items: center;
@@ -114,7 +114,7 @@
   @media (min-width: ${c}px) {
     width: 70%;
   }
-`,su=[{title:"Title 1"},{title:"Title 2"},{title:"Title 3",subTiles:[{title:"Subtile 1"},{title:"Subtile 2"}]},{title:"Title 4",subTiles:[{title:"Subtile 3"},{title:"Subtile 4"},{title:"Subtile 5"}]},{title:"Title 5"}],uu=()=>t.createElement(ou,null,su.map(((e,r)=>0===(e.subTiles||[]).length?t.createElement(lu,{key:r,bgColor:au()},t.createElement(iu,null,e.title)):t.createElement(du,{key:r,tiles:e.subTiles})))),cu=or.div`
+`,su=[{title:"Title 1"},{title:"Title 2"},{title:"Title 3",subTiles:[{title:"Subtile 1"},{title:"Subtile 2"}]},{title:"Title 4",subTiles:[{title:"Subtile 3"},{title:"Subtile 4"},{title:"Subtile 5"}]},{title:"Title 5"}],uu=()=>t.createElement(ou,null,su.map(((e,r)=>0===(e.subTiles||[]).length?t.createElement(lu,{key:r,$bgcolor:au()},t.createElement(iu,null,e.title)):t.createElement(du,{key:r,tiles:e.subTiles})))),cu=or.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 15px;
@@ -122,7 +122,7 @@
   @media (min-width: ${c}px) {
     grid-template-columns: repeat(${e=>e.$numtiles}, 1fr);
   }
-`,du=({tiles:e=[]})=>(e.length,t.createElement(cu,{$numtiles:e.length},e.map(((e,r)=>t.createElement(lu,{key:r,bgColor:au()},t.createElement(iu,null,e.title))))));var pu;!function(e){e.Interest="interest",e.Repayment="repayment"}(pu||(pu={}));const fu={debt:13e4,term:25,type:pu.Repayment,rate:4.5},mu=or.div`
+`,du=({tiles:e=[]})=>(e.length,t.createElement(cu,{$numtiles:e.length},e.map(((e,r)=>t.createElement(lu,{key:r,$bgcolor:au()},t.createElement(iu,null,e.title))))));var pu;!function(e){e.Interest="interest",e.Repayment="repayment"}(pu||(pu={}));const fu={debt:13e4,term:25,type:pu.Repayment,rate:4.5},mu=or.div`
   display: flex;
   flex-direction: column;
   align-items: center;
