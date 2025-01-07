@@ -10,7 +10,7 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
+    filename: 'dist/main.js',
     publicPath: '/'
   },
   devServer: {
@@ -36,7 +36,8 @@ module.exports = {
       '@Context': path.resolve(__dirname, 'src/context/'),
       '@Core': path.resolve(__dirname, 'src/core/'),
       '@Views': path.resolve(__dirname, 'src/views/'),
-      '@Utils': path.resolve(__dirname, 'src/utils/')
+      '@Utils': path.resolve(__dirname, 'src/utils/'),
+      'styled-components': path.resolve(__dirname, 'node_modules', 'styled-components'),
     }
   },
   module: {
@@ -71,7 +72,7 @@ module.exports = {
       template: 'index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'main.css'
+      filename: 'dist/main.css'
     }),
     new ESLintPlugin({
       extensions: ['js', 'jsx', 'ts', 'tsx'],
