@@ -36,13 +36,13 @@ const generateRoutes = (
   const routes: JSX.Element[] = [];
 
   const createRoutes = (services: Service[]) => {
-    services.forEach((service) => {
+    services.forEach((service, key) => {
       routes.push(
         <Route
-          key={service.path}
+          key={key}
           path={service.path}
           element={
-            <StyledComponent blurContent={blurContent}>
+            <StyledComponent blurcontent={blurContent}>
               <Content />
             </StyledComponent>
           }
@@ -65,7 +65,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   flex-wrap: nowrap;
 `;
-const StyledRoute = styled.div<{ blurContent: boolean }>`
+const StyledRoute = styled.div<{ $blurcontent: string }>`
   flex-grow: 1;
   overflow: auto;
   background: ${colors.gray010};
@@ -73,19 +73,21 @@ const StyledRoute = styled.div<{ blurContent: boolean }>`
   height: 100%;
   width: 100%;
   margin-top: ${HEADER_HEIGHT + 2 * HEADER_PADDING}px;
-  opacity: ${(props) => (props.blurContent ? '25%' : '100%')};
+  opacity: ${(props) => (props.$blurcontent === 'true' ? '25%' : '100%')};
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 const StyledComponent = ({
-  blurContent,
+  blurcontent,
   children,
 }: {
-  blurContent: boolean;
+  blurcontent: boolean;
   children: ReactElement;
-}) => <StyledRoute blurContent={blurContent}>{children}</StyledRoute>;
+}) => (
+  <StyledRoute $blurcontent={blurcontent.toString()}>{children}</StyledRoute>
+);
 
 export const AppRoutes = () => {
   const [blurContent, setBlurContent] = useState<boolean>(false);
@@ -113,7 +115,7 @@ export const AppRoutes = () => {
         <Route
           path="/"
           element={
-            <StyledComponent blurContent={blurContent}>
+            <StyledComponent blurcontent={blurContent}>
               <Content />
             </StyledComponent>
           }
@@ -121,7 +123,7 @@ export const AppRoutes = () => {
         <Route
           path="/mortgage-calculator"
           element={
-            <StyledComponent blurContent={blurContent}>
+            <StyledComponent blurcontent={blurContent}>
               <MortgageCalculator />
             </StyledComponent>
           }

@@ -88,21 +88,20 @@ export const Homepage = () => {
   );
 };
 
+const TilesWrapper = styled.div<{ $numtiles: number }>`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  width: 100%;
+  @media (min-width: ${MIN_SIZE_FOR_DESKTOP}px) {
+    grid-template-columns: repeat(${(props) => props.$numtiles}, 1fr);
+  }
+`;
+
 const Tiles = ({ tiles = [] }: { tiles: { title: string }[] | undefined }) => {
   const numTiles: number = tiles.length;
-
-  const TilesWrapper = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-    width: 100%;
-    @media (min-width: ${MIN_SIZE_FOR_DESKTOP}px) {
-      grid-template-columns: repeat(${numTiles}, 1fr);
-    }
-  `;
-
   return (
-    <TilesWrapper>
+    <TilesWrapper $numtiles={tiles.length}>
       {tiles.map((tile, key) => (
         <Tile key={key} bgColor={getPleasantColor()}>
           <Content>{tile.title}</Content>

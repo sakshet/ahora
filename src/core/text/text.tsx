@@ -30,11 +30,12 @@ type HeadingTypography =
   | 'heading10';
 
 type TextProps = {
-  typography: TextTypography;
   children: ReactNode;
+  className?: string | undefined;
+  typography: TextTypography;
 };
 
-export const Text = ({ children, typography }: TextProps) => {
+export const Text = ({ children, className, typography }: TextProps) => {
   let fontSize = '16px'; // Default font size
 
   switch (typography) {
@@ -70,7 +71,11 @@ export const Text = ({ children, typography }: TextProps) => {
       break;
   }
 
-  return <p style={{ fontSize, ...commonStyles }}>{children}</p>;
+  return (
+    <p className={className} style={{ fontSize, ...commonStyles }}>
+      {children}
+    </p>
+  );
 };
 
 type HeadingProps = {
