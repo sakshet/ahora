@@ -10,7 +10,7 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'dist/main.js',
+    filename: 'main.js',
     publicPath: '/'
   },
   devServer: {
@@ -72,7 +72,7 @@ module.exports = {
       template: 'index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'dist/main.css'
+      filename: 'main.css'
     }),
     new ESLintPlugin({
       extensions: ['js', 'jsx', 'ts', 'tsx'],
