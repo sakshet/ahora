@@ -17,12 +17,12 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Tile = styled.div<{ bgColor: string }>`
+const Tile = styled.div<{ $bgcolor: string }>`
   display: flex;
   justify-content: center;
   height: 500px;
   width: 100%;
-  background-color: ${(props) => props.bgColor};
+  background-color: ${(props) => props.$bgcolor};
 `;
 
 const Content = styled.div`
@@ -77,7 +77,7 @@ export const Homepage = () => {
     <Container>
       {tiles.map((tile, key) =>
         (tile.subTiles || []).length === 0 ? (
-          <Tile key={key} bgColor={getPleasantColor()}>
+          <Tile key={key} $bgcolor={getPleasantColor()}>
             <Content>{tile.title}</Content>
           </Tile>
         ) : (
@@ -103,7 +103,7 @@ const Tiles = ({ tiles = [] }: { tiles: { title: string }[] | undefined }) => {
   return (
     <TilesWrapper $numtiles={tiles.length}>
       {tiles.map((tile, key) => (
-        <Tile key={key} bgColor={getPleasantColor()}>
+        <Tile key={key} $bgcolor={getPleasantColor()}>
           <Content>{tile.title}</Content>
         </Tile>
       ))}
