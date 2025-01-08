@@ -1,12 +1,15 @@
 import { colors, Form, FormInput } from '@Core';
-import { MIN_SIZE_FOR_DESKTOP } from '@Utils/constants';
+import {
+  MIN_SIZE_FOR_DESKTOP,
+  MIN_SIZE_FOR_SMALL_SCREEN,
+} from '@Utils/constants';
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
 enum MortgageType {
-  Interest = 'interest',
-  Repayment = 'repayment',
+  Interest = 'Interest Only',
+  Repayment = 'Repayment',
 }
 
 type MortgageRequest = {
@@ -37,7 +40,6 @@ const Content = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   padding: 10px;
-  height: 100%;
   width: 100%;
   box-sizing: border-box;
   @media (min-width: ${MIN_SIZE_FOR_DESKTOP}px) {
@@ -57,6 +59,16 @@ export const MortgageCalculator = () => {
   );
 };
 
+const StyledForm = styled(Form)`
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 10px;
+  box-sizing: border-box;
+  gap: 25px;
+  @media (min-width: ${MIN_SIZE_FOR_SMALL_SCREEN}px) {
+    grid-template-columns: 1fr 1fr;
+  }
+`;
 export const Input = ({
   inputs,
   setInputs,
@@ -65,22 +77,36 @@ export const Input = ({
   setInputs: (input: MortgageRequest) => void;
 }) => {
   return (
-    <Form>
+    <StyledForm>
       <FormInput
         label="Mortgage Debt"
-        type="number"
         leading="£"
-        value={inputs.debt}
         onChange={(debt: number) => setInputs({ ...inputs, debt })}
+        type="number"
+        value={inputs.debt}
       />
       <FormInput
         label="Mortgage Term"
-        type="number"
-        trailing="years"
-        value={inputs.term}
         onChange={(term: number) => setInputs({ ...inputs, term })}
+        trailing="years"
+        type="number"
+        value={inputs.term}
       />
-    </Form>
+      <FormInput
+        label="Mortgage Type"
+        onChange={(type: MortgageType) => setInputs({ ...inputs, type })}
+        options={[MortgageType.Interest, MortgageType.Repayment]}
+        type="radio"
+        value={inputs.type}
+      />
+      <FormInput
+        label="Interest Rate"
+        onChange={(rate: number) => setInputs({ ...inputs, rate })}
+        trailing="%"
+        type="number"
+        value={inputs.rate}
+      />
+    </StyledForm>
   );
 };
 

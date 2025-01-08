@@ -79,11 +79,12 @@ export const Text = ({ children, className, typography }: TextProps) => {
 };
 
 type HeadingProps = {
-  typography: HeadingTypography;
   children: ReactNode;
+  className?: string | undefined;
+  typography: HeadingTypography;
 };
 
-export const Heading = ({ children, typography }: HeadingProps) => {
+export const Heading = ({ children, className, typography }: HeadingProps) => {
   let fontSize = '32px'; // Default font size
 
   switch (typography) {
@@ -119,5 +120,9 @@ export const Heading = ({ children, typography }: HeadingProps) => {
       break;
   }
 
-  return <h1 style={{ fontSize, ...commonStyles }}>{children}</h1>;
+  return (
+    <h1 className={className} style={{ fontSize, ...commonStyles }}>
+      {children}
+    </h1>
+  );
 };
