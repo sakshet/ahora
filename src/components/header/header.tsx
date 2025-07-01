@@ -12,18 +12,18 @@ const headerStyleSheet = createStyleSheet('headerStyle', () => ({
     height: '40px',
     padding: '5px 30px',
     background: colors.blue010,
-  }
+  },
 }));
 export const Header = () => {
   const classes = useStyleSheet(headerStyleSheet, null);
   return (
     <div className={classes.container}>
-      <Link to='/'>
-        <Heading typography='heading06'>AHORA</Heading>      
+      <Link to="/">
+        <Heading typography="heading06">AHORA</Heading>
       </Link>
       <Actions />
     </div>
-  )
+  );
 };
 
 const actionStyleSheet = createStyleSheet('actionStyles', () => ({
@@ -31,22 +31,21 @@ const actionStyleSheet = createStyleSheet('actionStyles', () => ({
     display: 'flex',
     flexDirection: 'row',
     gap: '30px',
-  }
+  },
 }));
 const Actions = () => {
   const classes = useStyleSheet(actionStyleSheet, null);
   return (
     <div className={classes.container}>
-      <Link to='/mortgage-calculator'>
-        <Text typography='body04'>Mortgage Calculator</Text>
+      <Link to="/mortgage-calculator">
+        <Text typography="body04">Mortgage Calculator</Text>
       </Link>
-      <Link to='/about'>
-        <Text typography='body04'>About</Text>
+      <Link to="/about">
+        <Text typography="body04">About</Text>
       </Link>
     </div>
   );
 };
-
 
 // import { useServicesData } from '@Context';
 // import { colors, Icon, Link, Text } from '@Core';

@@ -1,16 +1,7 @@
-// import { Header } from '@Components';
-
-import { Header } from '@Components/header';
+import { Header } from '@Components';
 import { AppStateProvider, ServerStateProvider } from '@Context';
-// import { useServicesData } from '@Context/data-processors';
-
-// import { colors } from '@Core/colors';
 import { createStyleSheet, useStyleSheet } from '@Core/theme';
 import { MortgageCalculator } from '@Views';
-
-// import { HEADER_HEIGHT, HEADER_PADDING } from '@Utils/constants';
-// import { Service } from '@Utils/types';
-// import { Content, MortgageCalculator } from '@Views';
 
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -19,8 +10,6 @@ export const AppContainer = () => {
   return (
     <AppStateProvider useMockData={true}>
       <ServerStateProvider>
-        {/* <GlobalStyle /> */}
-        {/* <AppRoutes /> */}
         <App />
       </ServerStateProvider>
     </AppStateProvider>
@@ -37,8 +26,8 @@ const appStyleSheet = createStyleSheet('appStyles', () => ({
   },
   routes: {
     padding: '15px 30px',
-    height: '100%'
-  }
+    height: '100%',
+  },
 }));
 const App = () => {
   const classes = useStyleSheet(appStyleSheet, null);
@@ -48,8 +37,12 @@ const App = () => {
       <div className={classes.routes}>
         <Routes>
           <Route path="/" element={<div>Welcome</div>} />
+
+          {/* TODO - Generalise these based on a config */}
           <Route path="/about" element={<div>About</div>} />
           <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
+
+          {/* TODO - Add 404 error path */}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>

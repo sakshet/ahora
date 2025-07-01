@@ -2,16 +2,18 @@ import { useMemo } from 'react';
 
 // Utility: camelCase to kebab-case
 function camelToKebab(str: string) {
-  return str.replace(/[A-Z]/g, m => '-' + m.toLowerCase());
+  return str.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase());
 }
 
 // Utility: simple hash for className uniqueness
 function hash(str: string): string {
-  let h = 0, i, chr;
+  let h = 0,
+    i,
+    chr;
   if (str.length === 0) return '0';
   for (i = 0; i < str.length; i++) {
     chr = str.charCodeAt(i);
-    h = ((h << 5) - h) + chr;
+    h = (h << 5) - h + chr;
     h |= 0;
   }
   return Math.abs(h).toString(36);
@@ -64,19 +66,19 @@ type StyleSheet<Props> = {
 
 export function createStyleSheet<Props>(
   name: string,
-  getStyles: (props: Props) => Record<string, any>
+  getStyles: (props: Props) => Record<string, any>,
 ): StyleSheet<Props> {
   return { name, getStyles };
 }
 
 export function useStyleSheet<Props>(
   styleSheet: StyleSheet<Props>,
-  props: Props
+  props: Props,
 ): Record<string, string> {
   return useMemo(() => {
     const styleObj = styleSheet.getStyles(props);
     const classes: Record<string, string> = {};
-    Object.keys(styleObj).forEach(key => {
+    Object.keys(styleObj).forEach((key) => {
       const className = `${styleSheet.name}-${key}-${hash(JSON.stringify(styleObj[key]))}`;
       classes[key] = className;
       const css = styleObjToCss(className, styleObj[key]);

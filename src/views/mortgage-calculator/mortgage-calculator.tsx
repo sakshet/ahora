@@ -8,7 +8,7 @@ const defaultMortgageInput: MortgageInput = {
   deposit: 0,
   interest: 0,
   propertyPrice: 0,
-  years: 0
+  years: 0,
 };
 
 const calculatorStyleSheet = createStyleSheet('calculatorStyles', () => ({
@@ -17,7 +17,7 @@ const calculatorStyleSheet = createStyleSheet('calculatorStyles', () => ({
     flexDirection: 'column',
     height: '100%',
     gap: '10px',
-  }
+  },
 }));
 export const MortgageCalculator = () => {
   const classes = useStyleSheet(calculatorStyleSheet, null);
@@ -34,12 +34,12 @@ const contentStyleSheet = createStyleSheet('contentStyles', () => ({
     display: 'grid',
     gridTemplateColumns: '2fr 1fr',
     height: '100%',
-    gap: '10px'
+    gap: '10px',
   },
   content: {
     padding: '10px',
     background: colors.gray030,
-  }
+  },
 }));
 const Content = () => {
   const [input, setInput] = useState<MortgageInput>(defaultMortgageInput);
@@ -56,19 +56,21 @@ const Content = () => {
         className={classes.content}
         role="button"
         tabIndex={0}
-        onClick={() => setInput({
-          deposit: 100,
-          interest: 100,
-          propertyPrice: 100,
-          years: 100
-        })}
+        onClick={() =>
+          setInput({
+            deposit: 100,
+            interest: 100,
+            propertyPrice: 100,
+            years: 100,
+          })
+        }
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             setInput({
               deposit: 100,
               interest: 100,
               propertyPrice: 100,
-              years: 100
+              years: 100,
             });
           }
         }}
@@ -76,22 +78,24 @@ const Content = () => {
         Content
       </div>
       <div className={classes.content}>
-        {responseReady ? <div>Response Ready</div> : <div>Please fill all info</div>}
+        {responseReady ? (
+          <div>Response Ready</div>
+        ) : (
+          <div>Please fill all info</div>
+        )}
       </div>
     </div>
   );
 };
 
 const headerStyleSheet = createStyleSheet('headerStyles', () => ({
-  container: {
-    display: 'flex',
-  }
+  container: { display: 'flex' },
 }));
 const Header = () => {
   const classes = useStyleSheet(headerStyleSheet, null);
   return (
     <div className={classes.container}>
-      <Text typography='body01'>Mortgage Calculator</Text>
+      <Text typography="body01">Mortgage Calculator</Text>
     </div>
   );
 };

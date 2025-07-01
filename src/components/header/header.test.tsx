@@ -5,8 +5,12 @@ import { Header } from './header';
 
 describe('<Header />', () => {
   test('renders correctly', () => {
-    render(<MemoryRouter initialEntries={['/']}><Header /></MemoryRouter>);
-    
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Header />
+      </MemoryRouter>,
+    );
+
     expect(screen.getByText('AHORA')).toBeInTheDocument();
   });
 });
