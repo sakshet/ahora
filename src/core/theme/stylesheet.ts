@@ -5,11 +5,13 @@ function camelToKebab(str: string) {
   return str.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase());
 }
 function hash(str: string): string {
-  let h = 0, i, chr;
+  let h = 0,
+    i,
+    chr;
   if (str.length === 0) return '0';
   for (i = 0; i < str.length; i++) {
     chr = str.charCodeAt(i);
-    h = ((h << 5) - h) + chr;
+    h = (h << 5) - h + chr;
     h |= 0;
   }
   return Math.abs(h).toString(36);
@@ -52,11 +54,9 @@ function injectCss(css: string) {
 type StyleObject = Record<string, any>;
 
 // Overload for static styles
-export function createStyleSheet<
-  Styles extends StyleObject
->(
+export function createStyleSheet<Styles extends StyleObject>(
   name: string,
-  getStyles: () => Styles
+  getStyles: () => Styles,
 ): {
   name: string;
   getStyles: () => Styles;
@@ -64,12 +64,9 @@ export function createStyleSheet<
 };
 
 // Overload for dynamic styles
-export function createStyleSheet<
-  Props,
-  Styles extends StyleObject
->(
+export function createStyleSheet<Props, Styles extends StyleObject>(
   name: string,
-  getStyles: (props: Props) => Styles
+  getStyles: (props: Props) => Styles,
 ): {
   name: string;
   getStyles: (props: Props) => Styles;
@@ -83,27 +80,20 @@ export function createStyleSheet(name: string, getStyles: any) {
 }
 
 // Overload for static styles
-export function useStyleSheet<
-  Styles extends StyleObject
->(
-  styleSheet: {
-    name: string;
-    getStyles: () => Styles;
-    styleKeys: (keyof Styles)[];
-  }
-): { [K in keyof Styles]: string };
+export function useStyleSheet<Styles extends StyleObject>(styleSheet: {
+  name: string;
+  getStyles: () => Styles;
+  styleKeys: (keyof Styles)[];
+}): { [K in keyof Styles]: string };
 
 // Overload for dynamic styles
-export function useStyleSheet<
-  Props,
-  Styles extends StyleObject
->(
+export function useStyleSheet<Props, Styles extends StyleObject>(
   styleSheet: {
     name: string;
     getStyles: (props: Props) => Styles;
     styleKeys: (keyof Styles)[];
   },
-  props: Props
+  props: Props,
 ): { [K in keyof Styles]: string };
 
 // Implementation
