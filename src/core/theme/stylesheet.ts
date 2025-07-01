@@ -4,30 +4,22 @@ import { useMemo } from 'react';
 function camelToKebab(str: string) {
   return str.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase());
 }
-
-// Utility: simple hash for className uniqueness
 function hash(str: string): string {
-  let h = 0,
-    i,
-    chr;
+  let h = 0, i, chr;
   if (str.length === 0) return '0';
   for (i = 0; i < str.length; i++) {
     chr = str.charCodeAt(i);
-    h = (h << 5) - h + chr;
+    h = ((h << 5) - h) + chr;
     h |= 0;
   }
   return Math.abs(h).toString(36);
 }
-
-// Converts a flat style object to CSS string
 function styleObjToCssInner(styleObj: any): string {
   return Object.entries(styleObj)
     .filter(([_, v]) => typeof v !== 'object')
     .map(([k, v]) => `${camelToKebab(k)}:${v};`)
     .join('');
 }
-
-// Converts a style object to CSS string (handles pseudo-selectors)
 function styleObjToCss(className: string, styleObj: any): string {
   let css = '';
   const base: Record<string, any> = {};
@@ -45,11 +37,8 @@ function styleObjToCss(className: string, styleObj: any): string {
   }
   return css;
 }
-
-// Registry to avoid duplicate style injection
 const styleSheetRegistry = new Set<string>();
 
-// Injects CSS into the document head
 function injectCss(css: string) {
   if (typeof window === 'undefined' || styleSheetRegistry.has(css)) return;
   const style = document.createElement('style');
@@ -58,23 +47,67 @@ function injectCss(css: string) {
   styleSheetRegistry.add(css);
 }
 
-// Type-safe stylesheet definition
-type StyleSheet<Props> = {
+// --- Typed API ---
+
+type StyleObject = Record<string, any>;
+
+// Overload for static styles
+export function createStyleSheet<
+  Styles extends StyleObject
+>(
+  name: string,
+  getStyles: () => Styles
+): {
   name: string;
-  getStyles: (props: Props) => Record<string, any>;
+  getStyles: () => Styles;
+  styleKeys: (keyof Styles)[];
 };
 
-export function createStyleSheet<Props>(
+// Overload for dynamic styles
+export function createStyleSheet<
+  Props,
+  Styles extends StyleObject
+>(
   name: string,
-  getStyles: (props: Props) => Record<string, any>,
-): StyleSheet<Props> {
-  return { name, getStyles };
+  getStyles: (props: Props) => Styles
+): {
+  name: string;
+  getStyles: (props: Props) => Styles;
+  styleKeys: (keyof Styles)[];
+};
+
+// Implementation
+export function createStyleSheet(name: string, getStyles: any) {
+  // We can't get keys at runtime, but TS will infer them at compile time
+  return { name, getStyles, styleKeys: [] };
 }
 
-export function useStyleSheet<Props>(
-  styleSheet: StyleSheet<Props>,
-  props: Props,
-): Record<string, string> {
+// Overload for static styles
+export function useStyleSheet<
+  Styles extends StyleObject
+>(
+  styleSheet: {
+    name: string;
+    getStyles: () => Styles;
+    styleKeys: (keyof Styles)[];
+  }
+): { [K in keyof Styles]: string };
+
+// Overload for dynamic styles
+export function useStyleSheet<
+  Props,
+  Styles extends StyleObject
+>(
+  styleSheet: {
+    name: string;
+    getStyles: (props: Props) => Styles;
+    styleKeys: (keyof Styles)[];
+  },
+  props: Props
+): { [K in keyof Styles]: string };
+
+// Implementation
+export function useStyleSheet(styleSheet: any, props?: any) {
   return useMemo(() => {
     const styleObj = styleSheet.getStyles(props);
     const classes: Record<string, string> = {};

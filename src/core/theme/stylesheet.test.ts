@@ -30,6 +30,12 @@ describe('useStyleSheet', () => {
 
   function TestComponent(props: { color: string }) {
     const classes = useStyleSheet(sheet, props);
+
+    // TypeScript type test: should error if accessing a non-existent key
+    // @ts-expect-error
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    classes.doesNotExist;
+
     return React.createElement(
       'div',
       { className: classes.root },
