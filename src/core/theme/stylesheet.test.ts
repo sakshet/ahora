@@ -32,7 +32,8 @@ describe('useStyleSheet', () => {
     const classes = useStyleSheet(sheet, props);
 
     // TypeScript type test: should error if accessing a non-existent key
-    // @ts-expect-error
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    // @ts-expect-error: testing type error for non-existent class key
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     classes.doesNotExist;
 
