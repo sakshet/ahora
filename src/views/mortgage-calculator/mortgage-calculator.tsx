@@ -38,7 +38,7 @@ const contentStyleSheet = createStyleSheet('contentStyles', () => ({
   },
   content: {
     padding: '10px',
-    background: colors.gray030,
+    background: colors.gray040,
   },
 }));
 const Content = () => {

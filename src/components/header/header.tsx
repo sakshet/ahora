@@ -11,15 +11,16 @@ const headerStyleSheet = createStyleSheet('headerStyle', () => ({
     justifyContent: 'space-between',
     height: '40px',
     padding: '5px 30px',
-    background: colors.blue010,
+    background: colors.gray090,
   },
+  heading: { color: colors.white }
 }));
 export const Header = () => {
   const classes = useStyleSheet(headerStyleSheet, null);
   return (
     <div className={classes.container}>
       <Link to="/">
-        <Heading typography="heading06">AHORA</Heading>
+        <Heading className={classes.heading} typography="heading06">AHORA</Heading>
       </Link>
       <Actions />
     </div>
@@ -32,16 +33,17 @@ const actionStyleSheet = createStyleSheet('actionStyles', () => ({
     flexDirection: 'row',
     gap: '30px',
   },
+  text: { color: colors.white },
 }));
 const Actions = () => {
   const classes = useStyleSheet(actionStyleSheet, null);
   return (
     <div className={classes.container}>
       <Link to="/mortgage-calculator">
-        <Text typography="body04">Mortgage Calculator</Text>
+        <Text className={classes.text} typography="body04">Mortgage Calculator</Text>
       </Link>
       <Link to="/about">
-        <Text typography="body04">About</Text>
+        <Text className={classes.text} typography="body04">About</Text>
       </Link>
     </div>
   );
