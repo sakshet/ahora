@@ -17,15 +17,37 @@ import {
 import styled from 'styled-components';
 
 import { GlobalStyle } from '../../global-styles';
+import { createStyleSheet, useStyleSheet } from '@Core/theme';
 
 export const App = () => {
   return (
     <AppStateProvider useMockData={true}>
       <ServerStateProvider>
-        <GlobalStyle />
-        <AppRoutes />
+        {/* <GlobalStyle />
+        <AppRoutes /> */}
+        <App2 />
       </ServerStateProvider>
     </AppStateProvider>
+  );
+};
+
+const appStyleSheet = createStyleSheet('appStyles', ({ color }: { color: string; }) => ({
+  container: {
+    display: 'flex',
+    color: color,
+    '&:hover': {
+      color: 'yellow'
+    }
+  }
+}));
+const App2 = () => {
+
+  // contso
+  const classes = useStyleSheet(appStyleSheet, { color: 'red' });
+  return (
+    <div className={classes.container}>
+      Hello
+    </div>
   );
 };
 
