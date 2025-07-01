@@ -13,14 +13,16 @@ const headerStyleSheet = createStyleSheet('headerStyle', () => ({
     padding: '5px 30px',
     background: colors.gray090,
   },
-  heading: { color: colors.white }
+  heading: { color: colors.white },
 }));
 export const Header = () => {
   const classes = useStyleSheet(headerStyleSheet, null);
   return (
     <div className={classes.container}>
       <Link to="/">
-        <Heading className={classes.heading} typography="heading06">AHORA</Heading>
+        <Heading className={classes.heading} typography="heading06">
+          AHORA
+        </Heading>
       </Link>
       <Actions />
     </div>
@@ -40,10 +42,14 @@ const Actions = () => {
   return (
     <div className={classes.container}>
       <Link to="/mortgage-calculator">
-        <Text className={classes.text} typography="body04">Mortgage Calculator</Text>
+        <Text className={classes.text} typography="body04">
+          Mortgage Calculator
+        </Text>
       </Link>
       <Link to="/about">
-        <Text className={classes.text} typography="body04">About</Text>
+        <Text className={classes.text} typography="body04">
+          About
+        </Text>
       </Link>
     </div>
   );
