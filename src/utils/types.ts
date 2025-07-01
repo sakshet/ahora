@@ -8,3 +8,10 @@ export type Service = {
   path?: string;
   subServices?: Service[];
 };
+
+export type MortgageInput = {
+  deposit: number;
+  interest: number;
+  propertyPrice: number;
+  years: number;
+};

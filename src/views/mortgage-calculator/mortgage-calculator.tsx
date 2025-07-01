@@ -1,115 +1,101 @@
-import { colors, Form, FormInput } from '@Core';
-import {
-  MIN_SIZE_FOR_DESKTOP,
-  MIN_SIZE_FOR_SMALL_SCREEN,
-} from '@Utils/constants';
+import { colors } from '@Core/colors';
+import { Text } from '@Core/text';
+import { createStyleSheet, useStyleSheet } from '@Core/theme';
+import { MortgageInput } from '@Utils/types';
+import React, { useEffect, useState } from 'react';
 
-import React, { useState } from 'react';
-import styled from 'styled-components';
-
-enum MortgageType {
-  Interest = 'Interest Only',
-  Repayment = 'Repayment',
-}
-
-type MortgageRequest = {
-  debt: number;
-  term: number;
-  type: MortgageType;
-  rate: number;
+const defaultMortgageInput: MortgageInput = {
+  deposit: 0,
+  interest: 0,
+  propertyPrice: 0,
+  years: 0,
 };
 
-const defaultInputs: MortgageRequest = {
-  debt: 130000,
-  term: 25,
-  type: MortgageType.Repayment,
-  rate: 4.5,
-};
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: ${colors.gray030};
-`;
-
-const Content = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  @media (min-width: ${MIN_SIZE_FOR_DESKTOP}px) {
-    width: 70%;
-  }
-`;
+const calculatorStyleSheet = createStyleSheet('calculatorStyles', () => ({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    gap: '10px',
+  },
+}));
 export const MortgageCalculator = () => {
-  const [inputs, setInputs] = useState<MortgageRequest>(defaultInputs);
-
+  const classes = useStyleSheet(calculatorStyleSheet, null);
   return (
-    <Container>
-      <Content>
-        <Input inputs={inputs} setInputs={setInputs} />
-        <Result />
-      </Content>
-    </Container>
+    <div className={classes.container}>
+      <Header />
+      <Content />
+    </div>
   );
 };
 
-const StyledForm = styled(Form)`
-  display: grid;
-  grid-template-columns: 1fr;
-  padding: 10px;
-  box-sizing: border-box;
-  gap: 25px;
-  @media (min-width: ${MIN_SIZE_FOR_SMALL_SCREEN}px) {
-    grid-template-columns: 1fr 1fr;
-  }
-`;
-export const Input = ({
-  inputs,
-  setInputs,
-}: {
-  inputs: MortgageRequest;
-  setInputs: (input: MortgageRequest) => void;
-}) => {
+const contentStyleSheet = createStyleSheet('contentStyles', () => ({
+  container: {
+    display: 'grid',
+    gridTemplateColumns: '2fr 1fr',
+    height: '100%',
+    gap: '10px',
+  },
+  content: {
+    padding: '10px',
+    background: colors.gray040,
+  },
+}));
+const Content = () => {
+  const [input, setInput] = useState<MortgageInput>(defaultMortgageInput);
+  const [responseReady, setResponseReady] = useState<boolean>(false);
+
+  useEffect(() => {
+    setResponseReady(Object.values(input).every((val) => val !== 0));
+  }, [input]);
+
+  const classes = useStyleSheet(contentStyleSheet, null);
   return (
-    <StyledForm>
-      <FormInput
-        label="Mortgage Debt"
-        leading="£"
-        onChange={(debt: number) => setInputs({ ...inputs, debt })}
-        type="number"
-        value={inputs.debt}
-      />
-      <FormInput
-        label="Mortgage Term"
-        onChange={(term: number) => setInputs({ ...inputs, term })}
-        trailing="years"
-        type="number"
-        value={inputs.term}
-      />
-      <FormInput
-        label="Mortgage Type"
-        onChange={(type: MortgageType) => setInputs({ ...inputs, type })}
-        options={[MortgageType.Interest, MortgageType.Repayment]}
-        type="radio"
-        value={inputs.type}
-      />
-      <FormInput
-        label="Interest Rate"
-        onChange={(rate: number) => setInputs({ ...inputs, rate })}
-        trailing="%"
-        type="number"
-        value={inputs.rate}
-      />
-    </StyledForm>
+    <div className={classes.container}>
+      <div
+        className={classes.content}
+        role="button"
+        tabIndex={0}
+        onClick={() =>
+          setInput({
+            deposit: 100,
+            interest: 100,
+            propertyPrice: 100,
+            years: 100,
+          })
+        }
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            setInput({
+              deposit: 100,
+              interest: 100,
+              propertyPrice: 100,
+              years: 100,
+            });
+          }
+        }}
+      >
+        Content
+      </div>
+      <div className={classes.content}>
+        {responseReady ? (
+          <div>Response Ready</div>
+        ) : (
+          <div>Please fill all info</div>
+        )}
+      </div>
+    </div>
   );
 };
 
-export const Result = () => {
-  return <div style={{ backgroundColor: colors.white }}>Result</div>;
+const headerStyleSheet = createStyleSheet('headerStyles', () => ({
+  container: { display: 'flex' },
+}));
+const Header = () => {
+  const classes = useStyleSheet(headerStyleSheet, null);
+  return (
+    <div className={classes.container}>
+      <Text typography="body01">Mortgage Calculator</Text>
+    </div>
+  );
 };
