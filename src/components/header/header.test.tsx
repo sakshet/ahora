@@ -1,3 +1,16 @@
+import { render, screen } from '@testing-library/react';
+import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
+import { Header } from './header';
+
+describe('<Header />', () => {
+  test('renders correctly', () => {
+    render(<MemoryRouter initialEntries={['/']}><Header /></MemoryRouter>);
+    
+    expect(screen.getByText('AHORA')).toBeInTheDocument();
+  });
+});
+
 // import { renderWithProviders } from '@Utils/test-utils';
 // import { screen, fireEvent, waitFor } from '@testing-library/react';
 // import React from 'react';
