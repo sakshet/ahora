@@ -103,10 +103,7 @@ const Content = () => {
                   price: Number(String(val).replace(/,/g, '')),
                 })
               }
-              onTouched={() => {
-                setTouched(true);
-                setMonthly(null);
-              }}
+              onTouched={() => setTouched(true)}
               className={classes.input}
               format={(val) =>
                 val === '' || val === '0'
@@ -125,10 +122,7 @@ const Content = () => {
               onChange={(val) =>
                 setInput({ ...input, deposit: val === '' ? 0 : Number(val) })
               }
-              onTouched={() => {
-                setTouched(true);
-                setMonthly(null);
-              }}
+              onTouched={() => setTouched(true)}
               className={classes.input}
               format={(val) =>
                 val === '' || val === '0'
@@ -145,10 +139,7 @@ const Content = () => {
               type="number"
               value={input.interest}
               onChange={(val) => setInput({ ...input, interest: Number(val) })}
-              onTouched={() => {
-                setTouched(true);
-                setMonthly(null);
-              }}
+              onTouched={() => setTouched(true)}
               className={classes.input}
               min={0}
               step={0.01}
@@ -163,10 +154,7 @@ const Content = () => {
               type="number"
               value={input.years}
               onChange={(val) => setInput({ ...input, years: Number(val) })}
-              onTouched={() => {
-                setTouched(true);
-                setMonthly(null);
-              }}
+              onTouched={() => setTouched(true)}
               className={classes.input}
               min={1}
               max={40}
