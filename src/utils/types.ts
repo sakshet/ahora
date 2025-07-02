@@ -12,6 +12,6 @@ export type Service = {
 export type MortgageInput = {
   deposit: number;
   interest: number;
-  propertyPrice: number;
+  price: number;
   years: number;
 };
