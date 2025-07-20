@@ -1,9 +1,11 @@
+import { useTheme } from '@Core/theme';
 import React, { ReactNode } from 'react';
 
-const commonStyles: React.CSSProperties = {
+const commonStyles = (color: string): React.CSSProperties => ({
   margin: 0,
   textAlign: 'center',
-};
+  color,
+});
 
 type TextTypography =
   | 'body01'
@@ -71,8 +73,9 @@ export const Text = ({ children, className, typography }: TextProps) => {
       break;
   }
 
+  const { theme } = useTheme();
   return (
-    <p className={className} style={{ fontSize, ...commonStyles }}>
+    <p className={className} style={{ fontSize, ...commonStyles(theme.text) }}>
       {children}
     </p>
   );
@@ -120,8 +123,9 @@ export const Heading = ({ children, className, typography }: HeadingProps) => {
       break;
   }
 
+  const { theme } = useTheme();
   return (
-    <h1 className={className} style={{ fontSize, ...commonStyles }}>
+    <h1 className={className} style={{ fontSize, ...commonStyles(theme.text) }}>
       {children}
     </h1>
   );
