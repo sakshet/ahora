@@ -1,28 +1,29 @@
 import { colors } from '@Core/colors';
 import { Link } from '@Core/link';
 import { Heading, Text } from '@Core/text';
-import { createStyleSheet, useStyleSheet } from '@Core/theme';
+import { createStyleSheet, Theme, useStyleSheet, useTheme } from '@Core/theme';
 import React from 'react';
 
-const headerStyleSheet = createStyleSheet('headerStyle', () => ({
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    height: '40px',
-    padding: '5px 30px',
-    background: colors.gray090,
-  },
-  heading: { color: colors.white },
-}));
+const headerStyleSheet = createStyleSheet(
+  'headerStyle',
+  ({ theme }: { theme: Theme }) => ({
+    container: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      height: '40px',
+      padding: '5px 30px',
+      borderBottom: `2px solid ${theme.text}`,
+    },
+  }),
+);
 export const Header = () => {
-  const classes = useStyleSheet(headerStyleSheet, null);
+  const { theme } = useTheme();
+  const classes = useStyleSheet(headerStyleSheet, { theme });
   return (
     <div className={classes.container}>
       <Link to="/">
-        <Heading className={classes.heading} typography="heading06">
-          AHORA
-        </Heading>
+        <Heading typography="heading06">AHORA</Heading>
       </Link>
       <Actions />
     </div>

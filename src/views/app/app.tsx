@@ -1,45 +1,59 @@
 import { Header } from '@Components';
 import { AppStateProvider, ServerStateProvider } from '@Context';
-import { createStyleSheet, useStyleSheet } from '@Core/theme';
-import { MortgageCalculator } from '@Views';
+import {
+  createStyleSheet,
+  useStyleSheet,
+  useTheme,
+  Theme,
+  ThemeProvider,
+} from '@Core/theme';
+import { About, Homepage, MortgageCalculator } from '@Views';
 
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 export const AppContainer = () => {
   return (
-    <AppStateProvider useMockData={true}>
-      <ServerStateProvider>
-        <App />
-      </ServerStateProvider>
-    </AppStateProvider>
+    <ThemeProvider>
+      <AppStateProvider useMockData>
+        <ServerStateProvider>
+          <App />
+        </ServerStateProvider>
+      </AppStateProvider>
+    </ThemeProvider>
   );
 };
 
-const appStyleSheet = createStyleSheet('appStyles', () => ({
-  container: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'nowrap',
-  },
-  routes: {
-    padding: '15px 30px',
-    height: '100%',
-  },
-}));
+const appStyleSheet = createStyleSheet(
+  'appStyles',
+  ({ theme }: { theme: Theme }) => ({
+    container: {
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      flexWrap: 'nowrap',
+      background: theme.background,
+    },
+    routes: {
+      padding: '15px 30px',
+      height: '100%',
+      background: theme.background,
+    },
+  }),
+);
 const App = () => {
-  const classes = useStyleSheet(appStyleSheet, null);
+  const { theme } = useTheme();
+  const classes = useStyleSheet(appStyleSheet, { theme });
   return (
     <div className={classes.container}>
       <Header />
       <div className={classes.routes}>
         <Routes>
-          <Route path="/" element={<div>Welcome</div>} />
+          <Route path="/" element={<Homepage />} />
 
           {/* TODO - Generalise these based on a config */}
-          <Route path="/about" element={<div>About</div>} />
+          <Route path="/about" element={<About />} />
           <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
 
           {/* TODO - Add 404 error path */}
