@@ -13,7 +13,8 @@ const headerStyleSheet = createStyleSheet(
       justifyContent: 'space-between',
       height: '40px',
       padding: '5px 30px',
-      borderBottom: `2px solid ${theme.text}`,
+      background: theme.secondary,
+      borderBottom: `1px solid ${theme.text}`,
     },
   }),
 );
