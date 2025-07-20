@@ -18,8 +18,8 @@ export const lightTheme: Theme = {
   tokens: lightTokens,
   background: colors.gray010,
   text: colors.gray100,
-  primary: colors.blue060,
-  secondary: colors.blue040,
+  primary: colors.white,
+  secondary: colors.gray030,
   // ...add more semantic roles as needed
 };
 
@@ -28,8 +28,8 @@ export const darkTheme: Theme = {
   tokens: darkTokens,
   background: colors.gray100,
   text: colors.gray010,
-  primary: colors.blue030,
-  secondary: colors.blue010,
+  primary: colors.black,
+  secondary: colors.gray080,
   // ...add more semantic roles as needed
 };
 
