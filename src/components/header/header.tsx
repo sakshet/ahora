@@ -13,8 +13,9 @@ const headerStyleSheet = createStyleSheet(
       justifyContent: 'space-between',
       height: '40px',
       padding: '5px 30px',
-      background: theme.secondary,
-      borderBottom: `1px solid ${theme.text}`,
+      background: theme.backgroundElevated,
+      borderBottom: `1px solid ${theme.divider}`,
+      color: theme.text,
     },
   }),
 );
