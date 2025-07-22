@@ -148,7 +148,9 @@ const Content = () => {
             required
           />
         </div>
-        <Button onClick={handleCalculate}>Calculate</Button>
+        <Button disabled={!touched} onClick={handleCalculate}>
+          Calculate
+        </Button>
       </div>
       <div className={classes.content}>
         {touched && (
