@@ -2,37 +2,20 @@ import { Button } from '@Core/button';
 import { Input } from '@Core/input';
 import { Heading, Text } from '@Core/text';
 import { createStyleSheet, Theme, useStyleSheet, useTheme } from '@Core/theme';
-import { calculateMortgage } from '@Utils/common';
-import { MortgageInput } from '@Utils/types';
+import { calculateCompoundInterest } from '@Utils/common';
+import { CompoundInput } from '@Utils/types';
 import React, { useState } from 'react';
 
-const defaultMortgageInput: MortgageInput = {
-  deposit: 0,
-  interest: 0,
-  price: 0,
+const defaultCompoundInput: CompoundInput = {
+  principal: 0,
+  rate: 0,
+  timesCompounded: 1,
   years: 0,
+  monthlyAddition: 0,
 };
 
-const calculatorStyleSheet = createStyleSheet('calculatorStyles', () => ({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-    gap: '10px',
-  },
-}));
-export const MortgageCalculator = () => {
-  const classes = useStyleSheet(calculatorStyleSheet, null);
-  return (
-    <div className={classes.container}>
-      <Header />
-      <Content />
-    </div>
-  );
-};
-
-const contentStyleSheet = createStyleSheet(
-  'contentStyles',
+const styleSheet = createStyleSheet(
+  'compoundStyles',
   ({ theme }: { theme: Theme }) => ({
     container: {
       display: 'flex',
@@ -73,45 +56,28 @@ const contentStyleSheet = createStyleSheet(
     },
   }),
 );
-const Content = () => {
-  const [input, setInput] = useState<MortgageInput>(defaultMortgageInput);
-  const [monthly, setMonthly] = useState<number | null>(null);
+
+export const CompoundInterestCalculator = () => {
+  const [input, setInput] = useState<CompoundInput>(defaultCompoundInput);
+  const [result, setResult] = useState<number | null>(null);
   const [touched, setTouched] = useState<boolean>(false);
 
-  const handleCalculate = () => setMonthly(calculateMortgage(input));
+  const handleCalculate = () => setResult(calculateCompoundInterest(input));
 
   const { theme } = useTheme();
-  const classes = useStyleSheet(contentStyleSheet, { theme });
+  const classes = useStyleSheet(styleSheet, { theme });
+
   return (
     <div className={classes.container}>
+      <Header />
       <div className={classes.content}>
         <div className={classes.inputGroup}>
-          <Heading typography="heading09">Property Price (£)</Heading>
+          <Heading typography="heading09">Principal (£)</Heading>
           <Input
             type="number"
-            value={input.price}
+            value={input.principal}
             onChange={(val) =>
-              setInput({
-                ...input,
-                price: Number(String(val).replace(/,/g, '')),
-              })
-            }
-            onTouched={() => setTouched(true)}
-            className={classes.input}
-            format={(val) =>
-              val === '' || val === '0'
-                ? ''
-                : Number(val).toLocaleString('en-GB')
-            }
-          />
-        </div>
-        <div className={classes.inputGroup}>
-          <Heading typography="heading09">Deposit (£)</Heading>
-          <Input
-            type="number"
-            value={input.deposit}
-            onChange={(val) =>
-              setInput({ ...input, deposit: val === '' ? 0 : Number(val) })
+              setInput({ ...input, principal: val === '' ? 0 : Number(val) })
             }
             onTouched={() => setTouched(true)}
             className={classes.input}
@@ -126,8 +92,10 @@ const Content = () => {
           <Heading typography="heading09">Annual Interest Rate (%)</Heading>
           <Input
             type="number"
-            value={input.interest}
-            onChange={(val) => setInput({ ...input, interest: Number(val) })}
+            value={input.rate}
+            onChange={(val) =>
+              setInput({ ...input, rate: val === '' ? 0 : Number(val) })
+            }
             onTouched={() => setTouched(true)}
             className={classes.input}
             min={0}
@@ -136,16 +104,58 @@ const Content = () => {
           />
         </div>
         <div className={classes.inputGroup}>
+          <Heading typography="heading09">Times Compounded Per Year</Heading>
+          <Input
+            type="number"
+            value={input.timesCompounded}
+            onChange={(val) =>
+              setInput({
+                ...input,
+                timesCompounded: val === '' ? 1 : Number(val),
+              })
+            }
+            onTouched={() => setTouched(true)}
+            className={classes.input}
+            min={1}
+            max={365}
+            required
+          />
+        </div>
+        <div className={classes.inputGroup}>
           <Heading typography="heading09">Years</Heading>
           <Input
             type="number"
             value={input.years}
-            onChange={(val) => setInput({ ...input, years: Number(val) })}
+            onChange={(val) =>
+              setInput({ ...input, years: val === '' ? 0 : Number(val) })
+            }
             onTouched={() => setTouched(true)}
             className={classes.input}
             min={1}
-            max={40}
+            max={100}
             required
+          />
+        </div>
+        <div className={classes.inputGroup}>
+          <Heading typography="heading09">Monthly Addition (£)</Heading>
+          <Input
+            type="number"
+            value={input.monthlyAddition}
+            onChange={(val) =>
+              setInput({
+                ...input,
+                monthlyAddition: val === '' ? 0 : Number(val),
+              })
+            }
+            onTouched={() => setTouched(true)}
+            className={classes.input}
+            format={(val) =>
+              val === '' || val === '0'
+                ? ''
+                : Number(val).toLocaleString('en-GB')
+            }
+            min={0}
+            step={0.01}
           />
         </div>
         <Button disabled={!touched} onClick={handleCalculate}>
@@ -155,8 +165,8 @@ const Content = () => {
       <div className={classes.content}>
         {touched && (
           <Text typography="body04">
-            {monthly
-              ? `Estimated Monthly Payment: £${monthly.toFixed(2)}`
+            {result !== null
+              ? `Future Value: £${result.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
               : 'Please fill all info and click Calculate'}
           </Text>
         )}
@@ -172,7 +182,7 @@ const Header = () => {
   const classes = useStyleSheet(headerStyleSheet, null);
   return (
     <div className={classes.container}>
-      <Text typography="body01">Mortgage Calculator</Text>
+      <Text typography="body01">Compound Interest Calculator</Text>
     </div>
   );
 };

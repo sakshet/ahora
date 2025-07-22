@@ -1,8 +1,7 @@
-import { colors } from '@Core/colors';
 import { Link } from '@Core/link';
 import { Heading, Text } from '@Core/text';
-import { createStyleSheet, Theme, useStyleSheet, useTheme } from '@Core/theme';
-import React from 'react';
+import { createStyleSheet, useStyleSheet, useTheme, Theme } from '@Core/theme';
+import React, { useEffect, useRef, useState } from 'react';
 
 const headerStyleSheet = createStyleSheet(
   'headerStyle',
@@ -19,6 +18,59 @@ const headerStyleSheet = createStyleSheet(
     },
   }),
 );
+
+const actionStyleSheet = createStyleSheet(
+  'actionStyles',
+  ({ theme }: { theme: Theme }) => ({
+    container: {
+      display: 'flex',
+      flexDirection: 'row',
+      gap: '30px',
+      position: 'relative',
+    },
+    text: {
+      color: theme.textOnPrimary,
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      flexDirection: 'row',
+      gap: '5px',
+    },
+    dropdown: {
+      position: 'absolute',
+      top: '100%',
+      right: 0,
+      minWidth: '250px',
+      background: theme.backgroundElevated,
+      border: `1px solid ${theme.divider}`,
+      borderRadius: '6px',
+      boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+      zIndex: 100,
+      padding: '8px 0',
+      marginTop: '6px',
+    },
+    dropdownItem: {
+      display: 'flex',
+      flexDirection: 'row',
+      gap: '10px',
+      padding: '8px 20px',
+      color: theme.text,
+      cursor: 'pointer',
+      textDecoration: 'none',
+      alignItems: 'center',
+      '&:hover': {
+        background: theme.backgroundAlt,
+      },
+    },
+  }),
+);
+
+const calculators = [
+  { label: 'Compound Interest', path: '/compound-interest' },
+  { label: 'Mortgage', path: '/mortgage-calculator' },
+  // Add more calculators here
+];
+
 export const Header = () => {
   const { theme } = useTheme();
   const classes = useStyleSheet(headerStyleSheet, { theme });
@@ -32,23 +84,58 @@ export const Header = () => {
   );
 };
 
-const actionStyleSheet = createStyleSheet('actionStyles', () => ({
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: '30px',
-  },
-  text: { color: colors.white },
-}));
 const Actions = () => {
-  const classes = useStyleSheet(actionStyleSheet, null);
+  const classes = useStyleSheet(actionStyleSheet, useTheme());
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+    if (open) document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [open]);
+
   return (
     <div className={classes.container}>
-      <Link to="/mortgage-calculator">
+      <div
+        className={classes.text}
+        onClick={() => setOpen((v) => !v)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            setOpen((v) => !v);
+          }
+        }}
+        tabIndex={0}
+        role="button"
+        aria-haspopup="true"
+        aria-expanded={open}
+      >
         <Text className={classes.text} typography="body04">
-          Mortgage Calculator
+          Calculators
         </Text>
-      </Link>
+      </div>
+      {open && (
+        <div className={classes.dropdown} ref={dropdownRef}>
+          {calculators.map((calc) => (
+            <Link
+              key={calc.path}
+              to={calc.path}
+              className={classes.dropdownItem}
+              onClick={() => setOpen(false)}
+            >
+              <Text typography="body04">{calc.label}</Text>
+            </Link>
+          ))}
+        </div>
+      )}
       <Link to="/about">
         <Text className={classes.text} typography="body04">
           About
@@ -57,153 +144,3 @@ const Actions = () => {
     </div>
   );
 };
-
-// import { useServicesData } from '@Context';
-// import { colors, Icon, Link, Text } from '@Core';
-// import {
-//   dragOption,
-//   formerOptions,
-//   latterOptions,
-//   HEADER_HEIGHT,
-//   HEADER_PADDING,
-//   MIN_SIZE_FOR_DESKTOP,
-//   MIN_SIZE_FOR_SMALL_SCREEN,
-// } from '@Utils/constants';
-// import { Service } from '@Utils/types';
-
-// import React, { useEffect, useState } from 'react';
-// import styled from 'styled-components';
-
-// const Container = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: center;
-//   background-color: ${colors.black};
-//   flex-shrink: 0;
-//   z-index: 1000;
-//   position: fixed;
-//   width: 100%;
-//   &:hover {
-//     opacity: 100%;
-//   }
-// `;
-
-// const Content = styled.div`
-//   padding: 10px 20px;
-//   width: 100%;
-//   box-sizing: border-box;
-//   @media (min-width: ${MIN_SIZE_FOR_DESKTOP}px) {
-//     width: 70%;
-//   }
-// `;
-
-// const Menu = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   align-items: center;
-//   width: 100%;
-//   color: ${colors.gray050};
-//   height: ${HEADER_HEIGHT};
-// `;
-
-// const SubMenu = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   justify-content: center;
-//   padding: ${HEADER_PADDING}px 0;
-//   margin-top: 10px;
-//   gap: 20px;
-//   border-top: 2px solid ${colors.gray100};
-// `;
-
-// export const Header = ({
-//   onSubMenuHide,
-//   onSubMenuShow,
-// }: {
-//   onSubMenuHide: () => void;
-//   onSubMenuShow: () => void;
-// }) => {
-//   const { options } = useServicesData();
-//   const [subMenu, setSubMenu] = useState<Service[]>([]);
-//   const [width, setWidth] = useState<number>(window.innerWidth);
-
-//   useEffect(() => {
-//     const handleResize = () => setWidth(window.innerWidth);
-//     window.addEventListener('resize', handleResize);
-//     return () => {
-//       window.removeEventListener('resize', handleResize);
-//     };
-//   }, []);
-
-//   useEffect(() => {
-//     if (subMenu.length) onSubMenuShow();
-//     else onSubMenuHide();
-//   }, [subMenu]);
-
-//   return (
-//     <Container onMouseLeave={() => setSubMenu([])}>
-//       <Content>
-//         <Menu>
-//           {(width > MIN_SIZE_FOR_SMALL_SCREEN
-//             ? options
-//             : [...formerOptions, ...latterOptions, dragOption]
-//           ).map((option, key) => (
-//             <MenuItem
-//               key={key}
-//               onClick={() => setSubMenu([])}
-//               onHover={() => setSubMenu(option.subServices || [])}
-//               option={option}
-//             />
-//           ))}
-//         </Menu>
-//         {subMenu.length > 0 && (
-//           <SubMenu>
-//             {subMenu.map((option, key) => (
-//               <MenuItem
-//                 key={key}
-//                 large
-//                 onClick={() => setSubMenu([])}
-//                 option={option}
-//               />
-//             ))}
-//           </SubMenu>
-//         )}
-//       </Content>
-//     </Container>
-//   );
-// };
-
-// const MenuItemWrapper = styled.div`
-//   color: ${colors.white};
-//   opacity: 60%;
-//   &:hover {
-//     opacity: 80%;
-//   }
-// `;
-
-// const MenuItem = ({
-//   large = false,
-//   onClick,
-//   onHover,
-//   option,
-// }: {
-//   large?: boolean;
-//   onClick: () => void;
-//   onHover?: () => void;
-//   option: Service;
-// }) => {
-//   return (
-//     <MenuItemWrapper onMouseEnter={onHover}>
-//       <Text typography={large ? 'body01' : 'body07'}>
-//         <Link to={option.path || ''} onClick={onClick}>
-//           {option.icon && (
-//             <Icon name={option.icon} type={option.iconType || 'outlined'} />
-//           )}
-//           {option.label}
-//         </Link>
-//       </Text>
-//     </MenuItemWrapper>
-//   );
-// };

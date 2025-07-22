@@ -7,7 +7,12 @@ import {
   Theme,
   ThemeProvider,
 } from '@Core/theme';
-import { About, Homepage, MortgageCalculator } from '@Views';
+import {
+  About,
+  CompoundInterestCalculator,
+  Homepage,
+  MortgageCalculator,
+} from '@Views';
 
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -55,6 +60,10 @@ const App = () => {
 
           {/* TODO - Generalise these based on a config */}
           <Route path="/about" element={<About />} />
+          <Route
+            path="/compound-interest"
+            element={<CompoundInterestCalculator />}
+          />
           <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
 
           {/* TODO - Add 404 error path */}
