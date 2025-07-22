@@ -32,13 +32,14 @@ const appStyleSheet = createStyleSheet(
       height: '100%',
       display: 'flex',
       flexDirection: 'column',
-      flexWrap: 'nowrap',
-      background: theme.background,
+      background: theme.background, // semantic
+      color: theme.text, // semantic
     },
     routes: {
       padding: '15px 30px',
       height: '100%',
-      background: theme.background,
+      background: theme.background, // semantic
+      color: theme.text, // semantic
     },
   }),
 );

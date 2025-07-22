@@ -1,3 +1,4 @@
+import { Button } from '@Core/button';
 import { Input } from '@Core/input';
 import { Heading, Text } from '@Core/text';
 import { createStyleSheet, Theme, useStyleSheet, useTheme } from '@Core/theme';
@@ -38,11 +39,15 @@ const contentStyleSheet = createStyleSheet(
       gridTemplateColumns: '2fr 1fr',
       height: '100%',
       gap: '10px',
+      background: theme.background, // semantic
+      color: theme.text, // semantic
     },
     content: {
       padding: '10px',
-      borderRadius: '8px',
-      border: `1px solid ${theme.text}`,
+      borderRadius: '4px',
+      border: `1px solid ${theme.divider}`, // semantic
+      background: theme.backgroundAlt, // semantic
+      color: theme.text, // semantic
     },
     inputGroup: {
       display: 'flex',
@@ -54,26 +59,17 @@ const contentStyleSheet = createStyleSheet(
     label: {
       marginBottom: '4px',
       fontWeight: 600,
+      color: theme.textSecondary, // semantic
     },
     input: {
       padding: '6px 10px',
       borderRadius: '4px',
-      border: `1px solid ${theme.text}`,
+      border: `1px solid ${theme.divider}`, // semantic
       fontSize: '1rem',
       width: '100%',
       boxSizing: 'border-box',
-      background: theme.background,
-      color: theme.text,
-    },
-    button: {
-      marginTop: '12px',
-      padding: '8px 16px',
-      borderRadius: '4px',
-      border: 'none',
-      fontWeight: 600,
-      cursor: 'pointer',
-      background: theme.text,
-      color: theme.background,
+      background: theme.background, // semantic
+      color: theme.text, // semantic
     },
   }),
 );
@@ -89,79 +85,70 @@ const Content = () => {
   return (
     <div className={classes.container}>
       <div className={classes.content}>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleCalculate();
-          }}
-        >
-          <div className={classes.inputGroup}>
-            <Heading typography="heading09">Property Price</Heading>
-            <Input
-              type="number"
-              value={input.price}
-              onChange={(val) =>
-                setInput({
-                  ...input,
-                  price: Number(String(val).replace(/,/g, '')),
-                })
-              }
-              onTouched={() => setTouched(true)}
-              className={classes.input}
-              format={(val) =>
-                val === '' || val === '0'
-                  ? ''
-                  : Number(val).toLocaleString('en-GB')
-              }
-            />
-          </div>
-          <div className={classes.inputGroup}>
-            <Heading typography="heading09">Deposit</Heading>
-            <Input
-              type="number"
-              value={input.deposit}
-              onChange={(val) =>
-                setInput({ ...input, deposit: val === '' ? 0 : Number(val) })
-              }
-              onTouched={() => setTouched(true)}
-              className={classes.input}
-              format={(val) =>
-                val === '' || val === '0'
-                  ? ''
-                  : Number(val).toLocaleString('en-GB')
-              }
-            />
-          </div>
-          <div className={classes.inputGroup}>
-            <Heading typography="heading09">Interest Rate (% per year)</Heading>
-            <Input
-              type="number"
-              value={input.interest}
-              onChange={(val) => setInput({ ...input, interest: Number(val) })}
-              onTouched={() => setTouched(true)}
-              className={classes.input}
-              min={0}
-              step={0.01}
-              required
-            />
-          </div>
-          <div className={classes.inputGroup}>
-            <Heading typography="heading09">Years</Heading>
-            <Input
-              type="number"
-              value={input.years}
-              onChange={(val) => setInput({ ...input, years: Number(val) })}
-              onTouched={() => setTouched(true)}
-              className={classes.input}
-              min={1}
-              max={40}
-              required
-            />
-          </div>
-          <button className={classes.button} type="submit">
-            Calculate
-          </button>
-        </form>
+        <div className={classes.inputGroup}>
+          <Heading typography="heading09">Property Price</Heading>
+          <Input
+            type="number"
+            value={input.price}
+            onChange={(val) =>
+              setInput({
+                ...input,
+                price: Number(String(val).replace(/,/g, '')),
+              })
+            }
+            onTouched={() => setTouched(true)}
+            className={classes.input}
+            format={(val) =>
+              val === '' || val === '0'
+                ? ''
+                : Number(val).toLocaleString('en-GB')
+            }
+          />
+        </div>
+        <div className={classes.inputGroup}>
+          <Heading typography="heading09">Deposit</Heading>
+          <Input
+            type="number"
+            value={input.deposit}
+            onChange={(val) =>
+              setInput({ ...input, deposit: val === '' ? 0 : Number(val) })
+            }
+            onTouched={() => setTouched(true)}
+            className={classes.input}
+            format={(val) =>
+              val === '' || val === '0'
+                ? ''
+                : Number(val).toLocaleString('en-GB')
+            }
+          />
+        </div>
+        <div className={classes.inputGroup}>
+          <Heading typography="heading09">Interest Rate (% per year)</Heading>
+          <Input
+            type="number"
+            value={input.interest}
+            onChange={(val) => setInput({ ...input, interest: Number(val) })}
+            onTouched={() => setTouched(true)}
+            className={classes.input}
+            min={0}
+            step={0.01}
+            required
+          />
+        </div>
+        <div className={classes.inputGroup}>
+          <Heading typography="heading09">Years</Heading>
+          <Input
+            type="number"
+            value={input.years}
+            onChange={(val) => setInput({ ...input, years: Number(val) })}
+            onTouched={() => setTouched(true)}
+            className={classes.input}
+            min={1}
+            max={40}
+            required
+          />
+        </div>
+        <Button onClick={handleCalculate}>Calculate</Button>
       </div>
       <div className={classes.content}>
         {touched && (
