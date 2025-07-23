@@ -85,8 +85,7 @@ export const Header = () => {
 };
 
 const Actions = () => {
-  const classes = useStyleSheet(actionStyleSheet, useTheme());
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown on outside click
@@ -103,6 +102,7 @@ const Actions = () => {
     return () => document.removeEventListener('mousedown', handleClick);
   }, [open]);
 
+  const classes = useStyleSheet(actionStyleSheet, useTheme());
   return (
     <div className={classes.container}>
       <div
