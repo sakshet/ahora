@@ -1,3 +1,12 @@
+export type CalculatorField = {
+  key: string;
+  label: string;
+  min?: number;
+  max?: number;
+  step?: number;
+  required?: boolean;
+};
+
 export type CompoundInput = {
   principal: number;
   rate: number;
